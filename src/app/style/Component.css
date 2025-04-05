@@ -1,0 +1,55 @@
+.About {
+    position: relative;
+    background-color: #A4CEF9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 74px;
+    width: 100%;
+    height: 393px;
+}
+
+.About-OpenAI {
+    width: 442px;
+    height: 109px;
+}
+
+
+.About-Intro {
+    width: 748px;
+}
+
+.About-Q span {
+  font-family: 'NEXON_Warhaven_Bold';
+  font-size: 48px;
+  color: #FFFFFF;
+}
+
+.About-Q span span{
+    color: #FFD700;
+  }
+.About-Q {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+.About-A {
+    width: 100%;
+    font-family: 'Pretendard-Medium';
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.Footer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 96px;
+    font-family: 'Pretendard-Regular';
+    color: #47494A;
+    background-color: #E2E2E2;
+}

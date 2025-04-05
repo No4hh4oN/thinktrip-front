@@ -1,0 +1,251 @@
+.MainScreen-Container {
+  position: relative;
+  background: linear-gradient(to bottom , #060755, #A4CEF9);
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.MainScreen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.MainScreen-Header {
+  position: relative;
+  margin-top: 72px;
+  width: 1136px;
+  height: 73px;
+  border: 3px, solid, #FFFFFF;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 475px;
+  z-index: 2;
+}
+
+.MainScreen-Header-Logo {
+  font-family: 'NEXON_Warhaven_Bold';
+  color: #FFFFFF;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.MainScreen-Header-Logo span{
+  color: #FFD700;
+}
+
+.MainScreen-Header-List {
+  display: flex;
+  gap: 14px;
+  font-family: 'Pretendard-Medium';
+  font-size: 17px;
+}
+
+.MainScreen-Header-gpt,
+.MainScreen-Header-diary,
+.MainScreen-Header-mypage {
+  width: 119px;
+  cursor: pointer;
+}
+
+.MainScreen-Box {
+  position: relative;
+  margin-top: 102px;
+  width: 1136px;
+  height: 460px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 105px;
+  z-index: 2;
+}
+
+.MainScreen-LoginBox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 463px;
+  height: 460px;
+  border-radius: 20px;
+  background-color: #00000095;
+  z-index: 2;
+}
+
+.MainScreen-JoinBox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 463px;
+  height: 460px;
+  border-radius: 20px;
+  background-color: #00000095;
+  z-index: 3;
+}
+
+.MainScreen-Login, .MainScreen-Join {
+  width: 360px;
+  font-family: 'Pretendard-Bold';
+  font-size: 32px;
+  text-align: center;
+  color: #C0C0C0;
+}
+
+.MainScreen-Join span {
+  position: absolute;
+  top: 25px;
+  right : 30px;
+  cursor: pointer;
+}
+
+.MainScreen-Form {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+}
+
+.idInput, .pwInput, .pwCheck, .addressInput {
+  width: 360px;
+  height: 70px;
+  font-family: 'Pretendard-Medium';
+  font-size: 22px;
+  color: #000000;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  padding-left: 30px;
+  padding-right: 30px;
+  z-index: 3;
+}
+
+.addressInput{
+  cursor: pointer;
+}
+
+.idInput::placeholder, .pwInput::placeholder, .pwCheck::placeholder {
+  color: #C0C0C0;
+}
+
+.nextStep, .JoinRequest {
+  width: 360px;
+  height: 70px;
+  font-family: 'Pretendard-Medium';
+  font-size: 22px;
+  color: #C0C0C0;
+  background-color: #424242;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  padding-left: 30px;
+  padding-right: 30px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.keepLogin {
+  width: 360px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Pretendard-Medium';
+  font-size: 13px;
+  color: #C0C0C0;
+}
+
+.LoginButton {
+  height: 47px;
+  border: none;
+  border-radius: 15px;
+  font-family: 'Pretendard-SemiBold';
+  font-size: 20px;
+}
+
+.LoginButton:hover {
+  border: 1px solid #FFFFFF;
+}
+
+.JoinSuggestion {
+  text-align: center;
+  font-family: 'Pretendard-Medium';
+  color: #9F9F9F;
+}
+
+.JoinSuggestion span {
+  cursor: pointer;
+  font-family: 'Pretendard-Bold';
+  color: #C0C0C0;
+}
+
+.MainScreen-Image {
+  position: relative;
+  width: 500px;
+  height: 460px;
+  z-index: 2;
+}
+
+.TourRecommend {
+  margin-top: 60px;
+  position: relative;
+  width: 1136px;
+  height: 151px;
+  display: flex;
+  gap: 30px;
+  z-index: 2;
+}
+
+.TourRecommend-Ad {
+  width: 400px;
+  height: 151px;
+  background-color: #6E6E6E;
+  border-radius: 8px;
+}
+
+.cloud1 {
+  position: absolute;
+  top: 210px;
+  right: 0;
+  width: 360px;
+  height: auto;
+  animation: floatAnimation 5s ease-in-out infinite;
+  z-index: 1;
+}
+
+.cloud2 {
+  position: absolute;
+  top: 662px;
+  left: 0;
+  width: 536px;
+  height: auto;
+  animation: floatAnimation 5s ease-in-out infinite;
+  z-index: 1;
+}
+
+.paperPlane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+@keyframes floatAnimation {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-20px);
+  }
+}
+
+.About-import, .Footer-import {
+  z-index: 2;
+}
