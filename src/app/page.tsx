@@ -41,26 +41,33 @@ export default function Home() {
     };
 
 
-    const handleLogin = async () => {
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+
         try {
-            const response = await AxiosClient.post<{ message: string }>("/login", {
-                userId: form.userId,
+            const response = await AxiosClient.post<{ token: string }>("/users/login", {
+                email: form.userId,
                 password: form.password,
             });
-            alert("로그인 성공: " + response.data.message);
+    
+            localStorage.setItem("token", response.data.token); // 토큰 저장
+            alert("로그인 성공!");
+            
         } catch (error) {
             console.error("로그인 실패", error);
-            alert("로그인 실패");
+            alert("이메일 또는 비밀번호가 일치하지 않습니다.");
         }
     };
 
     const handleRegister = async () => {
         try {
-            const response = await AxiosClient.post<{ message: string }>("/register", {
-                userId: form.userId,
+            const response = await AxiosClient.post<{ message: string }>("/users/signup", {
+                email: form.userId,
                 password: form.password,
-                userName: form.userName,
+                name: form.userName,
+                nickname: "아무개", // 고정 닉네임
                 address: form.address,
+                travelStyle: "배낭여행", // 고정 여행 스타일
             });
             alert("회원가입 성공: " + response.data.message);
             setIsLogin(true);
@@ -100,11 +107,11 @@ export default function Home() {
                         <div className="MainScreen-LoginBox">
                             <img className="paperPlane" src="/images/paperPlane.png" alt="" width={171} height={181} />
                             <div className="MainScreen-Login">로그인</div>
-                            <form className="MainScreen-Form">
+                            <form className="MainScreen-Form" onSubmit={handleLogin}>
                                 <input className="idInput" type="text" name="userId" placeholder="이메일" onChange={handleChange} />
                                 <input className="pwInput" type="password" name="password" placeholder="비밀번호" onChange={handleChange} />
                                 <div className="keepLogin"><input type="checkbox" name="keepLogin" />로그인 상태 유지</div>
-                                <button className="LoginButton" onClick={handleLogin}>로그인하고 여행 추천받기</button>
+                                <button className="LoginButton" type="submit">로그인하고 여행 추천받기</button>
                                 <div className="JoinSuggestion">떠나보자GO!가 처음이라면,  <span onClick={() => setIsLogin(false)}>회원가입</span>  하기</div>
                             </form>
                         </div>
