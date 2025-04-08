@@ -3,8 +3,11 @@ import { useState, useEffect, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import AxiosClient from "./AxiosClient";
 import "./style/Mainpage.css";
+import "./style/Component.css";
 import About from './Component/About';
 import Footer from './Component/Footer';
+import AdSlide from "./Component/AdSlide";
+
 
 declare global {
     interface Window {
@@ -49,10 +52,10 @@ export default function Home() {
                 email: form.userId,
                 password: form.password,
             });
-    
+
             localStorage.setItem("token", response.data.token); // 토큰 저장
             alert("로그인 성공!");
-            
+
         } catch (error) {
             console.error("로그인 실패", error);
             alert("이메일 또는 비밀번호가 일치하지 않습니다.");
@@ -179,16 +182,12 @@ export default function Home() {
                         <img className="MainScreen-Image" src="/images/MainPoster.png" alt="메인포스터1" />
                     </div>
                 </div>
-                <div className="TourRecommend">
-                    <div className="TourRecommend-Ad"></div>
-                    <div className="TourRecommend-Ad"></div>
-                    <div className="TourRecommend-Ad"></div>
-                </div>
-                <img className="cloud1" src="/images/cloud1.png" alt="cloud1" />
-                <img className="cloud2" src="/images/cloud2.png" alt="cloud2" />
+                <AdSlide />
             </div>
             <About />
             <Footer />
+            <img className="cloud1" src="/images/cloud1.png" alt="cloud1" />
+            <img className="cloud2" src="/images/cloud2.png" alt="cloud2" />
         </div>
     );
 }
