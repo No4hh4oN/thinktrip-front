@@ -9,6 +9,19 @@
     height: 393px;
 }
 
+.About-Box {
+    width: 1136px;
+    height: 342px;
+    padding-left: 40px;
+    padding-right: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 74px;
+    background-color: #00000095;
+    border-radius: 15px;
+}
+
 .About-OpenAI {
     width: 442px;
     height: 109px;
@@ -20,18 +33,30 @@
 }
 
 .About-Q span {
-    font-family: 'NEXON_Warhaven_Bold';
+    font-family: 'PyeongChangPeace-Bold';
     font-size: 48px;
     color: #FFFFFF;
 }
 
-.About-Q span span {
-    color: #FFD700;
+.About-Q-1 {
+    color: #FF6BF5 !important;
+}
+
+.About-Q-2 {
+    color: #FFD700 !important; 
+}
+
+.About-Q-3 {
+    color: #44DA3C !important;
+}
+
+.About-Q-4 {
+    color: #0075EA !important;
 }
 
 .About-Q {
-    font-family: 'Pretendard-SemiBold';
-    font-size: 32px;
+    font-family: 'PyeongChangPeace-Bold';
+    font-size: 28px;
     color: #FFFFFF;
 }
 
@@ -56,16 +81,33 @@
 }
 
 /* 슬라이드 css */
+.AdSlide_Header {
+    margin-top: 20px;
+    margin-left: 30px;
+    font-family: 'YClover-Bold';
+    font-size: 18px;
+
+}
+.AdSlide_Header span {
+    font-size: 24px;
+  font-family: 'Pretendard-SemiBold';
+}
+
 
 .AdSlide {
     margin-top: 60px;
     position: relative;
     background-color: #00000095;
     display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 200px;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 1136px;
+    height: 250px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 8px;
     z-index: 3;
+    font-family: 'PyeongChangPeace-Bold';
 
     .slide_container {
         overflow: hidden;
@@ -78,7 +120,6 @@
 
         .slide_wrapper {
             display: flex;
-            gap: 50px;
             flex-wrap: nowrap;
             width: 100%;
             height: 100%;
@@ -127,14 +168,15 @@
                 list-style-type: none;
 
                 &.big {
-                    width: auto;
-                    height: 95%;
+                    width: 400px;
+                    height: 150px;
                 }
 
                 &.small {
-                    width: auto;
-                    height: 95%;
+                    width: 400px;
+                    height: 150px;
                 }
+
 
                 .item {
                     position: relative;
@@ -142,27 +184,36 @@
                     height: 100%;
                     display: flex;
                     flex-direction: column;
-                    justify-content: flex-start;
+                    justify-content: center;
                     align-items: center;
                     padding-left: 10px;
                     padding-right: 10px;
                     border-radius: 8px;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+                .item:hover {
+                    transform: scale(1.03);
+                    cursor: pointer;
                 }
 
                 .item-img {
-                    border-radius: 8px;
-                    width: auto;
-                    height: 80%;
+                    width: 360px;
+                    height: 150px;
+                    border-top-right-radius: 8px;
+                    border-top-left-radius: 8px;
                 }
 
                 .slide-text {
                     position: relative;
-                    width: 80%;
+                    width: 360px;
                     bottom: 0;
-                    font-family: 'Pretendard-Semibold';
-                    color: white;
-                    font-size: 22px;
+                    font-family: 'Pretendard-Medium';
+                    color: #FFFFFF;
+                    font-size: 15px;
                     text-align: center;
+                    background-color: #00000095;
+                    border-bottom-right-radius: 8px;
+                    border-bottom-left-radius: 8px;
                 }
             }
         }
@@ -194,5 +245,33 @@
 
     100% {
         transform: translateX(-200%);
+    }
+}
+
+
+
+.flower1 {
+    width: 97px;
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    animation: rotate 5s linear infinite;
+}
+
+.flower2 {
+    width: 97px;
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }

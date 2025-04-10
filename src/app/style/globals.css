@@ -72,7 +72,24 @@ body {
   src: url('../../../public/fonts/NEXON_Warhaven_Bold.ttf') format('truetype');
   font-style: normal;
 }
+@font-face {
+  font-family: 'SinchonRhapsodyTTF-ExtraBold';
+  src: url('../../../public/fonts/SinchonRhapsodyTTF-ExtraBold.ttf') format('truetype');
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'YClover-Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/YClover-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PyeongChangPeace-Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
 
 * {
   box-sizing: border-box;

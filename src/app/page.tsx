@@ -36,7 +36,6 @@ export default function Home() {
     const [step, setStep] = useState<number>(1);
 
     const [isLogin, setIsLogin] = useState<boolean>(true);
-    const router = useRouter(); // 라우터 사용
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -98,7 +97,7 @@ export default function Home() {
         <div className="MainScreen">
             <div className="MainScreen-Container">
                 <div className="MainScreen-Header">
-                    <div className="MainScreen-Header-Logo">Th<span>!</span>nkTrip</div>
+                    <div className="MainScreen-Header-Logo"><span className="MainScreen-Header-Logo-1">T</span>h<span className="MainScreen-Header-Logo-2">!</span>nk<span className="MainScreen-Header-Logo-3">T</span>r<span className="MainScreen-Header-Logo-4">!</span>p</div>
                     <div className="MainScreen-Header-List">
                         <div className="MainScreen-Header-gpt">여행추천</div>
                         <div className="MainScreen-Header-diary">다이어리</div>
@@ -115,7 +114,7 @@ export default function Home() {
                                 <input className="pwInput" type="password" name="password" placeholder="비밀번호" onChange={handleChange} />
                                 <div className="keepLogin"><input type="checkbox" name="keepLogin" />로그인 상태 유지</div>
                                 <button className="LoginButton" type="submit">로그인하고 여행 추천받기</button>
-                                <div className="JoinSuggestion">떠나보자GO!가 처음이라면,  <span onClick={() => setIsLogin(false)}>회원가입</span>  하기</div>
+                                <div className="JoinSuggestion">Th!nkTr!p이 처음이라면,  <span onClick={() => setIsLogin(false)}>회원가입</span>  하기</div>
                             </form>
                         </div>
                     ) : (

@@ -28,20 +28,29 @@
 }
 
 .MainScreen-Header-Logo {
-  font-family: 'NEXON_Warhaven_Bold';
+  font-family: 'PyeongChangPeace-Bold';
   color: #FFFFFF;
   font-size: 32px;
   cursor: pointer;
 }
 
-.MainScreen-Header-Logo span{
+.MainScreen-Header-Logo-1 {
+  color: #FF6BF5;
+}
+.MainScreen-Header-Logo-2 {
   color: #FFD700;
+}
+.MainScreen-Header-Logo-3 {
+  color: #44DA3C;
+}
+.MainScreen-Header-Logo-4 {
+  color: #0075EA;
 }
 
 .MainScreen-Header-List {
   display: flex;
   gap: 14px;
-  font-family: 'Pretendard-Medium';
+  font-family: 'Pretendard-SemiBold';
   font-size: 17px;
 }
 
@@ -171,6 +180,7 @@
 }
 
 .LoginButton:hover {
+  cursor: pointer;
   border: 1px solid #FFFFFF;
 }
 

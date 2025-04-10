@@ -1,73 +1,3 @@
-// "use client";
-
-// import { useState } from "react";
-// import "../style/Component.css";
-
-// export default function AdSlide() {
-//     const slides = [
-//         { color: "#000000", text: "", target: "#" },
-//         { color: "#000000", text: "", target: "#" },
-//         { color: "#000000", text: "", target: "#" },
-//         { color: "#000000", text: "", target: "#" },
-//         { color: "#000000", text: "", target: "#" },
-//         { color: "#000000", text: "", target: "#" },
-//         { color: "#000000", text: "", target: "#" },
-//     ];
-
-//     const [animate, setAnimate] = useState(true);
-//     const onStop = () => setAnimate(false);
-//     const onRun = () => setAnimate(true);
-
-//     return (
-//         <div className="AdSlide">
-//             <div className="slide_container">
-//                 <ul
-//                     className="slide_wrapper"
-//                     onMouseEnter={onStop}
-//                     onMouseLeave={onRun}
-//                 >
-//                     <div
-//                         className={"slide original".concat(
-//                             animate ? "" : " stop"
-//                         )}
-//                     >
-//                         {slides.map((s, i) => (
-//                             <li
-//                                 key={i}
-//                                 className={i % 2 === 0 ? "big" : "small"}
-//                             >
-//                                 <div
-//                                     className="item"
-//                                     style={{ background: s.color }}
-//                                 >
-//                                     <span className="slide-text">{s.text}</span>
-//                                 </div>
-//                             </li>
-//                         ))}
-//                     </div>
-//                     <div
-//                         className={"slide clone".concat(animate ? "" : " stop")}
-//                     >
-//                         {slides.map((s, i) => (
-//                             <li
-//                                 key={i}
-//                                 className={i % 2 === 0 ? "big" : "small"}
-//                             >
-//                                 <div
-//                                     className="item"
-//                                     style={{ background: s.color }}
-//                                 >
-//                                     <span className="slide-text">{s.text}</span>
-//                                 </div>
-//                             </li>
-//                         ))}
-//                     </div>
-//                 </ul>
-//             </div>
-//         </div>
-//     );
-// }
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -86,10 +16,6 @@ export default function AdSlide() {
     useEffect(() => {
         const fetchFestivalData = async () => {
             const serviceKey = process.env.NEXT_PUBLIC_FESTIVAL_API_KEY;
-            //   if (!serviceKey) {
-            //     console.error("서비스 키가 설정되지 않았습니다.");
-            //     return;
-            //   }
 
             const baseURL = "https://cors-anywhere.herokuapp.com/http://apis.data.go.kr/B551011/KorService1";
             const today = new Date();
@@ -119,7 +45,7 @@ export default function AdSlide() {
 
                 setSlides(formattedSlides);
             } catch (e) {
-                console.error("🎪 축제 정보 불러오기 실패:", e);
+                console.error("축제 정보 불러오기 실패");
             }
         };
 
@@ -131,6 +57,7 @@ export default function AdSlide() {
 
     return (
         <div className="AdSlide">
+            <div className="AdSlide_Header"><span>TourAPI4.0</span>에서 제공하는 축제 정보🎉</div>
             <div className="slide_container">
                 <ul className="slide_wrapper" onMouseEnter={onStop} onMouseLeave={onRun}>
                     {["original", "clone"].map((type, idx) => (
@@ -140,7 +67,7 @@ export default function AdSlide() {
                                     <a href={s.target} target="_blank" rel="noopener noreferrer">
                                         <div className="item">
                                             <img className="item-img" src={s.image} alt="" />
-                                            <span className="slide-text">{s.text}</span>
+                                            <div className="slide-text">{s.text}</div>
                                         </div>
                                     </a>
                                 </li>
@@ -149,6 +76,8 @@ export default function AdSlide() {
                     ))}
                 </ul>
             </div>
+            <img className="flower1" src="images/바람개비.png" alt="f1" />
+            <img className="flower2" src="images/바람개비.png" alt="f2" />
         </div>
     );
 }
