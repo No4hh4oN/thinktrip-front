@@ -1,6 +1,6 @@
 .MainScreen-Container {
   position: relative;
-  background: linear-gradient(to bottom , #060755, #A4CEF9);
+  background: linear-gradient(to bottom, #060755, #A4CEF9);
   padding-bottom: 60px;
   display: flex;
   flex-direction: column;
@@ -17,13 +17,14 @@
   position: relative;
   margin-top: 72px;
   width: 1136px;
+  padding-left: 51px;
+  padding-right: 47px;
   height: 73px;
   border: 3px, solid, #FFFFFF;
   border-radius: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 475px;
   z-index: 2;
 }
 
@@ -37,12 +38,15 @@
 .MainScreen-Header-Logo-1 {
   color: #FF6BF5;
 }
+
 .MainScreen-Header-Logo-2 {
   color: #FFD700;
 }
+
 .MainScreen-Header-Logo-3 {
   color: #44DA3C;
 }
+
 .MainScreen-Header-Logo-4 {
   color: #0075EA;
 }
@@ -52,14 +56,68 @@
   gap: 14px;
   font-family: 'Pretendard-SemiBold';
   font-size: 17px;
+  text-align: center;
 }
 
 .MainScreen-Header-gpt,
 .MainScreen-Header-diary,
-.MainScreen-Header-mypage {
+.MainScreen-Header-mypage,
+.MainScreen-Header-logout {
   width: 119px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.MainScreen-Header-logout:hover {
+  transform: scale(1.03);
   cursor: pointer;
 }
+
+.MainScreen-Header-diary:hover,
+.MainScreen-Header-mypage:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.MainScreen-Header-gpt:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+/* 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  color: #000000;
+  background-color: #FFFFFF;
+  z-index: 10 !important;
+  border: none;
+  border-radius: 20px;
+}
+
+.dropdown-content div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 30px;
+  border-radius: 20px;
+  transition: background-color 0.2s;
+}
+
+.dropdown-content div:hover {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #f0f0f0;
+}
+
+.MainScreen-Header-gpt:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+} */
 
 .MainScreen-Box {
   position: relative;
@@ -98,7 +156,8 @@
   z-index: 3;
 }
 
-.MainScreen-Login, .MainScreen-Join {
+.MainScreen-Login,
+.MainScreen-Join {
   width: 360px;
   font-family: 'Pretendard-Bold';
   font-size: 32px;
@@ -109,7 +168,7 @@
 .MainScreen-Join span {
   position: absolute;
   top: 25px;
-  right : 30px;
+  right: 30px;
   cursor: pointer;
 }
 
@@ -121,7 +180,10 @@
   gap: 25px;
 }
 
-.idInput, .pwInput, .pwCheck, .addressInput {
+.idInput,
+.pwInput,
+.pwCheck,
+.addressInput {
   width: 360px;
   height: 70px;
   font-family: 'Pretendard-Medium';
@@ -136,15 +198,18 @@
   z-index: 3;
 }
 
-.addressInput{
+.addressInput {
   cursor: pointer;
 }
 
-.idInput::placeholder, .pwInput::placeholder, .pwCheck::placeholder {
+.idInput::placeholder,
+.pwInput::placeholder,
+.pwCheck::placeholder {
   color: #C0C0C0;
 }
 
-.nextStep, .JoinRequest {
+.nextStep,
+.JoinRequest {
   width: 360px;
   height: 70px;
   font-family: 'Pretendard-Medium';
@@ -164,8 +229,13 @@
   width: 360px;
   display: flex;
   justify-content: flex-end;
+}
+
+.keepLogin label {
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
   font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #C0C0C0;
@@ -203,6 +273,224 @@
   z-index: 2;
 }
 
+/* 로그인 후 메인화면 */
+
+.MainScreen-Box-after {
+  position: relative;
+  margin-top: 102px;
+  width: 1136px;
+  height: 460px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 105px;
+  z-index: 2;
+}
+
+.MainScreen-UserInfo {
+  position: relative;
+  width: 522px;
+  height: 460px;
+  padding-top: 33px;
+  padding-left: 47px;
+  padding-right: 47px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 13px;
+  border-radius: 20px;
+  background-color: #00000095;
+  z-index: 2;
+}
+
+.MainScreen-UserAuthInfo {
+  position: relative;
+  width: 100%;
+  height: 123px;
+  display: flex;
+  gap: 19px;
+
+}
+
+.MainScreen-ProfileAuth {
+  display: flex;
+  flex-direction: column;
+}
+
+.MainScreen-UserName {
+  font-family: 'Pretendard-Medium';
+  font-size: 26px;
+  color: #727272;
+}
+
+.MainScreen-UserName span {
+  font-family: 'Pretendard-SemiBold';
+  font-size: 38px;
+  color: #C0C0C0;
+}
+
+.MainScreen-UserId {
+  font-family: 'Pretendard-Medium';
+  font-size: 20px;
+  color: #A4A4A4;
+}
+
+.ProfileEdit {
+  margin-top: 13px;
+  width: 128px;
+  height: 39px;
+  border: none;
+  border-radius: 5px;
+  background-color: #E6E6E6;
+  font-family: 'Pretendard-Medium';
+  font-size: 20px;
+  color: #858585;
+  cursor: pointer;
+}
+
+.ProfileEdit:hover {
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.MainScreen-ProfileImg-Container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #C0C0C0;
+}
+
+.MainScreen-ProfileImg {
+  width: 116px;
+  height: 116px;
+  object-fit: cover;
+}
+
+.MainScreen-UserDetailInfo {
+  width: 100%;
+  height: 185px;
+  border-radius: 18px;
+  padding-top: 34px;
+  padding-left: 52px;
+  padding-right: 52px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 3;
+}
+
+.MainScreen-UserDetailInfo-Premium, .MainScreen-UserDetailInfo-AI {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.MainScreen-UserDetailInfo-Premium-label, .MainScreen-UserDetailInfo-AI-label {
+  width: 110px;
+  font-family: 'Pretendard-Regular';
+  font-size: 16px;
+  color: #424242;
+  text-decoration: underline;
+
+}
+.MainScreen-UserDetailInfo-Premium-data, .MainScreen-UserDetailInfo-AI-data {
+  font-family: 'Pretendard-Medium';
+  font-size: 20px;
+  color: #000000;
+
+}
+
+.MainScreen-toRecommand {
+  width: 100%;
+  height: 66px;
+  border-radius: 18px;
+  background-color: #537BFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Pretendard-SemiBold';
+  font-size: 22px;
+  color: #000000;
+  z-index: 3;
+}
+
+.MainScreen-toRecommand:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.MainScreen-Image2 {
+  position: relative;
+  width: 340px;
+  height: 313px;
+  z-index: 2;
+}
+
+.MainScreen-SubInfo {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.MainScreen-D-DayPrompt {
+  display: flex;
+  flex-direction: column;
+}
+
+.MainScreen-D-DayPrompt-Text {
+  font-family: 'Pretendard-SemiBold';
+  font-size: 38px;
+  color: #000000;
+}
+
+
+.MainScreen-D-DayPrompt-Text span {
+  font-size: 48px;
+  color: #C0C0C0;
+}
+
+.D-day-Marker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.D-day-Bar {
+  width: 100%;
+  height: 12px;
+  padding: 2px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.D-day-Progress {
+  height: 8px;
+  border-radius: 5px;
+  background-color: #537BFF;
+  border: none;
+  transition: width 0.4s ease;
+}
+
+.D-day-Text {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Pretendard-Regular';
+  font-size: 16px;
+  color: #C0C0C0;
+}
+
+/* Tour Api*/
+
 .TourRecommend {
   margin-top: 60px;
   position: relative;
@@ -236,15 +524,26 @@
   z-index: 2;
 }
 
+.paperPlane2 {
+  position: absolute;
+  top: -50px;
+  right: -80px;
+  z-index: 2;
+}
+
 @keyframes floatAnimation {
-  0%, 100% {
-      transform: translateY(0);
+
+  0%,
+  100% {
+    transform: translateY(0);
   }
+
   50% {
-      transform: translateY(-20px);
+    transform: translateY(-20px);
   }
 }
 
-.About-import, .Footer-import {
+.About-import,
+.Footer-import {
   z-index: 2;
 }
