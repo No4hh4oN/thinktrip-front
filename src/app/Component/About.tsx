@@ -3,7 +3,7 @@ import "../style/Component.css";
 export default function About() {
     return (
         <div className="About">
-            <div className="About-Box">
+            <div className="About-Box" id="about-section">
                 <div className="About-OpenAI">
                     <img className="About-OpenAI" src="../images/OpenAI.png" alt="" />
                 </div>

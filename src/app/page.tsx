@@ -49,6 +49,13 @@ export default function Home() {
     const [step, setStep] = useState<number>(1);
     const [isLogin, setIsLogin] = useState<boolean>(true);
     const [keepLogin, setKeepLogin] = useState(false);
+    //D-day 표시 변수
+    const [progress, setProgress] = useState(0);
+    const [targetProgress, setTargetProgress] = useState(0);
+    const [triggerAnimation, setTriggerAnimation] = useState(false);
+    //스크롤
+    const ReactScroll = require('react-scroll');
+    const Link = ReactScroll.Link;
 
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setKeepLogin(e.target.checked);
@@ -79,7 +86,6 @@ export default function Home() {
 
             setIsAuthenticated(true); // 로그인 상태로 변경
             alert("로그인 성공!");
-
         } catch (error) {
             alert("이메일 또는 비밀번호가 일치하지 않습니다.");
         }
@@ -157,8 +163,42 @@ export default function Home() {
     useEffect(() => {
         if (isAuthenticated) {
             handleUserProfile();
+            setTriggerAnimation(true);
         }
     }, [isAuthenticated]);
+
+    // 대표 여행 계획 D-day 표시 기능
+
+    const startDate = new Date('2025-04-01');
+    const dDay = new Date('2025-04-20');
+    const today = new Date();
+
+    // 목표 진행률 계산
+    useEffect(() => {
+        const total = dDay.getTime() - startDate.getTime();
+        const passed = today.getTime() - startDate.getTime();
+        const percent = Math.min(Math.max((passed / total) * 100, 0), 100);
+        setTargetProgress(percent);
+    }, []);
+
+    // 부드럽게 진행도 증가
+    useEffect(() => {
+        if (!triggerAnimation) return;
+
+        let current = 0;
+        const interval = setInterval(() => {
+            current += 1;
+            if (current >= targetProgress) {
+                clearInterval(interval);
+                current = targetProgress;
+            }
+            setProgress(current);
+        }, 10);
+
+        return () => clearInterval(interval);
+    }, [triggerAnimation, targetProgress]);
+
+    const remainingDays = Math.max(0, Math.ceil((dDay.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
 
     return (
         <div className="MainScreen">
@@ -168,12 +208,12 @@ export default function Home() {
                     <div className="MainScreen-Header-List">
                         <div className="MainScreen-Header-gpt">
                             여행추천
-                            {/* <div className="dropdown-content">
+                            <div className="dropdown-content">
                                 <div>GPT에게 추천받는 나의 여행</div>
                                 <div>직접 계획하는 나의 여행</div>
                                 <div>TourAPI가 추천하는 여행</div>
                                 <div>저장한 여행 계획</div>
-                            </div> */}
+                            </div>
                         </div>
                         <div className="MainScreen-Header-diary">다이어리</div>
                         <div className="MainScreen-Header-mypage">마이페이지</div>
@@ -182,6 +222,7 @@ export default function Home() {
                                 sessionStorage.removeItem("token");
                                 localStorage.removeItem("token");
                                 setIsAuthenticated(false);
+                                setTriggerAnimation(false);
                             }}>
                                 로그아웃
                             </div>
@@ -224,11 +265,11 @@ export default function Home() {
                             <div className="MainScreen-D-DayPrompt">
                                 <div className="MainScreen-D-DayPrompt-Text">
                                     여행까지<br />
-                                    <span className="MainScreen-D-DayPrompt-Num">{16}일</span> 남았어요!
+                                    <span className="MainScreen-D-DayPrompt-Num">{remainingDays}일</span> 남았어요!
                                 </div>
                                 <div className="D-day-Marker">
                                     <div className="D-day-Bar">
-                                        <div className="D-day-Progress" style={{ width: `${57}%` }}></div>
+                                        <div className="D-day-Progress" style={{ width: `${progress}%` }}></div>
                                     </div>
                                     <div className="D-day-Text">
                                         <span>계획일</span>
@@ -318,6 +359,15 @@ export default function Home() {
 
                 )}
                 <AdSlide />
+                <Link
+                    to="about-section"
+                    smooth={true}
+                    duration={1000}
+                    offset={-80} // 고정된 헤더 높이 조절
+                    className="AboutButton"
+                >
+                    ?
+                </Link>
             </div>
             <About />
             <Footer />

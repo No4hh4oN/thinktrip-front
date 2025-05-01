@@ -86,7 +86,7 @@
   transform: scale(1.03);
   cursor: pointer;
 }
-/* 
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -117,7 +117,7 @@
 .MainScreen-Header-gpt:hover .dropdown-content {
   display: flex;
   flex-direction: column;
-} */
+}
 
 .MainScreen-Box {
   position: relative;
@@ -366,8 +366,9 @@
 }
 
 .MainScreen-ProfileImg {
-  width: 116px;
-  height: 116px;
+  position: relative;
+  width: 114px;
+  height: 114px;
   object-fit: cover;
 }
 
@@ -543,7 +544,21 @@
   }
 }
 
-.About-import,
-.Footer-import {
-  z-index: 2;
+.AboutButton {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  border-radius: 50%;
+  border: none;
+  font-family: 'Montserrat-Black';
+  font-size: 40px;
+  color: #FFFFFF;
+  z-index: 9;
+  cursor: pointer;
 }

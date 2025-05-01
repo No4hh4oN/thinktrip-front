@@ -43,7 +43,7 @@
 }
 
 .About-Q-2 {
-    color: #FFD700 !important; 
+    color: #FFD700 !important;
 }
 
 .About-Q-3 {
@@ -83,16 +83,45 @@
 /* 슬라이드 css */
 .AdSlide_Header {
     margin-top: 20px;
-    margin-left: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     font-family: 'YClover-Bold';
     font-size: 18px;
+    display: flex;
+    justify-content: space-between;
 
 }
+
 .AdSlide_Header span {
     font-size: 24px;
-  font-family: 'Pretendard-SemiBold';
+    font-family: 'Pretendard-SemiBold';
 }
 
+.Adslide_controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.slide-btn {
+    width: 50px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+    font-family: 'YClover-Bold';
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.slide-btn:hover {
+    color: #A4CEF9;
+}
+
+#Adslide_paging {
+    font-family: 'Pretendard-Regular';
+    font-size: 15px;
+}
 
 .AdSlide {
     margin-top: 60px;
@@ -191,6 +220,7 @@
                     border-radius: 8px;
                     transition: transform 0.3s ease, box-shadow 0.3s ease;
                 }
+
                 .item:hover {
                     transform: scale(1.03);
                     cursor: pointer;
