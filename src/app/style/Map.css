@@ -1,0 +1,81 @@
+.KakaoMap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: #FFFFFF95;
+    border-radius: 20px;
+    padding: 20px;
+    width: 315px;
+    height: 450px;
+}
+
+.KakaoMap-Search {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #e2e2e2;
+    border-radius: 8px;
+}
+
+.KakaoMap-Search input {
+    width: 85%;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 30px;
+    margin-left: 5px;
+    color: #000000;
+    font-family: 'Pretendard-Regular';
+    background-color: #e2e2e2;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+.KakaoMap-Search button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+    margin-right: 5px;
+}
+
+.KakaoMap-Search button img {
+    width: 20px;
+    height: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 320px;
+    border-radius: 10px;
+}
+
+.selectedRegion {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    font-family: 'Pretendard-Regular';
+    color: #000000;
+    background-color: #e2e2e2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.selectedPlace {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    font-family: 'Pretendard-Regular';
+    color: #000000;
+    background-color: #e2e2e2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}

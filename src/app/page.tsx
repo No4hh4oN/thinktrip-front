@@ -1,12 +1,12 @@
 "use client";
 import { useState, useEffect, ChangeEvent } from "react";
-import { useRouter } from "next/navigation";
+import Link from 'next/link';
 import AxiosClient from "./AxiosClient";
 import "./style/Mainpage.css";
 import "./style/Component.css";
 import About from './Component/About';
 import Footer from './Component/Footer';
-import AdSlide from "./Component/AdSlide";
+import AdSlide from './Component/AdSlide';
 
 
 declare global {
@@ -53,9 +53,9 @@ export default function Home() {
     const [progress, setProgress] = useState(0);
     const [targetProgress, setTargetProgress] = useState(0);
     const [triggerAnimation, setTriggerAnimation] = useState(false);
-    //스크롤
-    const ReactScroll = require('react-scroll');
-    const Link = ReactScroll.Link;
+    // //스크롤
+    // const ReactScroll = require('react-scroll');
+    // const Link = ReactScroll.Link;
 
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setKeepLogin(e.target.checked);
@@ -209,10 +209,12 @@ export default function Home() {
                         <div className="MainScreen-Header-gpt">
                             여행추천
                             <div className="dropdown-content">
-                                <div>GPT에게 추천받는 나의 여행</div>
-                                <div>직접 계획하는 나의 여행</div>
-                                <div>TourAPI가 추천하는 여행</div>
-                                <div>저장한 여행 계획</div>
+                                <Link href="/PlanByAI">
+                                    <span>GPT에게 추천받는 나의 여행</span>
+                                </Link>
+                                <span>직접 계획하는 나의 여행</span>
+                                <span>TourAPI가 추천하는 여행</span>
+                                <span>저장한 여행 계획</span>
                             </div>
                         </div>
                         <div className="MainScreen-Header-diary">다이어리</div>
@@ -359,7 +361,7 @@ export default function Home() {
 
                 )}
                 <AdSlide />
-                <Link
+                {/* <Link
                     to="about-section"
                     smooth={true}
                     duration={1000}
@@ -367,7 +369,7 @@ export default function Home() {
                     className="AboutButton"
                 >
                     ?
-                </Link>
+                </Link> */}
             </div>
             <About />
             <Footer />

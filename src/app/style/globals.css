@@ -25,6 +25,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.cloud1 {
+  position: absolute;
+  top: 210px;
+  right: 0;
+  width: 360px;
+  height: auto;
+  animation: floatAnimation 5s ease-in-out infinite;
+  z-index: 1;
+}
+
+.cloud2 {
+  position: absolute;
+  top: 662px;
+  left: 0;
+  width: 536px;
+  height: auto;
+  animation: floatAnimation 5s ease-in-out infinite;
+  z-index: 1;
+}
+
 @font-face {
   font-family: 'Montserrat-Black';
   src: url('../../../public/fonts/Montserrat-Black.ttf') format('truetype');

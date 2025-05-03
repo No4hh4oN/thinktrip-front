@@ -1,5 +1,5 @@
 'use client';
-
+import '../style/Map.css';
 import { useEffect, useRef, useState } from "react";
 
 declare global {
@@ -45,13 +45,13 @@ export default function ReactKakaoMap() {
 
     const loadMap = () => {
         if (!window.kakao) {
-            console.error("Kakao Maps failed to load.");
+            // console.error("Kakao Maps failed to load.");
             return;
         }
 
         const container = document.getElementById("map");
         if (!container) {
-            console.error("Map container not found.");
+            // console.error("Map container not found.");
             return;
         }
 
@@ -105,23 +105,31 @@ export default function ReactKakaoMap() {
                 setSelectedPlace(place.place_name);
                 setSelectedRegion(`${place.address_name}`);
             } else {
-                console.error("장소를 찾을 수 없습니다.");
+                // console.error("장소를 찾을 수 없습니다.");
             }
         });
     };
 
     return (
-        <div>
-            <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="장소 검색"
-            />
-            <button onClick={searchPlace}>검색</button>
-            <div id="map" style={{ height: "450px", width: "315px" }} />
-            {selectedPlace && <div>선택한 장소: {selectedPlace}</div>}
-            {selectedRegion && <div>지역: {selectedRegion}</div>}
+        <div className="KakaoMap">
+            <div className="KakaoMap-Search">
+                <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="도착지 검색"
+                />
+                <button onClick={searchPlace}>
+                    <img src="/images/scope.webp" alt="scope" />
+                </button>
+            </div>
+            <div id="map"/>
+            <div className="selectedRegion">
+                지역: {selectedRegion}
+            </div>
+            <div className="selectedPlace">
+                도착지: {selectedPlace}
+            </div>
         </div>
     );
 };

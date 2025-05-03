@@ -1,3 +1,9 @@
+.MainScreen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .MainScreen-Container {
   position: relative;
   background: linear-gradient(to bottom, #060755, #A4CEF9);
@@ -7,12 +13,6 @@
   align-items: center;
 }
 
-.MainScreen {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
 .MainScreen-Header {
   position: relative;
   margin-top: 72px;
@@ -20,12 +20,12 @@
   padding-left: 51px;
   padding-right: 47px;
   height: 73px;
-  border: 3px, solid, #FFFFFF;
+  border: 3px solid #FFFFFF;
   border-radius: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2;
+  z-index: 3;
 }
 
 .MainScreen-Header-Logo {
@@ -63,6 +63,7 @@
 .MainScreen-Header-diary,
 .MainScreen-Header-mypage,
 .MainScreen-Header-logout {
+  position: relative;
   width: 119px;
   height: 30px;
   display: flex;
@@ -88,9 +89,14 @@
 }
 
 .dropdown-content {
+  font-family: 'Pretendard-Regular';
+  font-size: 13px;
+  width: 200px;
+  height: 160px;
   display: none;
   position: absolute;
   top: 100%;
+  left: 30px;
   color: #000000;
   background-color: #FFFFFF;
   z-index: 10 !important;
@@ -98,19 +104,17 @@
   border-radius: 20px;
 }
 
-.dropdown-content div {
+.dropdown-content span {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 200px;
-  height: 30px;
+  height: 40px;
   border-radius: 20px;
   transition: background-color 0.2s;
 }
 
-.dropdown-content div:hover {
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+.dropdown-content span:hover {
   background-color: #f0f0f0;
 }
 
@@ -436,7 +440,7 @@
 .MainScreen-SubInfo {
   display: flex;
   flex-direction: column;
-  z-index: 2;
+  z-index: 0;
 }
 
 .MainScreen-D-DayPrompt {
@@ -496,26 +500,6 @@
   margin-top: 60px;
   position: relative;
   z-index: 2;
-}
-
-.cloud1 {
-  position: absolute;
-  top: 210px;
-  right: 0;
-  width: 360px;
-  height: auto;
-  animation: floatAnimation 5s ease-in-out infinite;
-  z-index: 1;
-}
-
-.cloud2 {
-  position: absolute;
-  top: 662px;
-  left: 0;
-  width: 536px;
-  height: auto;
-  animation: floatAnimation 5s ease-in-out infinite;
-  z-index: 1;
 }
 
 .paperPlane {

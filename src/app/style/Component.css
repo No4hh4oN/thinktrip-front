@@ -104,6 +104,9 @@
 }
 
 .slide-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 20px;
     background-color: transparent;
@@ -305,3 +308,113 @@
         transform: rotate(360deg);
     }
 }
+
+/* 헤더 */
+.Header {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    gap: 473px; 
+    width: 100%;
+    height: 73px;
+    position: absolute;
+    top: 0px;
+    background-color: #001A4B;
+    z-index: 3;
+}
+
+
+.Header-Logo {
+    font-family: 'PyeongChangPeace-Bold';
+    color: #FFFFFF;
+    font-size: 32px;
+    cursor: pointer;
+  }
+  
+  .Header-Logo-1 {
+    color: #FF6BF5;
+  }
+  
+  .Header-Logo-2 {
+    color: #FFD700;
+  }
+  
+  .Header-Logo-3 {
+    color: #44DA3C;
+  }
+  
+  .Header-Logo-4 {
+    color: #0075EA;
+  }
+  
+  .Header-List {
+    display: flex;
+    gap: 14px;
+    font-family: 'Pretendard-SemiBold';
+    font-size: 17px;
+    text-align: center;
+  }
+  
+  .Header-gpt,
+  .Header-diary,
+  .Header-mypage,
+  .Header-logout {
+    position: relative;
+    width: 119px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  
+  .Header-logout:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+  
+  .Header-diary:hover,
+  .Header-mypage:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+  
+  .Header-gpt:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+  
+  .Header-dropdown-content {
+    font-family: 'Pretendard-Regular';
+    font-size: 13px;
+    width: 200px;
+    height: 160px;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 30px;
+    color: #000000;
+    background-color: #FFFFFF;
+    z-index: 10 !important;
+    border: none;
+    border-radius: 20px;
+  }
+  
+  .Header-dropdown-content span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+  }
+  
+  .Header-dropdown-content span:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .Header-gpt:hover .Header-dropdown-content {
+    display: flex;
+    flex-direction: column;
+  }

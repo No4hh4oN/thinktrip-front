@@ -1,0 +1,133 @@
+.PlanByAI-Calendar-Box {
+    width: 291px;
+    height: 450px;
+    padding-top: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 20px;
+    background-color: #FFFFFF95;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.calendar-grid {
+    width: 257px;
+    display: grid;
+    grid-template-columns: repeat(7, 33px);
+    justify-content: center;
+    gap: 4px;
+}
+
+.day-cell {
+    width: 33px;
+    height: 33px;
+    font-family: 'Montserrat-Black';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.day-cell.selected {
+    color: #FFFFFF;
+    background-color:#9B7EBD;
+    border: none;
+    font-family: 'Montserrat-Black';
+}
+
+.day-cell.start {
+    background-color: #b081d8;
+    color: #FFFFFF;
+    font-family: 'Montserrat-Black';
+}
+
+.day-cell.end {
+    background-color: #D4BEE4;
+    color: #FFFFFF;
+    font-family: 'Montserrat-Black';
+}
+
+.day-cell.empty {
+    visibility: hidden;
+}
+
+.calendar-changeMonth {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-family: 'YClover-Bold';
+    font-size: 15px;
+    color: #424242;
+}
+
+.calendar-header {
+    width: 100%;
+    background-color: #e2e2e2;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor:default;
+    font-family: 'Pretendard-Bold';
+    color: #424242;
+}
+
+.calendar-weekdays {
+    width: 257px;
+    display: grid;
+    grid-template-columns: repeat(7, 33px);
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 10px;
+    font-family: 'Pretendard-Bold';
+}
+
+.weekday-cell {
+    width: 33px;
+    height: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    cursor:default;
+}
+
+.PlanByAI-DateBox {
+    width: 100%;
+    font-family: 'Pretendard-Regular';
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.PlanByAI-Date {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+    background-color: #e2e2e2;
+    padding-left: 10px;
+    border-radius: 10px;
+    color: #000000;
+}
+
+#Departure {
+    color: #585858;
+}
+
+#Return {
+    color: #585858;
+}

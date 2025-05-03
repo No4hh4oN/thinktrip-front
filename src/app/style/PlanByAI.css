@@ -1,0 +1,51 @@
+.PlanByAI {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.PlanByAI-Container {
+    position: relative;
+    background: linear-gradient(to bottom, #060755, #A4CEF9);
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.PlanByAI-Header {
+    width: 1137px;
+    margin-top: 190px;
+    font-family: 'Pretendard-Bold';
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+.PlanByAI-InputBox {
+    margin-top: 15px;
+    position: relative;
+    width: 1137px;
+    height: 450px;
+    border-radius: 20px;
+    display: flex;
+    gap: 25px;
+    z-index: 2;
+}
+
+.PlanByAI-InputOthers {
+    width: 482px;
+    height: 450px;
+    background-color: #FFFFFF95;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.PlanByAI-OutputBox {
+    margin-top: 37px;
+    position: relative;
+    width: 1137px;
+    height: 338px;
+    background-color: #FFFFFF95;
+    border-radius: 20px;
+    z-index: 2;
+}
