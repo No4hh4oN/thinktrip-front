@@ -8,13 +8,18 @@ declare global {
     }
 }
 
-export default function ReactKakaoMap() {
+type MapProps = {
+    selectedRegion: string | null;
+    selectedPlace: string  | null;
+    setSelectedRegion: (region: string | null) => void;
+    setSelectedPlace: (place: string | null) => void;
+};
+
+export default function Map({ selectedRegion, selectedPlace, setSelectedRegion, setSelectedPlace }: MapProps) {
     const apiKey = process.env.NEXT_PUBLIC_KAKAO_KEY;
     const [map, setMap] = useState<any>(null);
     const [placesService, setPlacesService] = useState<any>(null);
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedPlace, setSelectedPlace] = useState<string | null>(null);
-    const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
     const markerRef = useRef<any>(null);
     const geocoderRef = useRef<any>(null);
 

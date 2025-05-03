@@ -7,12 +7,17 @@ const getDaysInMonth = (year: number, month: number) => {
     return new Date(year, month + 1, 0).getDate();
 };
 
-export default function Calendar() {
+type CalendarProps = {
+    departureDate: Date | null;
+    returnDate: Date | null;
+    setDepartureDate: (date: Date | null) => void;
+    setReturnDate: (date: Date | null) => void;
+  };
+
+export default function Calendar({ departureDate, returnDate, setDepartureDate, setReturnDate }: CalendarProps) {
     const today = new Date();
     const [currentYear, setCurrentYear] = useState(today.getFullYear());
     const [currentMonth, setCurrentMonth] = useState(today.getMonth());
-    const [departureDate, setDepartureDate] = useState<Date | null>(null);
-    const [returnDate, setReturnDate] = useState<Date | null>(null);
 
     const handleDateClick = (day: number) => {
         const clickedDate = new Date(currentYear, currentMonth, day);
