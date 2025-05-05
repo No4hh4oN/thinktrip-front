@@ -137,4 +137,4 @@ export default function Map({ selectedRegion, selectedPlace, setSelectedRegion, 
             </div>
         </div>
     );
-};
+}
