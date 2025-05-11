@@ -58,6 +58,86 @@
     gap: 20px;
 }
 
+.PlanByAI-OutputBox {
+    margin-top: 37px;
+    position: relative;
+    width: 1137px;
+    min-height: 338px;
+    background-color: #FFFFFF95;
+    border-radius: 20px;
+    z-index: 2;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow: hidden;
+
+}
+
+.PlanByAI-OutputBox-Header {
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    color: #000000;
+}
+
+.PlanByAI-OutputBox-GPTResult {
+    width: 100%;
+    background-color: #A4CEF9;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.PlanByAI-OutputBox-GPTResult pre {
+    font-family: 'Pretendard-Medium';
+    font-size: 17px;
+    color: #000000;
+}
+
+.PlanByAI-OutputBox-Loading {
+    width: 100%;
+    background-color: #537BFF;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.PlanByAI-OutputBox-Button {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.PlanByAI-OutputBox-Button button {
+    height: 45px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.PlanByAI-OutputBox-Button button:hover {
+    transform: scale(1.08);
+}
+
+#limit {
+    background-color: #8ba2cc;
+}
+
+#custom {
+    background-color: #556F9F;
+
+}
+
+#save {
+    background-color: #3867BE;
+}
+
+/* 사용자 입력 버튼들 css */
 .PlanByAI-InputOthers-box {
     font-family: 'Pretendard-Bold';
     width: 100%;
@@ -103,38 +183,18 @@
 .GeneratePlanButton:hover {
     transform: scale(1.03);
 }
-
-.PlanByAI-OutputBox {
-    margin-top: 37px;
-    position: relative;
-    width: 1137px;
-    min-height: 338px;
-    background-color: #FFFFFF95;
-    border-radius: 20px;
-    z-index: 2;
-    padding: 30px;
+.option-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    overflow: hidden;
-
+    justify-content: flex-start;
+    gap: 10px;
 }
 
-.PlanByAI-OutputBox-Header {
-    font-family: 'Pretendard-Bold';
-    font-size: 20px;
-    color: #000000;
-}
-
-.PlanByAI-OutputBox-GPTResult {
-    width: 100%;
-    background-color: #A4CEF9;
-    border-radius: 20px;
-    padding: 30px;
-}
-
-.PlanByAI-OutputBox-GPTResult pre {
-    font-family: 'Pretendard-Medium';
-    font-size: 17px;
-    color: #000000;
+.option-buttons button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
 }

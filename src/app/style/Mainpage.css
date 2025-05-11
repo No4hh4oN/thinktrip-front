@@ -357,7 +357,7 @@
   cursor: pointer;
 }
 
-.MainScreen-ProfileImg-Container {
+.MainScreen-ProfileImg-Container, .MainScreen-ProfileImg-Container label {
   position: relative;
   display: flex;
   justify-content: center;
@@ -373,6 +373,7 @@
   position: relative;
   width: 114px;
   height: 114px;
+  border-radius: 50%;
   object-fit: cover;
 }
 

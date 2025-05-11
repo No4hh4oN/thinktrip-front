@@ -7,6 +7,7 @@ import Calendar from "../Component/Calendar";
 import Map from '../Component/map';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
+import Lottie from "lottie-react";
 
 type TravelFormData = {
     member: string;
@@ -32,6 +33,16 @@ export default function PlanByAI() {
         returnDate: null,
         otherRequests: null,
     });
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [loadingData, setLoadingData] = useState<any>(null);
+
+    useEffect(() => {
+        fetch("/lottie/Loading.json")
+            .then((res) => res.json())
+            .then((data) => setLoadingData(data));
+    }, []);
 
     const [gptResult, setGptResult] = useState<string>("");
 
@@ -85,6 +96,7 @@ export default function PlanByAI() {
 
     const handleGeneratePlan = async () => {
         const prompt = buildPrompt(travelData);
+        setIsLoading(true);
         // console.log("GPT에게 보낼 프롬프트:", prompt);
 
         try {
@@ -99,6 +111,8 @@ export default function PlanByAI() {
             setGptResult(data.result);
         } catch (err) {
             console.error("GPT 요청 실패:", err);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -187,35 +201,38 @@ export default function PlanByAI() {
                             </div>
 
                             <div className="PlanByAI-InputOthers-box">
-                                <div>요즘 기분: {travelData.mood || '입력 또는 선택하세요'}</div>
-                                <div className="option-Container">
-                                <div className="option-buttons">
-                                    {['😊', '😌', '😐', '😩'].map(mood => (
-                                        <button
-                                            key={mood}
-                                            className={travelData.mood === mood ? 'selected' : ''}
-                                            onClick={() =>
+                                <div>
+                                    <div>요즘 기분: {travelData.mood || '입력 또는 선택하세요'}</div>
+                                    <input
+                                            type="text"
+                                            placeholder="직접 기분 입력"
+                                            value={travelData.mood}
+                                            onChange={e =>
                                                 setTravelData((prev: TravelFormData) => ({
                                                     ...prev,
-                                                    mood,
+                                                    mood: e.target.value,
                                                 }))
                                             }
-                                        >
-                                            {mood}
-                                        </button>
-                                    ))}
+                                        />
                                 </div>
-                                <input
-                                    type="text"
-                                    placeholder="직접 기분 입력"
-                                    value={travelData.mood}
-                                    onChange={e =>
-                                        setTravelData((prev: TravelFormData) => ({
-                                            ...prev,
-                                            mood: e.target.value,
-                                        }))
-                                    }
-                                />
+                                <div className="option-Container">
+                                    <div className="option-buttons">
+                                        {['😊', '😌', '😐', '😩'].map(mood => (
+                                            <button
+                                                key={mood}
+                                                className={travelData.mood === mood ? 'selected' : ''}
+                                                onClick={() =>
+                                                    setTravelData((prev: TravelFormData) => ({
+                                                        ...prev,
+                                                        mood,
+                                                    }))
+                                                }
+                                            >
+                                                {mood}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    
                                 </div>
                             </div>
 
@@ -278,12 +295,34 @@ export default function PlanByAI() {
                 </div>
                 <div className="PlanByAI-OutputBox">
                     <div className="PlanByAI-OutputBox-Header">🗺 추천 여행 일정</div>
-                    {gptResult && (
-                        <div className="PlanByAI-OutputBox-GPTResult">
-                            <pre style={{ whiteSpace: "pre-wrap" }}>{gptResult}</pre>
+                    {isLoading ? (
+                        <div className="PlanByAI-OutputBox-Loading">
+                            <Lottie
+                                animationData={loadingData}
+                                loop
+                                autoplay
+                                style={{ width: 200, height: 200 }}
+                            />
+                            <p>여행 계획을 생성 중입니다...</p>
                         </div>
-                    )}
-                    {!gptResult && (
+                    ) : gptResult ? (
+                        <div className="PlanByAI-OutputBox-GPT">
+                            <div className="PlanByAI-OutputBox-GPTResult">
+                                <pre style={{ whiteSpace: "pre-wrap" }}>{gptResult}</pre>
+                            </div>
+                            <div className="PlanByAI-OutputBox-Button">
+                                <button id="limit">
+                                    재생성(1/5)
+                                </button>
+                                <button id="custom">
+                                    이 계획을 내 스타일로 변경하기
+                                </button>
+                                <button id="save">
+                                    내 여행지로 기록하기
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
                         <div className="PlanByAI-OutputBox-NoGPTResult">
                             여행 계획을 Gpt가 생성해드립니다.<br />
                             위의 입력란에 입력후 이용해보세요!

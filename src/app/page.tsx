@@ -29,7 +29,6 @@ interface FormState {
 interface userState {
     nickname: string;
     userId: string;
-    profileImg: string;
     is_premium: Boolean;
 }
 
@@ -66,7 +65,7 @@ export default function Home() {
         setForm((prev) => ({ ...prev, [name]: value }));
     };
 
-
+    // 로그인(post)
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -85,19 +84,21 @@ export default function Home() {
             }
 
             setIsAuthenticated(true); // 로그인 상태로 변경
+            fetchProfileImage();
             alert("로그인 성공!");
         } catch (error) {
             alert("이메일 또는 비밀번호가 일치하지 않습니다.");
         }
     };
 
+    // 회원가입(post)
     const handleRegister = async () => {
         try {
             const response = await AxiosClient.post<{ message: string }>("/users/signup", {
                 email: form.userId,
                 password: form.password,
                 name: form.userName,
-                nickname: "아무개",
+                nickname: form.nickname,
                 address: form.address,
                 travelStyle: "배낭여행",
             });
@@ -108,6 +109,7 @@ export default function Home() {
         }
     };
 
+    // 로그인 됐는지 체크하는 기능
     useEffect(() => {
         const token = localStorage.getItem("token") || sessionStorage.getItem("token");
         if (token) {
@@ -131,11 +133,10 @@ export default function Home() {
         }).open();
     };
 
-    //유저 프로필 get 함수
+    // 프로필 get 함수 (이미지 제외)
     const [userInfo, setUserInfo] = useState<userState>({
         nickname: "",
         userId: "",
-        profileImg: "",
         is_premium: false,
     });
 
@@ -150,16 +151,54 @@ export default function Home() {
 
             const userInfo = response.data;
 
+            if(isAuthenticated) {
+                fetchProfileImage();
+            }
+            
             setUserInfo({
                 nickname: userInfo.nickname,
                 userId: userInfo.email,
-                profileImg: userInfo.profileImage,
                 is_premium: userInfo.is_premium,
             });
         } catch (error) {
         }
     };
 
+    // 프로필 사진 post
+    const handleProfileImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            await AxiosClient.post("/users/profile-image", formData);
+            alert("프로필 이미지가 업로드되었습니다.");
+            handleUserProfile();
+        } catch (err: any) {
+            console.error("업로드 실패");
+            alert("이미지 업로드에 실패했습니다.");
+        }
+    };
+
+    //프로필 사진 get
+    const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+    const fetchProfileImage = async () => {
+        try {
+            const response = await AxiosClient.get("/users/profile-image", {
+                responseType: "blob",
+            });
+
+            const url = URL.createObjectURL(response.data);
+            setImageUrl(url);
+        } catch (error) {
+            console.error("프로필 이미지 로딩 실패");
+        }
+    };
+
+    // 로그인 됐을 때, 여행 계획 D-Day 프로그레스바 이벤트 진행시키는 기능
     useEffect(() => {
         if (isAuthenticated) {
             handleUserProfile();
@@ -236,7 +275,20 @@ export default function Home() {
                         <div className="MainScreen-UserInfo">
                             <div className="MainScreen-UserAuthInfo">
                                 <div className="MainScreen-ProfileImg-Container">
-                                    <img className="MainScreen-ProfileImg" src={userInfo.profileImg || "/images/profile.webp"} alt="프로필 이미지" />
+                                    <label htmlFor="profile-upload" style={{ cursor: 'pointer' }}>
+                                        <img
+                                            className="MainScreen-ProfileImg"
+                                            src={imageUrl || "/images/profile.webp"}
+                                            alt="프로필 이미지"
+                                        />
+                                    </label>
+                                    <input
+                                        id="profile-upload"
+                                        type="file"
+                                        accept="image/*"
+                                        style={{ display: "none" }}
+                                        onChange={handleProfileImageUpload}
+                                    />
                                 </div>
                                 <div className="MainScreen-ProfileAuth">
                                     <div className="MainScreen-UserName"><span>{userInfo.nickname}</span>님</div>
@@ -308,6 +360,7 @@ export default function Home() {
                                         userId: "",
                                         password: "",
                                         userName: "",
+                                        nickname: "",
                                         address: "",
                                     });
                                     setPwCheck("");
@@ -339,6 +392,8 @@ export default function Home() {
 
                                     {step === 2 && (
                                         <>
+                                            <input className="idInput" type="text" name="userName" placeholder="이름" onChange={handleChange} autoComplete="username" />
+                                            <input className="idInput" type="text" name="nickname" placeholder="닉네임" onChange={handleChange} autoComplete="name" />
                                             <input
                                                 className="addressInput"
                                                 type="text"
