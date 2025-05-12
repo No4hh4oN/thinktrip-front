@@ -1,0 +1,30 @@
+.SelfPlan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.SelfPlan-Container {
+    position: relative;
+    background: linear-gradient(to bottom, #060755, #A4CEF9);
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SelfPlan-Header {
+    width: 1137px;
+    margin-top: 190px;
+    font-family: 'Pretendard-Bold';
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+.SelfPlan-Body {
+    margin-top: 50px;
+    width: 1137px;
+    display: flex;
+    gap: 50px;
+}

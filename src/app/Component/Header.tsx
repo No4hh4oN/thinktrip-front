@@ -16,12 +16,18 @@ export default function Header() {
                         <Link href="/PlanByAI">
                             <span>GPT에게 추천받는 나의 여행</span>
                         </Link>
-                        <span>직접 계획하는 나의 여행</span>
+                        <Link href="/SelfPlan">
+                            <span>직접 계획하는 나의 여행</span>
+                        </Link>
                         <span>TourAPI가 추천하는 여행</span>
-                        <span>저장한 여행 계획</span>
+                        <Link href="/SavedPlan">
+                            <span>저장한 여행 계획</span>
+                        </Link>
                     </div>
                 </div>
-                <div className="Header-diary">다이어리</div>
+                <Link href="/Diary">
+                    <div className="Header-diary">다이어리</div>
+                </Link>
                 <div className="Header-mypage">마이페이지</div>
             </div>
         </div>

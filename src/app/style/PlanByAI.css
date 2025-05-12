@@ -111,7 +111,10 @@
     gap: 10px;
 }
 
-.PlanByAI-OutputBox-Button button {
+.PlanByAI-OutputBox-Button button, #save {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 45px;
     padding-right: 20px;
     padding-left: 20px;
@@ -120,7 +123,7 @@
     cursor: pointer;
 }
 
-.PlanByAI-OutputBox-Button button:hover {
+.PlanByAI-OutputBox-Button button:hover, #save:hover {
     transform: scale(1.08);
 }
 

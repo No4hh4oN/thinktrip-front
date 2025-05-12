@@ -281,11 +281,7 @@ export default function PlanByAI() {
                                 />
                             </div>
 
-                            <button
-                                className="GeneratePlanButton"
-
-                                onClick={handleGeneratePlan}
-                            >
+                            <button className="GeneratePlanButton" onClick={handleGeneratePlan}>
                                 여행 계획 생성 요청하기
                             </button>
                         </div>
@@ -311,15 +307,15 @@ export default function PlanByAI() {
                                 <pre style={{ whiteSpace: "pre-wrap" }}>{gptResult}</pre>
                             </div>
                             <div className="PlanByAI-OutputBox-Button">
-                                <button id="limit">
+                                <button id="limit" onClick={handleGeneratePlan}>
                                     재생성(1/5)
-                                </button>
+                                </button>    
                                 <button id="custom">
                                     이 계획을 내 스타일로 변경하기
                                 </button>
-                                <button id="save">
+                                <Link href="/MyPlan"  id="save">
                                     내 여행지로 기록하기
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     ) : (

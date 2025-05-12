@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@toast-ui/editor": "^3.2.2",
+    "@toast-ui/react-editor": "^3.2.3",
     "axios": "^1.8.4",
     "lottie-react": "^2.4.1",
     "next": "15.2.4",

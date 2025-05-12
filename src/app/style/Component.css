@@ -313,8 +313,8 @@
 .Header {
     display: flex;
     justify-content: center;
-    align-items: center;   
-    gap: 473px; 
+    align-items: center;
+    gap: 473px;
     width: 100%;
     height: 73px;
     position: absolute;
@@ -329,36 +329,36 @@
     color: #FFFFFF;
     font-size: 32px;
     cursor: pointer;
-  }
-  
-  .Header-Logo-1 {
+}
+
+.Header-Logo-1 {
     color: #FF6BF5;
-  }
-  
-  .Header-Logo-2 {
+}
+
+.Header-Logo-2 {
     color: #FFD700;
-  }
-  
-  .Header-Logo-3 {
+}
+
+.Header-Logo-3 {
     color: #44DA3C;
-  }
-  
-  .Header-Logo-4 {
+}
+
+.Header-Logo-4 {
     color: #0075EA;
-  }
-  
-  .Header-List {
+}
+
+.Header-List {
     display: flex;
     gap: 14px;
     font-family: 'Pretendard-SemiBold';
     font-size: 17px;
     text-align: center;
-  }
-  
-  .Header-gpt,
-  .Header-diary,
-  .Header-mypage,
-  .Header-logout {
+}
+
+.Header-gpt,
+.Header-diary,
+.Header-mypage,
+.Header-logout {
     position: relative;
     width: 119px;
     height: 30px;
@@ -366,25 +366,25 @@
     justify-content: center;
     align-items: center;
     z-index: 10;
-  }
-  
-  .Header-logout:hover {
+}
+
+.Header-logout:hover {
     transform: scale(1.03);
     cursor: pointer;
-  }
-  
-  .Header-diary:hover,
-  .Header-mypage:hover {
+}
+
+.Header-diary:hover,
+.Header-mypage:hover {
     transform: scale(1.03);
     cursor: pointer;
-  }
-  
-  .Header-gpt:hover {
+}
+
+.Header-gpt:hover {
     transform: scale(1.03);
     cursor: pointer;
-  }
-  
-  .Header-dropdown-content {
+}
+
+.Header-dropdown-content {
     font-family: 'Pretendard-Regular';
     font-size: 13px;
     width: 200px;
@@ -398,9 +398,9 @@
     z-index: 10 !important;
     border: none;
     border-radius: 20px;
-  }
-  
-  .Header-dropdown-content span {
+}
+
+.Header-dropdown-content span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -408,13 +408,51 @@
     height: 40px;
     border-radius: 20px;
     transition: background-color 0.2s;
-  }
-  
-  .Header-dropdown-content span:hover {
+}
+
+.Header-dropdown-content span:hover {
     background-color: #f0f0f0;
-  }
-  
-  .Header-gpt:hover .Header-dropdown-content {
+}
+
+.Header-gpt:hover .Header-dropdown-content {
     display: flex;
     flex-direction: column;
-  }
+}
+
+/* 에디터 css */
+
+.Editor-Container {
+    position: relative;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    z-index: 3;
+}
+
+.toastui-editor-defaultUI {
+    border: none !important;
+}
+
+.toastui-editor-defaultUI .toastui-editor-md-tab-container {
+    border-top-left-radius: 20px !important;
+}
+
+.toastui-editor-defaultUI-toolbar {
+    border-top-right-radius: 20px !important;
+}
+
+.toastui-editor-md-tab-container .toastui-editor-tabs {
+    display: flex;
+    align-items: center;
+}
+
+.toastui-editor-md-tab-container .tab-item {
+    margin-top: 0px !important;
+    border: none !important;
+    border-radius: 20px !important;
+}
+
+.toastui-editor-md-tab-container .tab-item.active {
+    font-weight: bold;
+    border: none !important;
+    background-color: #A4CEF9 !important;
+}
