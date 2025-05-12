@@ -151,10 +151,10 @@ export default function Home() {
 
             const userInfo = response.data;
 
-            if(isAuthenticated) {
+            if (isAuthenticated) {
                 fetchProfileImage();
             }
-            
+
             setUserInfo({
                 nickname: userInfo.nickname,
                 userId: userInfo.email,
@@ -203,6 +203,10 @@ export default function Home() {
         if (isAuthenticated) {
             handleUserProfile();
             setTriggerAnimation(true);
+
+            checkGptUsage().then((remaining) => {
+                setGptUsage(remaining);
+            });
         }
     }, [isAuthenticated]);
 
@@ -238,6 +242,19 @@ export default function Home() {
     }, [triggerAnimation, targetProgress]);
 
     const remainingDays = Math.max(0, Math.ceil((dDay.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
+
+    // Gpt 사용량 조회
+    const [GptUsage, setGptUsage] = useState<number | null>(null);
+
+    const checkGptUsage = async () => {
+        try {
+            const response = await AxiosClient.get("users/gpt/usage");
+            return response.data.remainingCalls;
+        } catch (error) {
+            console.error("GPT 사용 횟수 조회 실패");
+            return 0;
+        }
+    };
 
     return (
         <div className="MainScreen">
@@ -310,7 +327,7 @@ export default function Home() {
                                 </div>
                                 <div className="MainScreen-UserDetailInfo-AI">
                                     <span className="MainScreen-UserDetailInfo-AI-label">AI 사용가능 횟수</span>
-                                    <span className="MainScreen-UserDetailInfo-AI-data"> 0 / 5</span>
+                                    <span className="MainScreen-UserDetailInfo-AI-data"><span>{GptUsage}</span> / 5</span>
                                 </div>
                                 <div></div>
                             </div>

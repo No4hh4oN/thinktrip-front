@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
+import AxiosClient from "../AxiosClient";
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
 import '../style/PlanByAI.css'
 import "../style/Component.css";
 import Calendar from "../Component/Calendar";
@@ -95,11 +97,19 @@ export default function PlanByAI() {
     };
 
     const handleGeneratePlan = async () => {
-        const prompt = buildPrompt(travelData);
         setIsLoading(true);
-        // console.log("GPT에게 보낼 프롬프트:", prompt);
 
         try {
+            const latestRemaining = await checkGptUsage();
+
+            if (latestRemaining <= 0) {
+                alert("오늘 GPT 사용 가능 횟수를 모두 소진하였습니다.");
+                setIsLoading(false);
+                return;
+            }
+
+            const prompt = buildPrompt(travelData);
+
             const res = await fetch("/api/gpt", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -107,13 +117,35 @@ export default function PlanByAI() {
             });
 
             const data = await res.json();
-            // console.log("GPT 응답:", data.result);
             setGptResult(data.result);
+
+            await AxiosClient.post("/users/gpt/usage");
+
+            const remaining = await checkGptUsage();
+            setGptUsage(remaining);
         } catch (err) {
-            console.error("GPT 요청 실패:", err);
+            console.error("GPT 요청 실패");
         } finally {
             setIsLoading(false);
         }
+    };
+
+    const [GptUsage, setGptUsage] = useState<number | null>(null);
+
+    const checkGptUsage = async () => {
+        try {
+            const response = await AxiosClient.get("users/gpt/usage");
+            return response.data.remainingCalls;
+        } catch (error) {
+            console.error("GPT 사용 횟수 조회 실패");
+            return 0;
+        }
+    };
+
+    const router = useRouter();
+    const handleCustomClick = () => {
+        localStorage.setItem("custom_gpt_prompt", gptResult);
+        router.push("/SelfPlan");
     };
 
     return (
@@ -204,16 +236,16 @@ export default function PlanByAI() {
                                 <div>
                                     <div>요즘 기분: {travelData.mood || '입력 또는 선택하세요'}</div>
                                     <input
-                                            type="text"
-                                            placeholder="직접 기분 입력"
-                                            value={travelData.mood}
-                                            onChange={e =>
-                                                setTravelData((prev: TravelFormData) => ({
-                                                    ...prev,
-                                                    mood: e.target.value,
-                                                }))
-                                            }
-                                        />
+                                        type="text"
+                                        placeholder="직접 기분 입력"
+                                        value={travelData.mood}
+                                        onChange={e =>
+                                            setTravelData((prev: TravelFormData) => ({
+                                                ...prev,
+                                                mood: e.target.value,
+                                            }))
+                                        }
+                                    />
                                 </div>
                                 <div className="option-Container">
                                     <div className="option-buttons">
@@ -232,7 +264,7 @@ export default function PlanByAI() {
                                             </button>
                                         ))}
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
@@ -308,12 +340,12 @@ export default function PlanByAI() {
                             </div>
                             <div className="PlanByAI-OutputBox-Button">
                                 <button id="limit" onClick={handleGeneratePlan}>
-                                    재생성(1/5)
-                                </button>    
-                                <button id="custom">
+                                    재생성(<span>{GptUsage}</span>/5)
+                                </button>
+                                <button id="custom" onClick={handleCustomClick}>
                                     이 계획을 내 스타일로 변경하기
                                 </button>
-                                <Link href="/MyPlan"  id="save">
+                                <Link href="/MyPlan" id="save">
                                     내 여행지로 기록하기
                                 </Link>
                             </div>

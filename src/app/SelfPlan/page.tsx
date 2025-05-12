@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from 'next/link';
 import Header from "../Component/Header";
 import '../style/SelfPlan.css'
 import "../style/Component.css";
@@ -37,6 +38,17 @@ export default function SelfPlan() {
         ssr: false,
     });
 
+    //Gpt 프롬프트에서 생성된 값
+    const [prompt, setPrompt] = useState("");
+
+    useEffect(() => {
+        const storedPrompt = localStorage.getItem("custom_gpt_prompt");
+        if (storedPrompt) {
+            setPrompt(storedPrompt);
+            localStorage.removeItem("custom_gpt_prompt");
+        }
+    }, []);
+
     return (
         <div className="SelfPlan">
             <Header />
@@ -61,7 +73,19 @@ export default function SelfPlan() {
                             }
                         />
                         <div className="GPT-Prompt-Box">
-
+                            {prompt ? (
+                                <>
+                                    <p style={{ fontWeight: "bold", color: "red" }}>GPT 답변</p>
+                                    <pre style={{ whiteSpace: "pre-wrap" }}>{prompt}</pre>
+                                </>
+                            ) : (
+                                <div className="GptIcon-box">
+                                    <Link href="/PlanByAI">
+                                        <img id="GptIcon" src="/images/GptIcon.webp" alt="GptIcon" />
+                                    </Link>
+                                    <div className="Gpt">Gpt가 여행 계획을 세워드립니다.</div>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="SelfPlan-Body-Right">

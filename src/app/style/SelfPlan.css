@@ -27,4 +27,47 @@
     width: 1137px;
     display: flex;
     gap: 50px;
+    z-index: 3;
+}
+
+.SelfPlan-Body-Left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.GPT-Prompt-Box {
+    width: 291px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF95;
+    border-radius: 20px;
+    overflow: auto;
+    padding: 20px;
+}
+
+.GPT-Prompt-Box pre {
+    color: #000000;
+    background-color: #A4CEF9;
+    padding: 10px;
+    border-radius: 20px;
+    font-family: 'Pretendard-Regular';
+    font-size: 14px;
+}
+
+.GptIcon-box {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+#GptIcon {
+    width: 60px;
+    height: 60px;
 }
