@@ -20,7 +20,7 @@ export default function Header() {
                             <span>직접 계획하는 나의 여행</span>
                         </Link>
                         <span>TourAPI가 추천하는 여행</span>
-                        <Link href="/SavedPlan">
+                        <Link href="/MyPlan">
                             <span>저장한 여행 계획</span>
                         </Link>
                     </div>

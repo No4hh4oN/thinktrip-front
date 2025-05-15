@@ -47,54 +47,60 @@ body {
 
 @font-face {
   font-family: 'Montserrat-Black';
-  src: url('../../../public/fonts/Montserrat-Black.ttf') format('truetype');
+  src: url('/fonts/Montserrat-Black.ttf') format('truetype');
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat-Bold';
-  src: url('../../../public/fonts/Montserrat-Bold.ttf') format('truetype');
+  src: url('/fonts/Montserrat-Bold.ttf') format('truetype');
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Pretendard-Regular';
-  src: url('../../../public/fonts/Pretendard-Regular.ttf') format('truetype');
+  src: url('/fonts/Pretendard-Regular.ttf') format('truetype');
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Pretendard-Medium';
-  src: url('../../../public/fonts/Pretendard-Medium.ttf') format('truetype');
+  src: url('/fonts/Pretendard-Medium.ttf') format('truetype');
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Pretendard-SemiBold';
-  src: url('../../../public/fonts/Pretendard-SemiBold.ttf') format('truetype');
+  src: url('/fonts/Pretendard-SemiBold.ttf') format('truetype');
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Pretendard-Bold';
-  src: url('../../../public/fonts/Pretendard-Bold.ttf') format('truetype');
+  src: url('/fonts/Pretendard-Bold.ttf') format('truetype');
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Galmuri';
-  src: url('../../../public/fonts/Galmuri14.ttf') format('truetype');
+  src: url('/fonts/Galmuri14.ttf') format('truetype');
   font-style: normal;
 }
 
 @font-face {
   font-family: 'NEXON_Warhaven_Bold';
-  src: url('../../../public/fonts/NEXON_Warhaven_Bold.ttf') format('truetype');
+  src: url('/fonts/NEXON_Warhaven_Bold.ttf') format('truetype');
   font-style: normal;
 }
 @font-face {
   font-family: 'SinchonRhapsodyTTF-ExtraBold';
-  src: url('../../../public/fonts/SinchonRhapsodyTTF-ExtraBold.ttf') format('truetype');
+  src: url('/fonts/SinchonRhapsodyTTF-ExtraBold.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Maplestory-Light';
+  src: url('/fonts/Maplestory Light.ttf') format('truetype');
   font-style: normal;
 }
 

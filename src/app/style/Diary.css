@@ -8,10 +8,10 @@
 .Diary-Container {
     position: relative;
     background: linear-gradient(to bottom, #060755, #A4CEF9);
-    padding-bottom: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 60px;
 }
 
 .Diary-Header {
@@ -20,4 +20,88 @@
     font-family: 'Pretendard-Bold';
     font-size: 32px;
     color: #FFFFFF;
+}
+
+.Diary-Body-nowContents {
+    margin-top: 15px;
+    width: 700px;
+    border-radius: 20px;
+    z-index: 3;
+}
+
+.Diary-Body-nowContents-header {
+    width: 100%;
+    height: 50px;
+    background-color: #00000095;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.Diary-Body-nowContents-Images {
+    width: 100%;
+    height: 400px;
+    background-color: #575757;
+}
+
+.Diary-Body-nowContents-Textarea {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 200px;
+    padding-left: 110px;
+    padding-right: 110px;
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.Diary-Body-nowContents-Textarea-TitleArea {
+    width: 100%;
+    height: 100px;
+    color: #000000;
+    font-family: 'Pretendard-Bold';
+    font-size: 24px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.Diary-Body-nowContents-Textarea-Text {
+    width: 100%;
+}
+
+.Diary-Body-nowContents-Textarea-Text pre {
+    width: 100%;
+    font-family: 'Maplestory-Light';
+    color: #000000;
+}
+
+#QuoteLeft {
+    position: absolute;
+    width: 35px;
+    top: 22px;
+    left: -35px;
+}
+
+#QuoteRight {
+    position: absolute;
+    width: 35px;
+    top: 49px;
+    right: -35px;
+}
+
+.Diary-List {
+    margin-top: 100px;
+    width: 1176px;
+    height: 550px;
+    background-color: #00000095;
+    border-top-left-radius: 209px;
+    border-top-right-radius: 209px;
+    z-index: 3;
 }

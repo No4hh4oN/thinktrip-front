@@ -111,7 +111,8 @@
     gap: 10px;
 }
 
-.PlanByAI-OutputBox-Button button, #save {
+.PlanByAI-OutputBox-Button button,
+#save {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,7 +124,8 @@
     cursor: pointer;
 }
 
-.PlanByAI-OutputBox-Button button:hover, #save:hover {
+.PlanByAI-OutputBox-Button button:hover,
+#save:hover {
     transform: scale(1.08);
 }
 
@@ -144,10 +146,12 @@
 .PlanByAI-InputOthers-box {
     font-family: 'Pretendard-Bold';
     width: 100%;
-    height: 70px;
-    padding: 8px;
-    border: 1px solid black;
-    border-radius: 8px;
+    height: auto;
+    padding: 10px;
+    background-color: #FFFFFF95;
+    box-shadow: inset 10px 10px 20px #a3b1c6, inset -10px 10px 20px #FFFFFF95;
+    border-radius: 20px;
+    color: #424242;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -166,6 +170,7 @@
     outline: none;
     border-radius: 8px;
     background-color: #e0e0e0;
+    box-shadow: inset 10px 10px 20px #FFFFFF95, inset -10px 10px 20px #a3b1c6;
     font-family: 'Pretendard-Regular';
     color: #000000;
     min-height: 50px;
@@ -178,17 +183,41 @@
     width: 100%;
     height: 40px;
     background-color: #328bdf;
+    box-shadow: inset 10px 10px 20px #328bdf, inset -10px 10px 20px #FFFFFF;
     border-radius: 8px;
     border: none;
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .GeneratePlanButton:hover {
+    color: #000000;
     transform: scale(1.03);
 }
+
+.emotion-input-self {
+    border: none;
+    width: 80%;
+    height: 30px;
+    padding-left: 15px;
+    background-color: #FFFFFF95;
+    color: #424242;
+    box-shadow: inset 10px 10px 20px #a3b1c6, inset -10px 10px 20px #FFFFFF95;
+    border-radius: 10px;
+    outline: none;
+}
+
+.emotion-input-self:focus {
+    background-color: #FFFFFF95;
+    box-shadow: inset 10px 10px 20px #FFFFFF95, inset -10px 10px 20px #a3b1c6;
+}
+
 .option-buttons {
+    width: 90%;
+    height: auto;
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -198,6 +227,35 @@
     align-items: center;
     border: none;
     border-radius: 10px;
-    width: 80px;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
     height: 30px;
+    background-color: #FFFFFF95;
+    color: #424242;
+    box-shadow: inset 10px 10px 20px #a3b1c6, inset -10px 10px 20px #FFFFFF95;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.option-buttons button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.PlanByAI-InputOthers::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+.PlanByAI-InputOthers::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.PlanByAI-InputOthers::-webkit-scrollbar-thumb {
+    background-color: #424242;
+    border-radius: 50px;
+    border: 16px solid transparent !important;
 }

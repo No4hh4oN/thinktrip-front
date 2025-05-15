@@ -195,27 +195,50 @@ export default function PlanByAI() {
                             <div className="PlanByAI-InputOthers-box">
                                 <div>여행 구성원: {travelData.member || '선택하세요'}</div>
                                 <div className="option-buttons">
-                                    {['👤 혼자', '👬 친구', '👨‍👩‍👧 가족', '❤️ 연인'].map(member => (
-                                        <button
-                                            key={member}
-                                            className={travelData.member === member ? 'selected' : ''}
-                                            onClick={() =>
-                                                setTravelData((prev: TravelFormData) => ({
-                                                    ...prev,
-                                                    member,
-                                                }))
-                                            }
-                                        >
-                                            {member}
-                                        </button>
-                                    ))}
+                                    {['👤 혼자',
+                                        '👬 친구',
+                                        '👨‍👩‍👧 가족',
+                                        '❤️ 연인',
+                                        '👩‍🏫 동료',
+                                        '👥 동호회',
+                                        '🧑‍🎓 동창',
+                                        '👵 부모님',
+                                        '👶 아이와 함께',
+                                        '🐶 반려동물',].map(member => (
+                                            <button
+                                                key={member}
+                                                className={travelData.member === member ? 'selected' : ''}
+                                                onClick={() =>
+                                                    setTravelData((prev: TravelFormData) => ({
+                                                        ...prev,
+                                                        member,
+                                                    }))
+                                                }
+                                            >
+                                                {member}
+                                            </button>
+                                        ))}
                                 </div>
                             </div>
 
                             <div className="PlanByAI-InputOthers-box">
                                 <div>교통수단: {travelData.transport || '선택하세요'}</div>
                                 <div className="option-buttons">
-                                    {['🚗 차량', '🚶 도보', '🚲 자전거', '🚌 대중교통'].map(transport => (
+                                    {[
+                                        '🚗 자가용',
+                                        '🚙 렌터카',
+                                        '🚕 택시',
+                                        '🛻 카쉐어링',
+                                        '🚌 버스',
+                                        '🚇 지하철',
+                                        '🚆 기차 (KTX/무궁화)',
+                                        '✈️ 비행기',
+                                        '🚢 배 (여객선/유람선)',
+                                        '🚲 자전거',
+                                        '🛴 전동킥보드',
+                                        '🚶 도보',
+                                        '🦽 휠체어 접근 가능',
+                                    ].map(transport => (
                                         <button
                                             key={transport}
                                             className={travelData.transport === transport ? 'selected' : ''}
@@ -236,6 +259,7 @@ export default function PlanByAI() {
                                 <div>
                                     <div>요즘 기분: {travelData.mood || '입력 또는 선택하세요'}</div>
                                     <input
+                                        className="emotion-input-self"
                                         type="text"
                                         placeholder="직접 기분 입력"
                                         value={travelData.mood}
@@ -249,7 +273,23 @@ export default function PlanByAI() {
                                 </div>
                                 <div className="option-Container">
                                     <div className="option-buttons">
-                                        {['😊', '😌', '😐', '😩'].map(mood => (
+                                        {[
+                                            '🤩 기대돼요!',
+                                            '😊 기분 좋아요',
+                                            '😌 여유롭고 편안해요',
+                                            '😁 신나요!',
+                                            '😆 웃음이 나요',
+                                            '😮 놀라움이 있어요',
+                                            '😐 그냥 그래요',
+                                            '😴 피곤해요',
+                                            '😫 힘들어요',
+                                            '😢 슬퍼요',
+                                            '😠 짜증나요',
+                                            '😎 힐링하고 싶어요',
+                                            '🤯 스트레스 많아요',
+                                            '😇 평화로워요',
+                                            '😤 뭔가 풀고 싶어요',
+                                        ].map(mood => (
                                             <button
                                                 key={mood}
                                                 className={travelData.mood === mood ? 'selected' : ''}
@@ -276,7 +316,33 @@ export default function PlanByAI() {
                                         : '하나 이상 선택하세요'}
                                 </div>
                                 <div className="option-buttons">
-                                    {['#힐링', '#자연', '#도시탐험', '#맛집탐방'].map(tag => {
+                                    {[
+                                        '#힐링',
+                                        '#자연',
+                                        '#도시탐험',
+                                        '#맛집탐방',
+                                        '#문화체험',
+                                        '#감성여행',
+                                        '#쇼핑',
+                                        '#휴양지',
+                                        '#산책',
+                                        '#바다여행',
+                                        '#캠핑',
+                                        '#등산',
+                                        '#축제참여',
+                                        '#사진여행',
+                                        '#야경감상',
+                                        '#역사탐방',
+                                        '#체험학습',
+                                        '#피크닉',
+                                        '#레저스포츠',
+                                        '#럭셔리여행',
+                                        '#저예산여행',
+                                        '#노포탐방',
+                                        '#카페투어',
+                                        '#테마파크',
+                                        '#비 오는 날 감성',
+                                    ].map(tag => {
                                         const selected = travelData.themes.includes(tag);
                                         return (
                                             <button

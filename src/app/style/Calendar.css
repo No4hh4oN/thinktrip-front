@@ -31,6 +31,8 @@
     text-align: center;
     border: 1px solid #ddd;
     border-radius: 50%;
+    
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
@@ -101,6 +103,11 @@
     border: 1px solid #ddd;
     border-radius: 50%;
     cursor:default;
+}
+
+.day-cell:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
 }
 
 .PlanByAI-DateBox {

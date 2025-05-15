@@ -58,6 +58,13 @@
 }
 
 .GptIcon-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.GptIcon-button {
     width: 80px;
     height: 80px;
     display: flex;
@@ -65,9 +72,34 @@
     align-items: center;
     background-color: #FFFFFF;
     border-radius: 10px;
+    box-shadow: inset 10px 20px 20px #FFFFFF, inset -20px -10px 20px #c9d9db;
+    transition: all 0.3s ease;
+}
+
+.Gpt {
+    font-family: 'Pretendard-Medium';
+    color: #000000;
 }
 
 #GptIcon {
     width: 60px;
     height: 60px;
+}
+
+.GptIcon-button:hover {
+    transform: scale(1.1);
+}
+
+#GptIcon:hover {
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

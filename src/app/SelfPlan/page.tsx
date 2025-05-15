@@ -80,11 +80,12 @@ export default function SelfPlan() {
                                 </>
                             ) : (
                                 <div className="GptIcon-box">
-                                    <Link href="/PlanByAI">
+                                    <Link className="GptIcon-button" href="/PlanByAI">
                                         <img id="GptIcon" src="/images/GptIcon.webp" alt="GptIcon" />
                                     </Link>
                                     <div className="Gpt">Gpt가 여행 계획을 세워드립니다.</div>
                                 </div>
+                                
                             )}
                         </div>
                     </div>
