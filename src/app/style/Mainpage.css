@@ -92,7 +92,7 @@
   font-family: 'Pretendard-Regular';
   font-size: 13px;
   width: 200px;
-  height: 160px;
+  height: auto;
   display: none;
   position: absolute;
   top: 100%;
@@ -118,6 +118,8 @@
   background-color: #f0f0f0;
 }
 
+
+.MainScreen-Header-diary:hover .dropdown-content,
 .MainScreen-Header-gpt:hover .dropdown-content {
   display: flex;
   flex-direction: column;
@@ -515,18 +517,6 @@
   top: -50px;
   right: -80px;
   z-index: 2;
-}
-
-@keyframes floatAnimation {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
 }
 
 .AboutButton {

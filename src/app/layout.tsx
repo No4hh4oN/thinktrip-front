@@ -29,6 +29,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
+        <img className="cloud1" src="/images/cloud1.png" alt="cloud1" />
+        <img className="cloud2" src="/images/cloud2.png" alt="cloud2" />
       </body>
     </html>
   );

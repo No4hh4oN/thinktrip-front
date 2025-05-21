@@ -276,10 +276,18 @@ export default function Home() {
                                     <span>저장한 여행 계획</span>
                                 </Link>
                             </div>
+                        </div>    
+                        <div className="MainScreen-Header-diary">
+                            다이어리
+                            <div className="dropdown-content">
+                                <Link href="/Report">
+                                    <span>여행일기 작성하기</span>
+                                </Link>
+                                <Link href="/Diary">
+                                    <span>내 여행일기 보기</span>
+                                </Link>
+                            </div>
                         </div>
-                        <Link href="/Diary">
-                            <div className="MainScreen-Header-diary">다이어리</div>
-                        </Link>
                         <div className="MainScreen-Header-mypage">마이페이지</div>
                         {isAuthenticated && (
                             <div className="MainScreen-Header-logout" onClick={() => {
@@ -451,8 +459,6 @@ export default function Home() {
             </div>
             <About />
             <Footer />
-            <img className="cloud1" src="/images/cloud1.png" alt="cloud1" />
-            <img className="cloud2" src="/images/cloud2.png" alt="cloud2" />
         </div>
     );
 }

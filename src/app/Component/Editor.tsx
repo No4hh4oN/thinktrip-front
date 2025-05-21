@@ -16,25 +16,33 @@ export default function MarkdownEditor() {
     };
 
     return (
-        <div className="Editor-Container">
+        <div id="Report" className="Editor-Container">
             <Editor
+                // 툴바 옵션 설정
                 toolbarItems={[
-                    // 툴바 옵션 설정
                     ['heading', 'bold', 'italic', 'strike'],
                     ['hr', 'quote'],
                     ['ul', 'ol', 'task', 'indent', 'outdent'],
                     ['table', 'link']
                 ]}
                 ref={editorRef}
-                initialValue="직접 여행 계획을 작성해보세요!"
+                initialValue="글을 입력하세요."
                 previewStyle="tab"
                 height="800px"
-                initialEditType="markdown"
+                initialEditType="wysiwyg"
                 useCommandShortcut={true}
                 hideModeSwitch="true"
                 language="ko-KR"
+                hooks={{
+                    addImageBlobHook: (blob: Blob, callback: (url: string, altText: string) => void) => {
+                        const tempUrl = URL.createObjectURL(blob);
+                        callback(tempUrl, '임시 이미지');
+                        console.log('이미지 추가됨:', tempUrl);
+                        return false; // 기본 업로드 막음
+                    }
+                }}
             />
-            {/* <button onClick={handleGetContent}>내용 가져오기</button> */}
+            <button className="SelfPlanSave" onClick={handleGetContent}>저장</button>
         </div>
     );
 }

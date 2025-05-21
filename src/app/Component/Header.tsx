@@ -8,7 +8,7 @@ export default function Header() {
                 <Link href="/">
                     <span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p
                 </Link>
-                </div>
+            </div>
             <div className="Header-List">
                 <div className="Header-gpt">
                     여행추천
@@ -25,9 +25,17 @@ export default function Header() {
                         </Link>
                     </div>
                 </div>
-                <Link href="/Diary">
-                    <div className="Header-diary">다이어리</div>
-                </Link>
+                <div className="Header-diary">
+                    다이어리
+                    <div className="Header-dropdown-content">
+                        <Link href="/Report">
+                            <span>여행일기 작성하기</span>
+                        </Link>
+                        <Link href="/Diary">
+                            <span>내 여행일기 보기</span>
+                        </Link>
+                    </div>
+                </div>
                 <div className="Header-mypage">마이페이지</div>
             </div>
         </div>

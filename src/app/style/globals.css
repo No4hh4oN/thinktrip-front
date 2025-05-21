@@ -45,6 +45,18 @@ body {
   z-index: 1;
 }
 
+@keyframes floatAnimation {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
 @font-face {
   font-family: 'Montserrat-Black';
   src: url('/fonts/Montserrat-Black.ttf') format('truetype');

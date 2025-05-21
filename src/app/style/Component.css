@@ -389,7 +389,7 @@
     font-family: 'Pretendard-Regular';
     font-size: 13px;
     width: 200px;
-    height: 160px;
+    height: auto;
     display: none;
     position: absolute;
     top: 100%;
@@ -415,6 +415,7 @@
     background-color: #f0f0f0;
 }
 
+.Header-diary:hover .Header-dropdown-content, 
 .Header-gpt:hover .Header-dropdown-content {
     display: flex;
     flex-direction: column;
@@ -423,21 +424,28 @@
 /* 에디터 css */
 
 .Editor-Container {
-    position: relative;
+    height: auto;
     background-color: #FFFFFF;
+    position: relative;
     border-radius: 20px;
     z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-bottom: 20px;
+    gap: 30px;
 }
 
 .toastui-editor-defaultUI {
     border: none !important;
 }
 
-.toastui-editor-defaultUI .toastui-editor-md-tab-container {
+/* .toastui-editor-defaultUI .toastui-editor-md-tab-container {
     border-top-left-radius: 20px !important;
-}
+} */
 
 .toastui-editor-defaultUI-toolbar {
+    border-top-left-radius: 20px !important;
     border-top-right-radius: 20px !important;
 }
 
@@ -456,4 +464,25 @@
     font-weight: bold;
     border: none !important;
     background-color: #A4CEF9 !important;
+}
+
+.SelfPlanSave {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 120px;
+    height: 40px;
+    background-color: #0075EA;
+    font-family: 'Pretendard-SemiBold';
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.SelfPlanSave:hover {
+    background-color: #517fd6;
 }
