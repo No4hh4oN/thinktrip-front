@@ -21,6 +21,11 @@ type TravelFormData = {
     otherRequests: string | null;
 };
 
+// ToastEditor 리렌더링 문제 해결, 함수 바깥으로 빼기
+const ToastEditor = dynamic(() => import('../Component/Editor'), {
+    ssr: false,
+});
+
 export default function SelfPlan() {
     const [travelData, setTravelData] = useState<TravelFormData>({
         member: '',
@@ -34,9 +39,6 @@ export default function SelfPlan() {
         otherRequests: null,
     });
 
-    const ToastEditor = dynamic(() => import('../Component/Editor'), {
-        ssr: false,
-    });
 
     //Gpt 프롬프트에서 생성된 값
     const [prompt, setPrompt] = useState("");
@@ -85,7 +87,7 @@ export default function SelfPlan() {
                                     </Link>
                                     <div className="Gpt">Gpt가 여행 계획을 세워드립니다.</div>
                                 </div>
-                                
+
                             )}
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import AxiosClient from "./AxiosClient";
 import "./style/Mainpage.css";
 import "./style/Component.css";
+import "./styleMob/Mobile.css";
 import About from './Component/About';
 import Footer from './Component/Footer';
 import AdSlide from './Component/AdSlide';
@@ -256,6 +257,9 @@ export default function Home() {
         }
     };
 
+    // 모바일 / 리스트 토글 다운
+    const [showMenu, setShowMenu] = useState(false);
+
     return (
         <div className="MainScreen">
             <div className="MainScreen-Container">
@@ -263,20 +267,22 @@ export default function Home() {
                     <div className="MainScreen-Header-Logo"><span className="MainScreen-Header-Logo-1">T</span>h<span className="MainScreen-Header-Logo-2">!</span>nk<span className="MainScreen-Header-Logo-3">T</span>r<span className="MainScreen-Header-Logo-4">!</span>p</div>
                     <div className="MainScreen-Header-List">
                         <div className="MainScreen-Header-gpt">
-                            여행추천
-                            <div className="dropdown-content">
+                            여행추천<div className="dropdown-content">
                                 <Link href="/PlanByAI">
                                     <span>GPT에게 추천받는 나의 여행</span>
                                 </Link>
                                 <Link href="/SelfPlan">
                                     <span>직접 계획하는 나의 여행</span>
                                 </Link>
-                                <span>TourAPI가 추천하는 여행</span>
+
+                                <Link href="/Tour">
+                                    <span>TourAPI가 추천하는 여행</span>
+                                </Link>
                                 <Link href="/MyPlan">
                                     <span>저장한 여행 계획</span>
                                 </Link>
                             </div>
-                        </div>    
+                        </div>
                         <div className="MainScreen-Header-diary">
                             다이어리
                             <div className="dropdown-content">
@@ -299,6 +305,54 @@ export default function Home() {
                                 로그아웃
                             </div>
                         )}
+                    </div>
+                    <div className={`MainScreen-Header-List-Mobile-menu-icon ${showMenu ? 'active' : ''}`}
+                        onClick={() => setShowMenu(!showMenu)}>
+                        ☰
+                    {showMenu && (
+                        <div className="MainScreen-Header-List-Mobile">
+                            <div className="MainScreen-Header-gpt-Mobile">
+                                여행추천
+                                <div className="dropdown-content-Mobile">
+                                    <Link href="/PlanByAI">
+                                        <span>- GPT에게 추천받는 나의 여행</span>
+                                    </Link>
+                                    <Link href="/SelfPlan">
+                                        <span>- 직접 계획하는 나의 여행</span>
+                                    </Link>
+
+                                    <Link href="/Tour">
+                                        <span>- TourAPI가 추천하는 여행</span>
+                                    </Link>
+                                    <Link href="/MyPlan">
+                                        <span>- 저장한 여행 계획</span>
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="MainScreen-Header-diary-Mobile">
+                                다이어리
+                                <div className="dropdown-content-Mobile">
+                                    <Link href="/Report">
+                                        <span>- 여행일기 작성하기</span>
+                                    </Link>
+                                    <Link href="/Diary">
+                                        <span>- 내 여행일기 보기</span>
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="MainScreen-Header-mypage-Mobile">마이페이지</div>
+                            {isAuthenticated && (
+                                <div className="MainScreen-Header-logout-Mobile" onClick={() => {
+                                    sessionStorage.removeItem("token");
+                                    localStorage.removeItem("token");
+                                    setIsAuthenticated(false);
+                                    setTriggerAnimation(false);
+                                }}>
+                                    로그아웃
+                                </div>
+                            )}
+                        </div>
+                    )}
                     </div>
                 </div>
                 {isAuthenticated ? (

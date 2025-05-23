@@ -71,18 +71,10 @@
   align-items: center;
   z-index: 10;
 }
-
-.MainScreen-Header-logout:hover {
-  transform: scale(1.03);
-  cursor: pointer;
-}
-
+ 
 .MainScreen-Header-diary:hover,
-.MainScreen-Header-mypage:hover {
-  transform: scale(1.03);
-  cursor: pointer;
-}
-
+.MainScreen-Header-mypage:hover,
+.MainScreen-Header-logout:hover,
 .MainScreen-Header-gpt:hover {
   transform: scale(1.03);
   cursor: pointer;
@@ -123,6 +115,14 @@
 .MainScreen-Header-gpt:hover .dropdown-content {
   display: flex;
   flex-direction: column;
+}
+
+.MainScreen-Header-List-Mobile-menu-icon {
+  display: none;
+}
+
+.MainScreen-Header-List-Mobile {
+  display: none;
 }
 
 .MainScreen-Box {

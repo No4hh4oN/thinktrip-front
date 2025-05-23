@@ -21,3 +21,12 @@
     font-size: 32px;
     color: #FFFFFF;
 }
+
+.Report-Container-Body {
+    width: 1137px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 50px;
+}

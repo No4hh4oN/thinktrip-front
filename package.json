@@ -16,7 +16,8 @@
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scroll": "^1.9.3"
+    "react-scroll": "^1.9.3",
+    "swiper": "^11.2.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

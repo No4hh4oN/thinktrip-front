@@ -25,6 +25,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (max-width: 768px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .cloud1,
+  .cloud2 {
+    display: none;
+  }
+
+}
+
 .cloud1 {
   position: absolute;
   top: 210px;
