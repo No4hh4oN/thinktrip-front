@@ -71,7 +71,7 @@
   align-items: center;
   z-index: 10;
 }
- 
+
 .MainScreen-Header-diary:hover,
 .MainScreen-Header-mypage:hover,
 .MainScreen-Header-logout:hover,
@@ -115,14 +115,6 @@
 .MainScreen-Header-gpt:hover .dropdown-content {
   display: flex;
   flex-direction: column;
-}
-
-.MainScreen-Header-List-Mobile-menu-icon {
-  display: none;
-}
-
-.MainScreen-Header-List-Mobile {
-  display: none;
 }
 
 .MainScreen-Box {
@@ -359,7 +351,8 @@
   cursor: pointer;
 }
 
-.MainScreen-ProfileImg-Container, .MainScreen-ProfileImg-Container label {
+.MainScreen-ProfileImg-Container,
+.MainScreen-ProfileImg-Container label {
   position: relative;
   display: flex;
   justify-content: center;
@@ -393,13 +386,15 @@
   z-index: 3;
 }
 
-.MainScreen-UserDetailInfo-Premium, .MainScreen-UserDetailInfo-AI {
+.MainScreen-UserDetailInfo-Premium,
+.MainScreen-UserDetailInfo-AI {
   display: flex;
   align-items: flex-end;
   gap: 5px;
 }
 
-.MainScreen-UserDetailInfo-Premium-label, .MainScreen-UserDetailInfo-AI-label {
+.MainScreen-UserDetailInfo-Premium-label,
+.MainScreen-UserDetailInfo-AI-label {
   width: 110px;
   font-family: 'Pretendard-Regular';
   font-size: 16px;
@@ -407,7 +402,9 @@
   text-decoration: underline;
 
 }
-.MainScreen-UserDetailInfo-Premium-data, .MainScreen-UserDetailInfo-AI-data {
+
+.MainScreen-UserDetailInfo-Premium-data,
+.MainScreen-UserDetailInfo-AI-data {
   font-family: 'Pretendard-Medium';
   font-size: 20px;
   color: #000000;
@@ -536,4 +533,233 @@
   color: #FFFFFF;
   z-index: 9;
   cursor: pointer;
+}
+
+/* -----모바일 화면----- */
+
+@media (max-width: 720px) {
+
+  .MainScreen-Container,
+  .About,
+  .Footer {
+    display: none !important;
+  }
+
+  .MainScreen-Container-Mobile {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(to bottom, #060755, #A4CEF9);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+  }
+  
+  .MainScreen-AuthBox-Mobile {
+    width: 90%;
+    height: 50%;
+  }
+
+  .MainScreen-LoginBox-Mobile {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .Header-Logo-Mobile {
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-family: 'PyeongChangPeace-Bold';
+    color: #FFFFFF;
+    font-size: 37px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    outline: none;
+  }
+
+  .MainScreen-Header-List-Mobile-menu-icon  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 10px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    z-index: 1000;
+    background-color: transparent;
+  }
+
+  .MainScreen-Header-List-Mobile-menu-icon.active  {
+    color: #000000;
+    height: 100vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-radius: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    transform: translateX(0px) scale(1.0);
+    background-color: #FFFFFF;
+    box-shadow: inset 10px 10px 20px #a3b1c6, inset -10px 10px 20px #FFFFFF;
+  }
+
+  .MainScreen-Header-List-Mobile-menu-icon.active ~ .MainScreen-Container-Mobile {
+    opacity: 0.3;
+  }
+
+  .MainScreen-Header-List-Mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    font-family: 'Pretendard-Medium';
+    font-size: 18px;
+    color: #000000;
+    gap: 10px;
+  }
+
+  .dropdown-content-Mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 5px;
+    gap: 5px;
+    margin-left: 10px;
+    
+  }
+
+  .dropdown-content-Mobile a {
+    text-decoration: dotted;
+  }
+
+  .MainScreen-Login-Mobile {
+    margin-top: 20px;
+    font-family: 'Pretendard-SemiBold';
+    color: #000000;
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .MainScreen-Form-Mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .idInput-Mobile,
+  .pwInput-Mobile,
+  .addressInput-Mobile {
+    width: 100%;
+    height: 42px;
+    background-color: #BDBDBD;
+    border: none;
+    border-radius: 8px;
+    padding-left: 15px;
+    outline: none;
+    font-family: 'Pretendard-Medium';
+    color: #000000;
+  }
+
+  .idInput-Mobile::placeholder,
+  .pwInput-Mobile::placeholder,
+  .addressInput-Mobile::placeholder {
+    color: #9F9F9F;
+  }
+
+  .keepLogin-Mobile {
+    font-family: 'Pretendard-Medium';
+    font-size: 13px;
+    color: #707070;
+  }
+
+  .keepLogin-Mobile label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .LoginButton-Mobile {
+    width: 100%;
+    height: 42px;
+    outline: none;
+    font-family: 'Pretendard-Bold';
+    font-size: 18px;
+    color: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(to right, #060755, #A4CEF9);
+  }
+
+  .JoinSuggestion-Mobile {
+    text-align: center;
+    font-family: 'Pretendard-Regular';
+    font-size: 14px;
+    color: #000000;
+  }
+
+  .JoinSuggestion-Mobile span {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 14px;
+    color: #524335;
+  }
+
+  .MainScreen-JoinBox-Mobile {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .MainScreen-Join-Mobile {
+    margin-top: 20px;
+    font-family: 'Pretendard-SemiBold';
+    color: #000000;
+    font-size: 28px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .MainScreen-Join-Mobile span {
+    font-family: 'Pretendard-SemiBold';
+    font-size: 30px;
+    color: #524335;
+    position: absolute;
+    right: 40px;
+  }
+
+  .MainScreen-Form-Mobile {
+    margin-top: 20px;
+  }
+
+  .nextStep-Mobile, .JoinRequest {
+    width: 100%;
+    height: 42px;
+    outline: none;
+    font-family: 'Pretendard-Bold';
+    font-size: 18px;
+    color: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(to right, #060755, #A4CEF9);
+  }
+
+
 }

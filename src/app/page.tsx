@@ -4,7 +4,6 @@ import Link from 'next/link';
 import AxiosClient from "./AxiosClient";
 import "./style/Mainpage.css";
 import "./style/Component.css";
-import "./styleMob/Mobile.css";
 import About from './Component/About';
 import Footer from './Component/Footer';
 import AdSlide from './Component/AdSlide';
@@ -306,54 +305,7 @@ export default function Home() {
                             </div>
                         )}
                     </div>
-                    <div className={`MainScreen-Header-List-Mobile-menu-icon ${showMenu ? 'active' : ''}`}
-                        onClick={() => setShowMenu(!showMenu)}>
-                        ☰
-                    {showMenu && (
-                        <div className="MainScreen-Header-List-Mobile">
-                            <div className="MainScreen-Header-gpt-Mobile">
-                                여행추천
-                                <div className="dropdown-content-Mobile">
-                                    <Link href="/PlanByAI">
-                                        <span>- GPT에게 추천받는 나의 여행</span>
-                                    </Link>
-                                    <Link href="/SelfPlan">
-                                        <span>- 직접 계획하는 나의 여행</span>
-                                    </Link>
 
-                                    <Link href="/Tour">
-                                        <span>- TourAPI가 추천하는 여행</span>
-                                    </Link>
-                                    <Link href="/MyPlan">
-                                        <span>- 저장한 여행 계획</span>
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className="MainScreen-Header-diary-Mobile">
-                                다이어리
-                                <div className="dropdown-content-Mobile">
-                                    <Link href="/Report">
-                                        <span>- 여행일기 작성하기</span>
-                                    </Link>
-                                    <Link href="/Diary">
-                                        <span>- 내 여행일기 보기</span>
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className="MainScreen-Header-mypage-Mobile">마이페이지</div>
-                            {isAuthenticated && (
-                                <div className="MainScreen-Header-logout-Mobile" onClick={() => {
-                                    sessionStorage.removeItem("token");
-                                    localStorage.removeItem("token");
-                                    setIsAuthenticated(false);
-                                    setTriggerAnimation(false);
-                                }}>
-                                    로그아웃
-                                </div>
-                            )}
-                        </div>
-                    )}
-                    </div>
                 </div>
                 {isAuthenticated ? (
                     <div className="MainScreen-Box-after" onChange={handleUserProfile}>
@@ -513,6 +465,202 @@ export default function Home() {
             </div>
             <About />
             <Footer />
+
+
+            {/* 모바일 */}
+
+
+            <div className="MainScreen-Container-Mobile">
+                {isAuthenticated ? (
+                    <div className="MainScreen-Mobile">
+                        <div className="Header-Logo-Mobile">
+                            <div className={`MainScreen-Header-List-Mobile-menu-icon ${showMenu ? 'active' : ''}`}
+                                onClick={() => setShowMenu(!showMenu)}>
+                                ☰
+                                {showMenu && (
+                                    <div className="MainScreen-Header-List-Mobile">
+                                        <div className="MainScreen-Header-gpt-Mobile">
+                                            여행추천
+                                            <div className="dropdown-content-Mobile">
+                                                <Link href="/PlanByAI">
+                                                    <span>- GPT에게 추천받는 나의 여행</span>
+                                                </Link>
+                                                <Link href="/SelfPlan">
+                                                    <span>- 직접 계획하는 나의 여행</span>
+                                                </Link>
+
+                                                <Link href="/Tour">
+                                                    <span>- TourAPI가 추천하는 여행</span>
+                                                </Link>
+                                                <Link href="/MyPlan">
+                                                    <span>- 저장한 여행 계획</span>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        <div className="MainScreen-Header-diary-Mobile">
+                                            다이어리
+                                            <div className="dropdown-content-Mobile">
+                                                <Link href="/Report">
+                                                    <span>- 여행일기 작성하기</span>
+                                                </Link>
+                                                <Link href="/Diary">
+                                                    <span>- 내 여행일기 보기</span>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        <div className="MainScreen-Header-mypage-Mobile">마이페이지</div>
+                                        {isAuthenticated && (
+                                            <div className="MainScreen-Header-logout-Mobile" onClick={() => {
+                                                sessionStorage.removeItem("token");
+                                                localStorage.removeItem("token");
+                                                setIsAuthenticated(false);
+                                                setTriggerAnimation(false);
+                                            }}>
+                                                로그아웃
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                            <span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p
+
+                        </div>
+                        <div>
+                            <img className="MainScreen-Image2" src="/images/MainPoster.png" alt="메인포스터1" />
+
+                        </div>
+                    </div>
+                ) : (
+                    <div className="MainScreen-AuthBox-Mobile">
+                         <div className="Header-Logo-Mobile">
+                            <div className={`MainScreen-Header-List-Mobile-menu-icon ${showMenu ? 'active' : ''}`}
+                                onClick={() => setShowMenu(!showMenu)}>
+                                ☰
+                                {showMenu && (
+                                    <div className="MainScreen-Header-List-Mobile">
+                                        <div className="MainScreen-Header-gpt-Mobile">
+                                            여행추천
+                                            <div className="dropdown-content-Mobile">
+                                                <Link href="/PlanByAI">
+                                                    <span>- GPT에게 추천받는 나의 여행</span>
+                                                </Link>
+                                                <Link href="/SelfPlan">
+                                                    <span>- 직접 계획하는 나의 여행</span>
+                                                </Link>
+
+                                                <Link href="/Tour">
+                                                    <span>- TourAPI가 추천하는 여행</span>
+                                                </Link>
+                                                <Link href="/MyPlan">
+                                                    <span>- 저장한 여행 계획</span>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        <div className="MainScreen-Header-diary-Mobile">
+                                            다이어리
+                                            <div className="dropdown-content-Mobile">
+                                                <Link href="/Report">
+                                                    <span>- 여행일기 작성하기</span>
+                                                </Link>
+                                                <Link href="/Diary">
+                                                    <span>- 내 여행일기 보기</span>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        <div className="MainScreen-Header-mypage-Mobile">마이페이지</div>
+                                        {isAuthenticated && (
+                                            <div className="MainScreen-Header-logout-Mobile" onClick={() => {
+                                                sessionStorage.removeItem("token");
+                                                localStorage.removeItem("token");
+                                                setIsAuthenticated(false);
+                                                setTriggerAnimation(false);
+                                            }}>
+                                                로그아웃
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                            <span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p
+
+                        </div>
+                        {isLogin ?
+
+                            <div className="MainScreen-LoginBox-Mobile">
+                                <div className="MainScreen-Login-Mobile">로그인</div>
+                                <form className="MainScreen-Form-Mobile" onSubmit={handleLogin}>
+                                    <input className="idInput-Mobile" type="text" name="userId" placeholder="이메일" onChange={handleChange} autoComplete="email" />
+                                    <input className="pwInput-Mobile" type="password" name="password" placeholder="비밀번호" onChange={handleChange} autoComplete="current-password" />
+                                    <div className="keepLogin-Mobile">
+                                        <label>
+                                            <input type="checkbox" name="keepLogin" checked={keepLogin} onChange={handleCheckboxChange} />
+                                            로그인 상태 유지
+                                        </label>
+                                    </div>
+                                    <button className="LoginButton-Mobile" type="submit">로그인</button>
+                                    <div className="JoinSuggestion-Mobile">Th!nkTr!p이 처음이라면,  <span onClick={() => setIsLogin(false)}>회원가입</span>  하기</div>
+                                </form>
+                            </div>
+                            :
+                            <div className="MainScreen-JoinBox-Mobile">
+                                <div className="MainScreen-Join-Mobile">회원가입<span className="MainScreen-JoinCancel-Mobile" onClick={() => {
+                                    setForm({
+                                        userId: "",
+                                        password: "",
+                                        userName: "",
+                                        nickname: "",
+                                        address: "",
+                                    });
+                                    setPwCheck("");
+                                    setStep(1);
+                                    setIsLogin(true);
+                                }}>X</span></div>
+
+                                <form className="MainScreen-Form-Mobile" onSubmit={(e) => e.preventDefault()}>
+                                    {step === 1 && (
+                                        <>
+                                            <input className="idInput-Mobile" type="text" name="userId" placeholder="이메일" onChange={handleChange} autoComplete="email" />
+                                            <input className="pwInput-Mobile" type="password" name="password" placeholder="비밀번호" onChange={handleChange} autoComplete="new-password" />
+                                            <input className="pwInput-Mobile" type="password" placeholder="비밀번호 확인" value={pwCheck} onChange={(e) => setPwCheck(e.target.value)} autoComplete="new-password" />
+                                            <button
+                                                className="nextStep-Mobile"
+                                                type="button"
+                                                onClick={() => {
+                                                    if (form.password !== pwCheck) {
+                                                        alert("비밀번호가 일치하지 않습니다.");
+                                                        return;
+                                                    }
+                                                    setStep(2);
+                                                }}
+                                            >
+                                                다음
+                                            </button>
+                                        </>
+                                    )}
+
+                                    {step === 2 && (
+                                        <>
+                                            <input className="idInput-Mobile" type="text" name="userName" placeholder="이름" onChange={handleChange} autoComplete="username" />
+                                            <input className="idInput-Mobile" type="text" name="nickname" placeholder="닉네임" onChange={handleChange} autoComplete="name" />
+                                            <input
+                                                className="addressInput-Mobile"
+                                                type="text"
+                                                name="address"
+                                                placeholder="거주지 입력"
+                                                value={form.address}
+                                                readOnly
+                                                onClick={handleAddressSearch}
+                                            />
+                                            <button className="JoinRequest" type="button" onClick={handleRegister}>회원가입</button>
+                                        </>
+                                    )}
+                                </form>
+                            </div>
+                        }
+
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import "../style/Component.css";
+import "../style/Mainpage.css";
 
 export default function About() {
     return (
