@@ -7,6 +7,7 @@ import "./style/Component.css";
 import About from './Component/About';
 import Footer from './Component/Footer';
 import AdSlide from './Component/AdSlide';
+import AdSlideMobile from "./Component/AdSlideMobile";
 
 
 declare global {
@@ -508,7 +509,7 @@ export default function Home() {
                                                 </Link>
                                             </div>
                                         </div>
-                                        <div className="MainScreen-Header-mypage-Mobile">마이페이지</div>
+                                        {/* <div className="MainScreen-Header-mypage-Mobile">마이페이지</div> */}
                                         {isAuthenticated && (
                                             <div className="MainScreen-Header-logout-Mobile" onClick={() => {
                                                 sessionStorage.removeItem("token");
@@ -523,17 +524,47 @@ export default function Home() {
                                 )}
                             </div>
                             <span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p
-
+                            <div className="MainScreen-ProfileImg-Container-Mobile">
+                                    <Link href="/Mypage">
+                                        <img
+                                            className="MainScreen-ProfileImg-Mobile"
+                                            src={imageUrl || "/images/profile.webp"}
+                                            alt="프로필 이미지"
+                                        />
+                                    </Link>
+                            </div>
                         </div>
-                        <div>
-                            <img className="MainScreen-Image2" src="/images/MainPoster.png" alt="메인포스터1" />
-
+                        <div className="MainScreen-Body-Mobile">
+                            <img className="MainScreen-Image2-Mobile" src="/images/MainPoster.png" alt="메인포스터1" />
+                            <div className="MainScreen-userInfo-Mobile">
+                                <div className="MainScreen-Welcome-Mobile">
+                                    <span>{userInfo.nickname}</span>님 어서오세요!
+                                </div>
+                                {/* {userInfo.userId} */}
+                                <div className="MainScreen-AI-Mobile">
+                                    <div className="MainScreen-AI-Premium">프리미엄 <span>{userInfo.is_premium ? "가입자" : "미가입자"}</span></div>
+                                    <div className="MainScreen-AI-Usage">금일 AI 사용가능 횟수 <span>{GptUsage} / 5</span></div>
+                                </div>
+                            </div>
+                            <AdSlideMobile />
+                            <div className="MainScreen-About-Mobile">
+                                <div className="MainScreen-About-Title">About <span id="MainScreen-About-Title-Logo"><span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p</span></div>
+                                <img className="About-OpenAI-Mobile" src="../images/OpenAI.png"/>
+                                <div className="">
+                                    Th!nkTrip은 Open AI를 사용하여 서비스 이용자분들의 여행 취향, 성격 등을 고려하여 딱 맞는 여행 일정을 추천해드립니다.<br /><br />
+                                    더불어, 다이어리 기능을 통해 여행의 추억을 남길 수 있도록 돕고 있습니다.
+                                </div>
+                            </div>
+                        </div>
+                        <div className="Footer-Mobile">
+                            <div>Ⓒ ??????</div>
+                            <div>장준익 김정현 김현우 이소영</div>
                         </div>
                     </div>
                 ) : (
                     <div className="MainScreen-AuthBox-Mobile">
-                         <div className="Header-Logo-Mobile">
-                            <div className={`MainScreen-Header-List-Mobile-menu-icon ${showMenu ? 'active' : ''}`}
+                        <div className="Header-Logo-Mobile">
+                            {/* <div className={`MainScreen-Header-List-Mobile-menu-icon ${showMenu ? 'active' : ''}`}
                                 onClick={() => setShowMenu(!showMenu)}>
                                 ☰
                                 {showMenu && (
@@ -580,12 +611,11 @@ export default function Home() {
                                         )}
                                     </div>
                                 )}
-                            </div>
+                            </div> */}
                             <span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p
 
                         </div>
                         {isLogin ?
-
                             <div className="MainScreen-LoginBox-Mobile">
                                 <div className="MainScreen-Login-Mobile">로그인</div>
                                 <form className="MainScreen-Form-Mobile" onSubmit={handleLogin}>
@@ -657,7 +687,6 @@ export default function Home() {
                                 </form>
                             </div>
                         }
-
                     </div>
                 )}
             </div>
