@@ -22,6 +22,7 @@ export default function Map({ selectedRegion, selectedPlace, setSelectedRegion, 
     const [searchQuery, setSearchQuery] = useState("");
     const markerRef = useRef<any>(null);
     const geocoderRef = useRef<any>(null);
+    const mapContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!apiKey) {
@@ -30,41 +31,38 @@ export default function Map({ selectedRegion, selectedPlace, setSelectedRegion, 
         }
 
         const scriptId = "kakao-map-script";
+
+        const initializeMap = () => {
+            setTimeout(() => {
+                if (window.kakao?.maps?.load) {
+                    window.kakao.maps.load(() => {
+                        loadMap();
+                    });
+                }
+            }, 200); // 딜레이 줘야 모바일에서 DOM 완성됨
+        };
+
         if (document.getElementById(scriptId)) {
-            loadMap();
+            initializeMap();
             return;
         }
 
         const script = document.createElement("script");
         script.id = scriptId;
-        script.async = true;
         script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services&autoload=false`;
+        script.async = true;
         document.head.appendChild(script);
-
-        script.onload = () => {
-            window.kakao.maps.load(() => {
-                loadMap();
-            });
-        };
+        script.onload = initializeMap;
     }, [apiKey]);
 
     const loadMap = () => {
-        if (!window.kakao) {
-            // console.error("Kakao Maps failed to load.");
-            return;
-        }
-
-        const container = document.getElementById("map");
-        if (!container) {
-            // console.error("Map container not found.");
-            return;
-        }
+        if (!mapContainerRef.current || !window.kakao?.maps) return;
 
         const options = {
-            center: new window.kakao.maps.LatLng(37.5665, 126.978), // 서울 기본 좌표
+            center: new window.kakao.maps.LatLng(37.5665, 126.978),
             level: 3,
         };
-        const newMap = new window.kakao.maps.Map(container, options);
+        const newMap = new window.kakao.maps.Map(mapContainerRef.current, options);
         setMap(newMap);
         setPlacesService(new window.kakao.maps.services.Places());
         geocoderRef.current = new window.kakao.maps.services.Geocoder();
@@ -73,6 +71,11 @@ export default function Map({ selectedRegion, selectedPlace, setSelectedRegion, 
             const latlng = mouseEvent.latLng;
             updateMarker(latlng, newMap);
         });
+
+        // 강제 리사이즈 → 모바일 대응
+        setTimeout(() => {
+            window.kakao.maps.event.trigger(newMap, "resize");
+        }, 300);
     };
 
     const updateMarker = (latlng: any, mapInstance: any) => {
@@ -110,7 +113,7 @@ export default function Map({ selectedRegion, selectedPlace, setSelectedRegion, 
                 setSelectedPlace(place.place_name);
                 setSelectedRegion(`${place.address_name}`);
             } else {
-                // console.error("장소를 찾을 수 없습니다.");
+                console.warn("장소를 찾을 수 없습니다.");
             }
         });
     };
@@ -128,13 +131,13 @@ export default function Map({ selectedRegion, selectedPlace, setSelectedRegion, 
                     <img src="/images/scope.webp" alt="scope" />
                 </button>
             </div>
-            <div id="map"/>
-            <div className="selectedRegion">
-                지역: {selectedRegion}
-            </div>
-            <div className="selectedPlace">
-                도착지: {selectedPlace}
-            </div>
+            <div
+                id="map"
+                ref={mapContainerRef}
+                style={{ width: "100%", height: "320px", borderRadius: "10px" }}
+            />
+            <div className="selectedRegion">지역: {selectedRegion}</div>
+            <div className="selectedPlace">도착지: {selectedPlace}</div>
         </div>
     );
 }

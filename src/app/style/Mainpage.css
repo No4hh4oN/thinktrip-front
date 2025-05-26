@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.MainScreen-Container-Mobile {
+  display: none;
+}
+
 .MainScreen-Container {
   position: relative;
   background: linear-gradient(to bottom, #060755, #A4CEF9);
