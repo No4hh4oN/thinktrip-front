@@ -26,6 +26,13 @@ const ToastEditor = dynamic(() => import('../Component/Editor'), {
     ssr: false,
 });
 
+const ToastEditorMobile = dynamic(() => import('../Component/EditorMobile'), {
+    ssr: false,
+});
+
+
+
+
 export default function SelfPlan() {
     const [travelData, setTravelData] = useState<TravelFormData>({
         member: '',
@@ -50,6 +57,16 @@ export default function SelfPlan() {
             localStorage.removeItem("custom_gpt_prompt");
         }
     }, []);
+
+    const [currentStep, setCurrentStep] = useState(1); // 시작은 1단계
+
+    const goToNextStep = () => {
+        setCurrentStep((step) => step + 1); // 다음 단계로 이동
+    };
+
+    const goToPrevStep = () => {
+        setCurrentStep((step) => step - 1);
+    }
 
     return (
         <div className="SelfPlan">
@@ -94,6 +111,68 @@ export default function SelfPlan() {
                     <div className="SelfPlan-Body-Right">
                         <ToastEditor />
                     </div>
+                </div>
+            </div>
+
+            <div className="SelfPlan-Container-Mobile">
+                <div className="SelfPlan-Header-Mobile">
+                    <span id="SelfPlan-Header-Mobile-title">내가 계획하는 여행</span>
+                    <div id="SelfPlan-Header-Mobile-currentStep">
+                        {currentStep} / 2
+                    </div>
+                </div>
+                {currentStep === 1 && (
+                    <div className="SelfPlan-Container-Step1">
+                        <Calendar
+                            departureDate={travelData.departureDate}
+                            returnDate={travelData.returnDate}
+                            setDepartureDate={(date) =>
+                                setTravelData((prev: TravelFormData) => ({
+                                    ...prev,
+                                    departureDate: date
+                                }))
+                            }
+                            setReturnDate={(date) =>
+                                setTravelData((prev: TravelFormData) => ({
+                                    ...prev,
+                                    returnDate: date
+                                }))
+                            }
+                        />
+                        <div className="GPT-Prompt-Box">
+                            {prompt ? (
+                                <>
+                                    <p style={{ fontWeight: "bold", color: "red" }}>GPT 답변</p>
+                                    <pre style={{ whiteSpace: "pre-wrap" }}>{prompt}</pre>
+                                </>
+                            ) : (
+                                <div className="GptIcon-box">
+                                    <Link className="GptIcon-button" href="/PlanByAI">
+                                        <img id="GptIcon" src="/images/GptIcon.webp" alt="GptIcon" />
+                                    </Link>
+                                    <div className="Gpt">Gpt가 여행 계획을 세워드립니다.</div>
+                                </div>
+
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                {currentStep === 2 && (
+                    <ToastEditorMobile />
+
+                )}
+
+                <div className="StepCtrlButtons">
+                    {currentStep === 1 && (
+                        <button id="nextCtrl" className="stepCtrlBtn" onClick={goToNextStep}>다음</button>
+                    )}
+
+                    {currentStep === 2 && (
+                        <>
+                            <button id="prevCtrl" className="stepCtrlBtn" onClick={goToPrevStep}>이전</button>
+                        </>
+                    )}
                 </div>
             </div>
             <Footer />

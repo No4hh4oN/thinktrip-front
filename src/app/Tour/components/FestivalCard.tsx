@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 type FestivalCardProps = {
   contentId: string;
@@ -17,6 +20,9 @@ const FestivalCard = ({
   endDate,
   location,
 }: FestivalCardProps) => {
+  const titleContainerRef = useRef<HTMLDivElement>(null);
+  const titleTextRef = useRef<HTMLSpanElement>(null);
+
   const formatDate = (dateStr: string) => {
     if (!dateStr || dateStr.length !== 8) return dateStr;
     const year = dateStr.slice(0, 4);
@@ -24,6 +30,22 @@ const FestivalCard = ({
     const day = dateStr.slice(6, 8);
     return `${year}.${month}.${day}`;
   };
+
+  useEffect(() => {
+  const container = titleContainerRef.current;
+  const text = titleTextRef.current;
+  if (!container || !text) return;
+
+  const containerWidth = container.offsetWidth;
+  const textWidth = text.scrollWidth;
+
+  if (textWidth > containerWidth) {
+    text.classList.add("scroll-animation");
+  } else {
+    text.classList.remove("scroll-animation");
+    text.style.paddingLeft = "0"; // 혹시 잔여 스타일 남아있을 경우 강제 제거
+  }
+}, [title]);
 
   return (
     <Link href={`/Tour/${contentId}`}>
@@ -34,7 +56,11 @@ const FestivalCard = ({
           ) : null}
         </div>
         <div className="festival-info">
-          <h3 className="festival-title">{title}</h3>
+          <div className="festival-title" ref={titleContainerRef}>
+            <span id="festival-title-span" ref={titleTextRef}>
+              {title}
+            </span>
+          </div>
           <p className="festival-date">
             {formatDate(startDate)} ~ {formatDate(endDate)}
           </p>

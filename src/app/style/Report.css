@@ -30,3 +30,17 @@
     align-items: flex-start;
     gap: 50px;
 }
+
+@media (max-width: 720px) {
+    .Report-Container-header {
+        width: 95%;
+        margin-top: 30px;
+    }
+
+    .Report-Container-Body{
+        width: 95%;
+        flex-direction: column;
+    }
+
+
+}

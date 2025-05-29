@@ -249,7 +249,7 @@
                     border-bottom-left-radius: 8px;
                 }
 
-                
+
             }
         }
     }
@@ -427,7 +427,9 @@
 }
 
 @media (max-width: 720px) {
-    .Header-Logo, .Header-List {
+
+    .Header-Logo,
+    .Header-List {
         display: none;
     }
 
@@ -438,108 +440,108 @@
 
 
     .Header-Logo-Mobile {
-    width: 100%;
-    font-family: 'PyeongChangPeace-Bold';
-    color: #FFFFFF;
-    font-size: 37px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    outline: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
+        width: 100%;
+        font-family: 'PyeongChangPeace-Bold';
+        color: #FFFFFF;
+        font-size: 37px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        outline: none;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 
-  .MainScreen-Header-List-Mobile-menu-icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding-top: 10px;
-    padding-left: 10px;
-    border-radius: 50%;
-    transition: all 0.3s;
-    z-index: 1000;
-    background-color: transparent;
-  }
+    .MainScreen-Header-List-Mobile-menu-icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 10px;
+        padding-left: 10px;
+        border-radius: 50%;
+        transition: all 0.3s;
+        z-index: 1000;
+        background-color: transparent;
+    }
 
-  .MainScreen-Header-List-Mobile-menu-icon.active {
-    color: #000000;
-    height: 100vh;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    border-radius: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 10px;
-    transform: translateX(0px) scale(1.0);
-    background-color: #FFFFFF;
-    box-shadow: inset 10px 10px 20px #a3b1c6, inset -10px 10px 20px #FFFFFF;
-  }
+    .MainScreen-Header-List-Mobile-menu-icon.active {
+        color: #000000;
+        height: 100vh;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        border-radius: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        transform: translateX(0px) scale(1.0);
+        background-color: #FFFFFF;
+        box-shadow: inset 10px 10px 20px #a3b1c6, inset -10px 10px 20px #FFFFFF;
+    }
 
-  .MainScreen-Header-List-Mobile {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    text-align: left;
-    font-family: 'Pretendard-Medium';
-    font-size: 18px;
-    color: #000000;
-    gap: 10px;
-  }
+    .MainScreen-Header-List-Mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+        font-family: 'Pretendard-Medium';
+        font-size: 18px;
+        color: #000000;
+        gap: 10px;
+    }
 
-  .dropdown-content-Mobile {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-top: 5px;
-    gap: 5px;
-    margin-left: 10px;
+    .dropdown-content-Mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 5px;
+        gap: 5px;
+        margin-left: 10px;
 
-  }
+    }
 
-  .dropdown-content-Mobile a {
-    text-decoration: dotted;
-  }
+    .dropdown-content-Mobile a {
+        text-decoration: dotted;
+    }
 
-  .MainScreen-ProfileImg-Container {
-    position: absolute;
-    right: 0;
-    width: 40px;
-    height: 40px;
-  }
+    .MainScreen-ProfileImg-Container {
+        position: absolute;
+        right: 0;
+        width: 40px;
+        height: 40px;
+    }
 
-  .MainScreen-ProfileImg-Container-Mobile {
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #C0C0C0;
-  }
+    .MainScreen-ProfileImg-Container-Mobile {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: #C0C0C0;
+    }
 
-  .MainScreen-ProfileImg-Container-Mobile a {
-    position: relative;
-    width: 40px;
-    height: 40px;
-  }
+    .MainScreen-ProfileImg-Container-Mobile a {
+        position: relative;
+        width: 40px;
+        height: 40px;
+    }
 
-  .MainScreen-ProfileImg-Mobile {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+    .MainScreen-ProfileImg-Mobile {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
 }
 
 /* 에디터 css */
@@ -605,5 +607,94 @@
 }
 
 .SelfPlanSave:hover {
+    background-color: #517fd6;
+}
+
+/*ToastUI 모바일 영역*/
+/* 모바일 전용 에디터 컨테이너 */
+.Editor-Container.mobile {
+    width: 95vw;
+    max-width: 100%;
+    padding: 4vw;
+    gap: 4vw;
+    background-color: #ffffff;
+    border-radius: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Toast UI 에디터 영역 */
+.Editor-Container.mobile .toastui-editor-defaultUI {
+    width: 100% !important;
+    height: 65vh !important;
+    /* 화면 높이 기준 */
+    font-size: 3.6vw !important;
+}
+
+/* 툴바 전체를 flex-wrap 가능하게 변경 */
+.toastui-editor-defaultUI-toolbar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 6px;
+    padding: 10px 12px;
+    overflow: visible !important;
+}
+
+.toastui-editor-popup-add {
+    z-index: 9999 !important;
+}
+
+/* 툴바 그룹 (한 줄 안에서 묶이는 단위) */
+.toastui-editor-toolbar-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px;
+}
+
+/* 아이콘 버튼 */
+.toastui-editor-toolbar-icons {
+    flex: 0 0 auto;
+    min-width: 32px;
+    height: 32px;
+    padding: 4px;
+}
+
+.toastui-editor-dropdown-toolbar {
+    height: auto !important;
+}
+
+/* 툴바 아이콘 축소 */
+.Editor-Container.mobile .toastui-editor-toolbar-icons {
+    transform: scale(0.85);
+}
+
+/* 탭 아이템 */
+.Editor-Container.mobile .tab-item {
+    padding: 2vw 4vw !important;
+    font-size: 3.5vw !important;
+}
+
+/* 저장 버튼 */
+.Editor-Container.mobile .SelfPlanSave {
+    width: 80%;
+    max-width: 300px;
+    height: 9vw;
+    font-size: 4vw;
+    border-radius: 2vw;
+    border: none;
+    background-color: #0075EA;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pretendard-SemiBold';
+    cursor: pointer;
+    margin-right: 0px;
+
+}
+
+.Editor-Container.mobile .SelfPlanSave:hover {
     background-color: #517fd6;
 }

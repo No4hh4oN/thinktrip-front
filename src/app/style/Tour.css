@@ -15,7 +15,7 @@
 }
 
 /*그리드 카드 css*/
-.TourContainer .festival-grid {
+.festival-grid {
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fill, 350px);
@@ -128,7 +128,7 @@
 }
 
 /*검색 바 css*/
-.TourContainer .search {
+.search {
   margin-top: 190px;
   position: relative;
   width: 1098px;
@@ -224,6 +224,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.festival-detail-container-Mobile {
+  display: none;
 }
 
 .festival-detail-container .poster img {
@@ -324,6 +328,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .poster-area {
   width: 500px;
   height: 700px;
@@ -402,9 +407,158 @@
 }
 
 
- .swiper-slide img {
+.swiper-slide img {
   width: 450px;
   height: 300px;
   object-fit: cover !important;
   border-radius: 12px;
+}
+
+
+@media (max-width: 720px) {
+  .Tour {
+    width: 100vw !important;
+    height: 100% !important;
+    overflow-y: scroll;
+  }
+
+  .TourContainer {
+    width: 100vw;
+    height: 100%;
+    padding: 10px;
+    position: relative;
+    background: linear-gradient(to bottom, #060755, #A4CEF9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search {
+    margin-top: 0px;
+    width: 95%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .Tour-Title {
+    width: 100%;
+    font-size: 20px;
+    text-align: left;
+  }
+
+  .festival-grid {
+    grid-template-columns: repeat(auto-fill, 150px);
+    max-width: 100%;
+    gap: 10px;
+  }
+
+  .TourContainer .festival-card {
+    width: 150px;
+    height: 300px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 3;
+    transition: all 1s;
+  }
+
+  .TourContainer .festival-title {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  #festival-title-span {
+    display: inline-block;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+  }
+
+  /* 길 경우에만 적용되는 애니메이션 */
+  .scroll-animation {
+    padding-left: 100%;
+    animation: scroll-left 15s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* 
+  .festival-detail-container {
+    display: none;
+  }
+
+  .festival-detail-container-Mobile {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(to bottom, #060755, #A4CEF9);
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } */
+
+  .festival-header-block {
+    width: 100%;
+  }
+
+  .festival-detail-wrapper {
+    margin-top: 30px;
+    width: 80%;
+  }
+
+  .festival-description {
+    flex-direction: column;
+  }
+
+  .homepage-btn {
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+  }
+
+  .poster-area {
+    width: 100%;
+    height: 100%;
+  }
+
+  .poster-area img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-wrapper {
+    width: 145px !important;
+    height: 80px !important;
+    object-fit: cover;
+  }
+
+  .swiper-slide {
+    width: 145px !important;
+    height: 80px !important;
+  }
+
+
+  .swiper-slide img {
+    width: 150px;
+    height: 80px;
+    object-fit: cover !important;
+    border-radius: 12px;
+  }
 }

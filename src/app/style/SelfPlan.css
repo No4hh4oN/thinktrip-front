@@ -14,6 +14,10 @@
     align-items: center;
 }
 
+.SelfPlan-Container-Mobile {
+    display: none;
+}
+
 .SelfPlan-Header {
     width: 1137px;
     margin-top: 190px;
@@ -101,5 +105,85 @@
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 720px) {
+    .SelfPlan {
+        width: 100vw !important;
+        height: 100% !important;
+        overflow-y: scroll;
+    }
+
+    .SelfPlan-Container {
+        display: none;
+    }
+
+    .SelfPlan-Container-Mobile {
+        padding: 10px;
+        width: 100vw;
+        height: 100%;
+        position: relative;
+        background: linear-gradient(to bottom, #060755, #A4CEF9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .SelfPlan-Header-Mobile {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #SelfPlan-Header-Mobile-title {
+        font-family: 'Pretendard-Bold';
+        font-size: 32px;
+        color: #FFFFFF;
+
+    }
+    #SelfPlan-Header-Mobile-currentStep {
+        font-family: 'Pretendard-Regular';
+        font-size: 15px;
+        color: #FFFFFF;
+
+    }
+
+    .SelfPlan-Container-Step1{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .StepCtrlButtons {
+        width: 290px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .stepCtrlBtn {
+        width: 49%;
+        height: 50px;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        font-family: 'Pretendard-Bold';
+        color: #FFFFFF;
+        font-size: 14px;
+    }
+
+    #prevCtrl {
+    background-color: #8ba2cc;
+
+    }
+
+    #nextCtrl {
+    background-color: #3867BE;
+
     }
 }

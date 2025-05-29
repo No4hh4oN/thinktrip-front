@@ -232,6 +232,9 @@ export default function FestivalDetail() {
           </div>
         )}
       </div>
+      {/* <div className="festival-detail-container-Mobile">
+
+      </div> */}
       <Footer />
     </div>
   );
