@@ -77,7 +77,11 @@ export default function Header() {
                         </Link>
                     </div>
                 </div>
-                <div className="Header-mypage">마이페이지</div>
+                <div className="Header-mypage">
+                    <Link href="/Mypage">
+                        마이페이지
+                    </Link>
+                </div>
             </div>
             <div className="Header-Logo-Mobile">
                 <div className={`MainScreen-Header-List-Mobile-menu-icon ${showMenu ? 'active' : ''}`}

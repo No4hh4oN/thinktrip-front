@@ -284,6 +284,8 @@
   white-space: nowrap;
 }
 
+
+
 .festival-meta-Dday {
   position: absolute;
   top: 15px;
@@ -294,7 +296,6 @@
   cursor: default;
   color: #000000;
   border-radius: 20px;
-
 }
 
 .festival-dates {
@@ -415,6 +416,20 @@
 }
 
 
+.festival-detail-wrapper-load {
+  width: 1173px;
+  height: 100vh;
+  margin-top: 190px;
+  border-radius: 20px;
+  z-index: 3;
+  background-color: #537BFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 @media (max-width: 720px) {
   .Tour {
     width: 100vw !important;
@@ -518,13 +533,56 @@
     width: 100%;
   }
 
+  .festival-title {
+    width: calc(100% - 55px);
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  #festival-title-span {
+    display: inline-block;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+  }
+
+  /* 긴 텍스트에만 추가되는 애니메이션 */
+  .scroll-animation {
+    padding-left: 100%;
+    animation: scroll-left 10s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
   .festival-detail-wrapper {
     margin-top: 30px;
     width: 80%;
   }
 
+  .festival-detail-wrapper-load {
+    width: 80%;
+    height: 100vh;
+    margin-top: 30px;
+    border-radius: 20px;
+    z-index: 3;
+    background-color: #537BFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .festival-description {
     flex-direction: column;
+    padding-right: 15px;
   }
 
   .homepage-btn {

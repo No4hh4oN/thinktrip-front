@@ -294,7 +294,11 @@ export default function Home() {
                                 </Link>
                             </div>
                         </div>
-                        <div className="MainScreen-Header-mypage">마이페이지</div>
+                        <div className="MainScreen-Header-mypage">
+                            <Link href="/Mypage">
+                                마이페이지
+                            </Link>
+                        </div>
                         {isAuthenticated && (
                             <div className="MainScreen-Header-logout" onClick={() => {
                                 sessionStorage.removeItem("token");

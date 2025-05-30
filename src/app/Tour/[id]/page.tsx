@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import "../../style/Tour.css";
 import Header from "@/app/Component/Header";
@@ -20,10 +20,19 @@ export default function FestivalDetail() {
   const [showProgram, setShowProgram] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingData, setLoadingData] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("/lottie/Loading.json")
+      .then((res) => res.json())
+      .then((data) => setLoadingData(data));
+  }, []);
+
+
   const [posterLoaded, setPosterLoaded] = useState(false);
   const [slidesLoaded, setSlidesLoaded] = useState(false);
   const [loadedCount, setLoadedCount] = useState(0);
-  
+
   useEffect(() => {
     const fetchDetailData = async () => {
       setIsLoading(true);
@@ -87,6 +96,25 @@ export default function FestivalDetail() {
     fetchDetailData();
   }, [id]);
 
+  const titleContainerRef = useRef<HTMLDivElement>(null);
+  const titleTextRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const container = titleContainerRef.current;
+    const text = titleTextRef.current;
+    if (!container || !text) return;
+
+    const containerWidth = container.offsetWidth;
+    const textWidth = text.scrollWidth;
+
+    if (textWidth > containerWidth) {
+      text.classList.add("scroll-animation");
+    } else {
+      text.classList.remove("scroll-animation");
+      text.style.paddingLeft = "0"; // padding-left 초기화
+    }
+  }, [festival?.title]);
+
   const formatDate = (str?: string) => {
     if (!str || str.length !== 8) return "-";
     return `${str.slice(0, 4)}.${str.slice(4, 6)}.${str.slice(6, 8)}`;
@@ -111,16 +139,31 @@ export default function FestivalDetail() {
       <Header />
       <div className="festival-detail-container">
         {isLoading ? (
-
-          <div className="festival-detail-wrapper">데이터를 불러오는 중</div>
+          <div className="festival-detail-wrapper-load">
+            <Lottie
+              animationData={loadingData}
+              loop
+              autoplay
+              style={{ width: 200, height: 200 }}
+            />
+          </div>
         ) : !festival ? (
-          <div className="festival-detail-wrapper">데이터를 불러오지 못했습니다.</div>
+          <div className="festival-detail-wrapper-load">
+            <Lottie
+              animationData={loadingData}
+              loop
+              autoplay
+              style={{ width: 200, height: 240 }}
+            />
+          </div>
         ) : (
           <div className="festival-detail-wrapper">
             {/*축제 상세 페이지 상단*/}
             <div className="festival-detail">
               <div className="festival-header-block">
-                <div className="festival-title">{festival.title}</div>
+                <div className="festival-title"  ref={titleContainerRef}>
+                  <span id="festival-title-span" ref={titleTextRef}>{festival.title}</span>
+                </div>
                 <div className="festival-meta">
                   <span className="festival-meta-Dday">
                     {dDay === null
@@ -161,8 +204,8 @@ export default function FestivalDetail() {
                     포스터 이미지가 없습니다.
                   </div>
                 )
-              
-              }
+
+                }
 
                 <div className="overview-text">
                   <span className="festival-description-header">축제 개요</span>

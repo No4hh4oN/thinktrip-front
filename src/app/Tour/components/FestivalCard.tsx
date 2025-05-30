@@ -32,20 +32,20 @@ const FestivalCard = ({
   };
 
   useEffect(() => {
-  const container = titleContainerRef.current;
-  const text = titleTextRef.current;
-  if (!container || !text) return;
+    const container = titleContainerRef.current;
+    const text = titleTextRef.current;
+    if (!container || !text) return;
 
-  const containerWidth = container.offsetWidth;
-  const textWidth = text.scrollWidth;
+    const containerWidth = container.offsetWidth;
+    const textWidth = text.scrollWidth;
 
-  if (textWidth > containerWidth) {
-    text.classList.add("scroll-animation");
-  } else {
-    text.classList.remove("scroll-animation");
-    text.style.paddingLeft = "0"; // 혹시 잔여 스타일 남아있을 경우 강제 제거
-  }
-}, [title]);
+    if (textWidth > containerWidth) {
+      text.classList.add("scroll-animation");
+    } else {
+      text.classList.remove("scroll-animation");
+      text.style.paddingLeft = "0"; // 혹시 잔여 스타일 남아있을 경우 강제 제거
+    }
+  }, [title]);
 
   return (
     <Link href={`/Tour/${contentId}`}>
