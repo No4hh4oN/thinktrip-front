@@ -31,7 +31,7 @@ export default function AdSlide() {
         const fetchFestivalData = async () => {
             const serviceKey = process.env.NEXT_PUBLIC_FESTIVAL_API_KEY;
 
-            const baseURL = "http://apis.data.go.kr/B551011/KorService1";
+            const baseURL = "https://apis.data.go.kr/B551011/KorService1";
             const today = new Date();
             const yyyyMMdd = today.toISOString().slice(0, 10).replace(/-/g, '');
             const listUrl = `${baseURL}/searchFestival1?serviceKey=${serviceKey}&MobileOS=ETC&MobileApp=MyApp&_type=json&numOfRows=${numOfRows}&pageNo=${pageNo}&eventStartDate=${yyyyMMdd}`;
@@ -54,11 +54,18 @@ export default function AdSlide() {
 
                 const formattedSlides: Slide[] = detailedSlides
                     .filter(Boolean)
-                    .map((item: any) => ({
-                        image: item.firstimage || "/default.jpg",
-                        text: item.title,
-                        target: `https://korean.visitkorea.or.kr/kor/tt/pr_lod_view.jsp?cid=${item.contentid}`,
-                    }));
+                    .map((item: any) => {
+                        const imageUrl = item.firstimage || "/default.jpg";
+                        const secureImage = imageUrl.startsWith("http://")
+                            ? imageUrl.replace("http://", "https://")
+                            : imageUrl;
+
+                        return {
+                            image: secureImage,
+                            text: item.title,
+                            target: `https://korean.visitkorea.or.kr/kor/tt/pr_lod_view.jsp?cid=${item.contentid}`,
+                        };
+                    });
 
                 setSlides(formattedSlides);
             } catch (e) {

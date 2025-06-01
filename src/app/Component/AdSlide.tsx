@@ -54,11 +54,18 @@ export default function AdSlide() {
 
                 const formattedSlides: Slide[] = detailedSlides
                     .filter(Boolean)
-                    .map((item: any) => ({
-                        image: item.firstimage || "/default.jpg",
-                        text: item.title,
-                        target: `https://korean.visitkorea.or.kr/kor/tt/pr_lod_view.jsp?cid=${item.contentid}`,
-                    }));
+                    .map((item: any) => {
+                        const imageUrl = item.firstimage || "/default.jpg";
+                        const secureImage = imageUrl.startsWith("http://")
+                            ? imageUrl.replace("http://", "https://")
+                            : imageUrl;
+
+                        return {
+                            image: secureImage,
+                            text: item.title,
+                            target: `https://korean.visitkorea.or.kr/kor/tt/pr_lod_view.jsp?cid=${item.contentid}`,
+                        };
+                    });
 
                 setSlides(formattedSlides);
             } catch (e) {
