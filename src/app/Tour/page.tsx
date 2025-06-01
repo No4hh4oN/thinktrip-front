@@ -38,7 +38,7 @@ export default function Tour() {
     const serviceKey = process.env.NEXT_PUBLIC_FESTIVAL_API_KEY;
     const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
 
-    const url = `http://apis.data.go.kr/B551011/KorService1/searchFestival1?serviceKey=${serviceKey}&MobileOS=ETC&MobileApp=MyApp&_type=json&numOfRows=${pageSize}&pageNo=${page}&listYN=Y&arrange=A&eventStartDate=${today}`;
+    const url = `https://apis.data.go.kr/B551011/KorService1/searchFestival1?serviceKey=${serviceKey}&MobileOS=ETC&MobileApp=MyApp&_type=json&numOfRows=${pageSize}&pageNo=${page}&listYN=Y&arrange=A&eventStartDate=${today}`;
 
     const response = await fetch(url);
     const data = await response.json();
@@ -55,7 +55,7 @@ export default function Tour() {
     setIsLoading(true);
     const serviceKey = process.env.NEXT_PUBLIC_FESTIVAL_API_KEY;
 
-    const url = `http://apis.data.go.kr/B551011/KorService1/searchKeyword1?serviceKey=${serviceKey}&MobileOS=ETC&MobileApp=MyApp&_type=json&keyword=${encodeURIComponent(
+    const url = `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?serviceKey=${serviceKey}&MobileOS=ETC&MobileApp=MyApp&_type=json&keyword=${encodeURIComponent(
       keyword
     )}&numOfRows=${pageSize}&pageNo=${page}&contentTypeId=15`;
 

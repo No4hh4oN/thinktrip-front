@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 import '../style/PlanByAI.css'
 import "../style/Component.css";
 import Calendar from "../Component/Calendar";
-import Map from '../Component/map';
 import Header from '../Component/Header';
 import Footer from '../Component/Footer';
-import Lottie from "lottie-react";
+import dynamic from 'next/dynamic';
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
+const Map = dynamic(() => import('../Component/map'), { ssr: false });
 
 type TravelFormData = {
     member: string;
