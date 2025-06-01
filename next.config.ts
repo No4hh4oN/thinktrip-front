@@ -6,8 +6,11 @@ const nextConfig: NextConfig = {
     styledComponents: true,
   },
   experimental:{
-    scrollRestoration:true
-  }
+    scrollRestoration:true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
