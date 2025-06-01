@@ -150,6 +150,26 @@ export default function PlanByAI() {
         router.push("/SelfPlan");
     };
 
+    const handleSavePlan = async () => {
+        if (!travelData.departureDate || !travelData.returnDate || !gptResult) {
+            alert("날짜와 GPT 결과가 모두 있어야 저장할 수 있습니다.");
+            return;
+        }
+
+        try {
+            const res = await AxiosClient.post("/travel-plans/gpt", {
+                startDate: travelData.departureDate,
+                endDate: travelData.returnDate,
+                content: gptResult,
+            });
+
+            router.push("/MyPlan");
+        } catch (err) {
+            console.error("저장 중 오류 발생", err);
+            alert("저장 중 오류가 발생했습니다.");
+        }
+    };
+
     //모바일 화면 currentStep 컨트롤
 
     const [currentStep, setCurrentStep] = useState(1); // 시작은 1단계
@@ -425,9 +445,9 @@ export default function PlanByAI() {
                                 <button id="custom" onClick={handleCustomClick}>
                                     이 계획을 내 스타일로 변경하기
                                 </button>
-                                <Link href="/MyPlan" id="save">
+                                <button id="save" onClick={handleSavePlan}>
                                     내 여행지로 기록하기
-                                </Link>
+                                </button>
                             </div>
                         </div>
                     ) : (
@@ -438,6 +458,8 @@ export default function PlanByAI() {
                     )}
                 </div>
             </div>
+
+
             <div className="PlanByAI-Container-Mobile">
                 <div className="PlanByAI-Container-Mobile-Intro">
                     <span>여행 계획 생성 전 몇 가지를 알려주세요!</span>
@@ -739,9 +761,9 @@ export default function PlanByAI() {
                             <button id="custom" onClick={handleCustomClick}>
                                 커스텀하기
                             </button>
-                            <Link href="/MyPlan" id="save">
-                                저장하기
-                            </Link>
+                            <button id="save" onClick={handleSavePlan}>
+                                내 여행지로 기록하기
+                            </button>
                         </div>
                     )}
                 </div>

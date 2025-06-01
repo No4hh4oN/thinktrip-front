@@ -2,16 +2,39 @@
 
 import { useRef } from "react";
 import { Editor } from "@toast-ui/react-editor";
+import { useRouter } from "next/navigation";
+import AxiosClient from "../AxiosClient";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "../style/Component.css";
 
-export default function MarkdownEditor() {
+interface ToastEditorProps {
+    travelData: {
+        departureDate: Date | null;
+        returnDate: Date | null;
+    };
+}
+
+export default function MarkdownEditor({ travelData }: ToastEditorProps) {
+    const router = useRouter();
     const editorRef = useRef<Editor>(null);
 
-    const handleGetContent = () => {
+    const handleGetContent = async () => {
         if (editorRef.current) {
             const markdown = editorRef.current.getInstance().getMarkdown();
-            console.log("마크다운 내용:", markdown);
+
+            try {
+                const res = await AxiosClient.post("/travel-plans/user", {
+                    content: markdown,
+                    startDate: travelData.departureDate,
+                    endDate: travelData.returnDate,
+                    title: "예시글1",
+                    isGenerated: false,
+                });
+
+                router.push("/MyPlan");
+            } catch (error) {
+                console.error("❌ 저장 오류:", error);
+            }
         }
     };
 

@@ -30,9 +30,6 @@ const ToastEditorMobile = dynamic(() => import('../Component/EditorMobile'), {
     ssr: false,
 });
 
-
-
-
 export default function SelfPlan() {
     const [travelData, setTravelData] = useState<TravelFormData>({
         member: '',
@@ -109,11 +106,10 @@ export default function SelfPlan() {
                         </div>
                     </div>
                     <div className="SelfPlan-Body-Right">
-                        <ToastEditor />
+                        <ToastEditor travelData={travelData} />
                     </div>
                 </div>
             </div>
-
             <div className="SelfPlan-Container-Mobile">
                 <div className="SelfPlan-Header-Mobile">
                     <span id="SelfPlan-Header-Mobile-title">내가 계획하는 여행</span>
@@ -159,7 +155,7 @@ export default function SelfPlan() {
                 )}
 
                 {currentStep === 2 && (
-                    <ToastEditorMobile />
+                    <ToastEditorMobile travelData={travelData} />
 
                 )}
 
@@ -175,6 +171,8 @@ export default function SelfPlan() {
                     )}
                 </div>
             </div>
+
+
             <Footer />
         </div>
     )

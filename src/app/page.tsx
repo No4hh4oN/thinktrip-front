@@ -49,10 +49,6 @@ export default function Home() {
     const [step, setStep] = useState<number>(1);
     const [isLogin, setIsLogin] = useState<boolean>(true);
     const [keepLogin, setKeepLogin] = useState(false);
-    //D-day 표시 변수
-    const [progress, setProgress] = useState(0);
-    const [targetProgress, setTargetProgress] = useState(0);
-    const [triggerAnimation, setTriggerAnimation] = useState(false);
     // //스크롤
     // const ReactScroll = require('react-scroll');
     // const Link = ReactScroll.Link;
@@ -212,29 +208,69 @@ export default function Home() {
     }, [isAuthenticated]);
 
     // 대표 여행 계획 D-day 표시 기능
+    const [nearestStartDate, setNearestStartDate] = useState<Date | null>(null);
+    const [progress, setProgress] = useState(0);
+    const [targetProgress, setTargetProgress] = useState(0);
+    const [triggerAnimation, setTriggerAnimation] = useState(false);
 
-    const startDate = new Date('2025-04-01');
-    const dDay = new Date('2025-04-20');
-    const today = new Date();
-
-    // 목표 진행률 계산
     useEffect(() => {
-        const total = dDay.getTime() - startDate.getTime();
-        const passed = today.getTime() - startDate.getTime();
-        const percent = Math.min(Math.max((passed / total) * 100, 0), 100);
-        setTargetProgress(percent);
+        const fetchPlans = async () => {
+            try {
+                const [userRes, gptRes] = await Promise.all([
+                    AxiosClient.get("/travel-plans/user"),
+                    AxiosClient.get("/travel-plans/gpt")
+                ]);
+
+                const merged = [...userRes.data, ...gptRes.data];
+
+                const today = new Date();
+
+                // 오늘 이후 계획만 필터링
+                const validPlans = merged.filter(plan => new Date(plan.startDate) > today);
+
+                if (validPlans.length === 0) {
+                    return;
+                }
+
+                // 가장 가까운 startDate
+                const nearestPlan = validPlans.reduce((a, b) =>
+                    new Date(a.startDate) < new Date(b.startDate) ? a : b
+                );
+
+                const startDate = new Date(nearestPlan.startDate);
+                const createdAt = new Date(nearestPlan.createdAt);
+
+                setNearestStartDate(startDate);
+
+                const total = startDate.getTime() - createdAt.getTime();
+                const passed = today.getTime() - createdAt.getTime();
+
+                if (total <= 0) return;
+
+                const percent = Math.min(Math.max((passed / total) * 100, 0), 100);
+
+                setTargetProgress(percent);
+                setProgress(0); // 초기화
+                setTriggerAnimation(true); // 트리거 작동
+            } catch (err) {
+                console.error("D-Day 불러오기 실패", err);
+            }
+        };
+
+        fetchPlans();
     }, []);
 
-    // 부드럽게 진행도 증가
     useEffect(() => {
         if (!triggerAnimation) return;
 
         let current = 0;
+
         const interval = setInterval(() => {
             current += 1;
             if (current >= targetProgress) {
                 clearInterval(interval);
-                current = targetProgress;
+                setProgress(targetProgress);
+                return;
             }
             setProgress(current);
         }, 10);
@@ -242,7 +278,11 @@ export default function Home() {
         return () => clearInterval(interval);
     }, [triggerAnimation, targetProgress]);
 
-    const remainingDays = Math.max(0, Math.ceil((dDay.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
+    // D-Day 표시용
+    const today = new Date();
+    const remainingDays = nearestStartDate
+        ? Math.max(0, Math.ceil((nearestStartDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)))
+        : null;
 
     // Gpt 사용량 조회
     const [GptUsage, setGptUsage] = useState<number | null>(null);
