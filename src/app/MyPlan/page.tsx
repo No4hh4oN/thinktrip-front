@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import dynamic from "next/dynamic";
 import AxiosClient from "../AxiosClient";
-import { Viewer } from "@toast-ui/react-editor";
 import '../style/MyPlan.css';
 import Header from "../Component/Header";
 import Footer from '../Component/Footer';
+
+const ToastViewer = dynamic(() => import("@toast-ui/react-editor").then(mod => mod.Viewer), {
+  ssr: false,
+});
 
 interface Plan {
     id: number;
@@ -151,7 +154,7 @@ export default function MyPlan() {
                         <span className="MyPlan-Items-Title">{selectedPlan.title ? selectedPlan.title : "어느 한 여행 계획"}</span>
                         <span className="MyPlan-Item-Dates">{selectedPlan.startDate} ~ {selectedPlan.endDate}</span>
                         <div className="ViewerWrapper">
-                            <Viewer initialValue={selectedPlan.content} />
+                            <ToastViewer initialValue={selectedPlan.content} />
                         </div>
                         <button className="closeModal" onClick={closeModal}>닫기</button>
                     </div>

@@ -156,7 +156,6 @@ export default function SelfPlan() {
 
                 {currentStep === 2 && (
                     <ToastEditorMobile travelData={travelData} />
-
                 )}
 
                 <div className="StepCtrlButtons">

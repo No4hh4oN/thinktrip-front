@@ -573,7 +573,7 @@ export default function Home() {
                                     <img
                                         className="MainScreen-ProfileImg-Mobile"
                                         src={imageUrl || "/images/profile.webp"}
-                                        alt="프로필 이미지"
+                                        alt=""
                                     />
                                 </Link>
                             </div>

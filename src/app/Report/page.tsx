@@ -61,7 +61,7 @@ export default function Report() {
                             }))
                         }
                     />
-                    <ToastEditor />
+                    <ToastEditor travelData={travelData} />
                 </div>
             </div>
             <Footer />
