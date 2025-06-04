@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const AxiosClient = axios.create({
-  baseURL: "http://3.37.232.216:8080/api",
+  baseURL: "https://thinktrip.it.com/api",
 });
 
 AxiosClient.interceptors.request.use((config) => {
