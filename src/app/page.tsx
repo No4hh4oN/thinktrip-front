@@ -476,7 +476,7 @@ export default function Home() {
                                         <>
                                             <input className="idInput" type="text" name="userName" placeholder="이름" onChange={handleChange} autoComplete="username" />
                                             <input className="idInput" type="text" name="nickname" placeholder="닉네임" onChange={handleChange} autoComplete="name" />
-                                            <input
+                                            {/* <input
                                                 className="addressInput"
                                                 type="text"
                                                 name="address"
@@ -484,7 +484,7 @@ export default function Home() {
                                                 value={form.address}
                                                 readOnly
                                                 onClick={handleAddressSearch}
-                                            />
+                                            /> */}
                                             <button className="JoinRequest" type="button" onClick={handleRegister}>회원가입</button>
                                         </>
                                     )}
@@ -669,7 +669,7 @@ export default function Home() {
                                         <>
                                             <input className="idInput-Mobile" type="text" name="userName" placeholder="이름" onChange={handleChange} autoComplete="username" />
                                             <input className="idInput-Mobile" type="text" name="nickname" placeholder="닉네임" onChange={handleChange} autoComplete="name" />
-                                            <input
+                                            {/* <input
                                                 className="addressInput-Mobile"
                                                 type="text"
                                                 name="address"
@@ -677,7 +677,7 @@ export default function Home() {
                                                 value={form.address}
                                                 readOnly
                                                 onClick={handleAddressSearch}
-                                            />
+                                            /> */}
                                             <button className="JoinRequest" type="button" onClick={handleRegister}>회원가입</button>
                                         </>
                                     )}

@@ -132,7 +132,7 @@ export default function Header() {
                         </div>
                     )}
                 </div>
-                <span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p
+                <Link href="/"><span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p</Link>
 
                 <div className="MainScreen-ProfileImg-Container-Mobile">
                     <Link href="/Mypage">

@@ -18,7 +18,7 @@ type TravelFormData = {
     otherRequests: string | null;
 };
 
-const ToastEditor = dynamic(() => import('../Component/Editor'), {
+const DiaryEditor = dynamic(() => import('../Component/DiaryEditor'), {
     ssr: false,
 });
 
@@ -61,7 +61,7 @@ export default function Report() {
                             }))
                         }
                     />
-                    <ToastEditor travelData={travelData} />
+                    <DiaryEditor travelData={travelData} />
                 </div>
             </div>
             <Footer />

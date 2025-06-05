@@ -78,13 +78,25 @@ export default function FestivalDetail() {
           allImages[0]?.originimgurl ||
           null;
 
+        const fixedPoster = poster?.startsWith("http://")
+          ? poster.replace("http://", "https://")
+          : poster;
+
+        setPosterImage(fixedPoster);
+
         // 포스터 제외한 이미지들은 슬라이드 형식으로 넣게 따로 빼두기
         const slideImage = allImages
           .filter((img) => img.originimgurl !== poster)
-          .map((img) => img.originimgurl);
+          .map((img) =>
+            img.originimgurl.startsWith("http://")
+              ? img.originimgurl.replace("http://", "https://")
+              : img.originimgurl
+          );
+
+        setSlideImages(slideImage);
 
         setFestival({ ...detailItem, ...introItem });
-        setPosterImage(poster);
+        setPosterImage(fixedPoster);
         setSlideImages(slideImage);
       } catch (error) {
         console.error("API 오류", error);

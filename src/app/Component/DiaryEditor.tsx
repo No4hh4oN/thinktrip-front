@@ -33,7 +33,7 @@ export default function MarkdownEditor({ travelData }: ToastEditorProps) {
 
                 router.push("/MyPlan");
             } catch (error) {
-                console.error("저장 오류");
+                console.error("❌ 저장 오류:", error);
             }
         }
     };

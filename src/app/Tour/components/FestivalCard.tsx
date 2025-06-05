@@ -43,7 +43,7 @@ const FestivalCard = ({
       text.classList.add("scroll-animation");
     } else {
       text.classList.remove("scroll-animation");
-      text.style.paddingLeft = "0"; // 혹시 잔여 스타일 남아있을 경우 강제 제거
+      text.style.paddingLeft = "0";
     }
   }, [title]);
 
@@ -52,7 +52,15 @@ const FestivalCard = ({
       <div className="festival-card">
         <div className="image-container">
           {image ? (
-            <img src={image} alt={title} className="festival-image" />
+            <img
+              src={
+                image.startsWith("http://")
+                  ? image.replace("http://", "https://")
+                  : image
+              }
+              alt={title}
+              className="festival-image"
+            />
           ) : null}
         </div>
         <div className="festival-info">
