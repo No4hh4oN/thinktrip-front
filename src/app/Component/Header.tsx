@@ -125,6 +125,7 @@ export default function Header() {
                                     localStorage.removeItem("token");
                                     setIsAuthenticated(false);
                                     setTriggerAnimation(false);
+                                    window.location.href = "/"; 
                                 }}>
                                     로그아웃
                                 </div>

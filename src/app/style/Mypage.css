@@ -21,3 +21,65 @@
     font-size: 32px;
     color: #FFFFFF;
 }
+
+.Mypage-BodyContainer {
+    width: 1137px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Mypage-Body-top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: 600px;
+    z-index: 3;
+    
+}
+
+.Mypage-User {
+    width: 48%;
+    height: 600px;
+    background-color: #FFFFFF95;
+    border-radius: 20px;
+}
+
+.Mypage-ProfileImg-Container,
+.Mypage-ProfileImg-Container label {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #C0C0C0;
+}
+
+.Mypage-ProfileImg {
+  position: relative;
+  width: 114px;
+  height: 114px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+.MyPage-Plans {
+    width: 48%;
+    height: 600px;
+    background-color: #FFFFFF95;
+    border-radius: 20px;
+
+}
+
+.Mypage-Body-bottom {
+    width: 100%;
+    height: 600px;
+    background-color: #FFFFFF95;
+    border-radius: 20px;
+    z-index: 3;
+}

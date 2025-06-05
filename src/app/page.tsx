@@ -345,6 +345,7 @@ export default function Home() {
                                 localStorage.removeItem("token");
                                 setIsAuthenticated(false);
                                 setTriggerAnimation(false);
+                                window.location.href = "/"; 
                             }}>
                                 로그아웃
                             </div>
@@ -601,7 +602,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="Footer-Mobile">
-                            <div>Ⓒ ??????</div>
+                            <div>Ⓒ 삼육대학교 캡스톤 16팀</div>
                             <div>장준익 김정현 김현우 이소영</div>
                         </div>
                     </div>
