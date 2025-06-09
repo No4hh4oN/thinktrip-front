@@ -8,7 +8,7 @@ import Header from "../Component/Header";
 import Footer from '../Component/Footer';
 
 const ToastViewer = dynamic(() => import("@toast-ui/react-editor").then(mod => mod.Viewer), {
-  ssr: false,
+    ssr: false,
 });
 
 interface Plan {
@@ -70,7 +70,7 @@ export default function MyPlan() {
             setSelectedPlan(res.data);
             setShowModal(true);
 
-            if(res.data.isGenerated === true){
+            if (res.data.isGenerated === true) {
                 title: "GPT 추천 여행"
             }
         } catch (e) {

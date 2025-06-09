@@ -4,8 +4,11 @@ import { useState, useEffect, ChangeEvent } from "react";
 import dynamic from "next/dynamic";
 import AxiosClient from "../AxiosClient";
 import '../style/Mypage.css';
+import '../style/MyPlan.css';
+import '../style/Diary.css';
 import Header from "../Component/Header";
 import Footer from '../Component/Footer';
+
 
 interface FormState {
     userId: string;
@@ -23,8 +26,22 @@ interface userState {
     is_premium: Boolean;
 }
 
+
+type DiaryResponse = {
+    id: number;
+    title: string;
+    content: string;
+    startDate: string;
+    endDate: string;
+    travelPlanId: number;
+    userId: number;
+    imageUrls: string[];
+    createdAt: string;
+    updatedAt: string;
+};
+
 const ToastViewer = dynamic(() => import("@toast-ui/react-editor").then(mod => mod.Viewer), {
-  ssr: false,
+    ssr: false,
 });
 
 interface Plan {
@@ -213,7 +230,7 @@ export default function Mypage() {
             setSelectedPlan(res.data);
             setShowModal(true);
 
-            if(res.data.isGenerated === true){
+            if (res.data.isGenerated === true) {
                 title: "GPT 추천 여행"
             }
         } catch (e) {
@@ -227,7 +244,60 @@ export default function Mypage() {
     };
 
     //다이어리 리스트 형식, 항목 선택시 해당 id에 대해 상세 조회
-    
+
+    const [list, setList] = useState<DiaryResponse[]>([]);
+    const [selected, setSelected] = useState<DiaryResponse | null>(null);
+
+    const [detailLoading, setDetailLoading] = useState(false);
+    const [loadingData, setLoadingData] = useState<any>(null);
+
+    useEffect(() => {
+        fetch("/lottie/Loading.json")
+            .then((res) => res.json())
+            .then((data) => setLoadingData(data));
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const res = await AxiosClient.get("/diaries");
+                setList(res.data);
+            } catch (e: any) {
+                alert("다이어리 목록 조회 실패: " + (e.response?.data?.message || e.message));
+            }
+            setLoading(false);
+        })();
+    }, []);
+
+    // 리스트 아이템 클릭 → 상세조회
+    const handleSelect = async (item: DiaryResponse) => {
+        setDetailLoading(true);
+        try {
+            const res = await AxiosClient.get(`/diaries/${item.id}`);
+            setSelected(res.data); // API 응답이 DiaryResponse 단일 객체라고 가정
+        } catch (e: any) {
+            alert("다이어리 상세 조회 실패: " + (e.response?.data?.message || e.message));
+        }
+        setDetailLoading(false);
+    };
+
+    const [showDiaryModal, setShowDiaryModal] = useState(false);
+
+    const handleSelectMobile = async (item: DiaryResponse) => {
+        setShowDiaryModal(true);
+        setDetailLoading(true);
+        try {
+            const res = await AxiosClient.get(`/diaries/${item.id}`);
+            setSelected(res.data); // API 응답이 DiaryResponse 단일 객체라고 가정
+        } catch (e: any) {
+            alert("다이어리 상세 조회 실패: " + (e.response?.data?.message || e.message));
+        }
+        setDetailLoading(false);
+    };
+
+    const closeDiaryModal = () => {
+        setShowDiaryModal(false);
+    };
 
     return (
         <div className="Mypage">
@@ -290,9 +360,78 @@ export default function Mypage() {
                                 </>
                             )}
                         </div>
+                        {showModal && selectedPlan && (
+                            <div className="ModalOverlay" onClick={closeModal}>
+                                <div className="ModalContent" onClick={e => e.stopPropagation()}>
+                                    <span className="MyPlan-Items-Title">{selectedPlan.title ? selectedPlan.title : "어느 한 여행 계획"}</span>
+                                    <span className="MyPlan-Item-Dates">{selectedPlan.startDate} ~ {selectedPlan.endDate}</span>
+                                    <div className="ViewerWrapper">
+                                        <ToastViewer initialValue={selectedPlan.content} />
+                                    </div>
+                                    <button className="closeModal" onClick={closeModal}>닫기</button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                     <div className="Mypage-Body-bottom">
                         {/* 다이어리 */}
+                        {list.length === 0 && <div>작성한 다이어리가 없습니다.</div>}
+                            {list.map((item) => (
+                                <div
+                                    key={item.id}
+                                    className={`Diary-List-Item${selected?.id === item.id ? " active" : ""}`}
+                                    onClick={() => handleSelectMobile(item)}
+                                    style={{
+                                        cursor: "pointer",
+                                        padding: "8px 0",
+                                        borderBottom: "1px solid #eee",
+                                        fontWeight: selected?.id === item.id ? "bold" : undefined,
+                                    }}
+                                >
+                                    <div className="DiaryList-L_Info">
+                                        <span id="listTitle">{item.title}</span>
+                                        <span id="listDate">{item.startDate} ~ {item.endDate}</span>
+                                    </div>
+                                    <div className="DiaryList-R_Info">
+                                        <span id="listCreated">{item.createdAt?.slice(0, 16).replace("T", " ")}</span>
+                                    </div>
+                                </div>
+                            ))}
+                            {showDiaryModal && selected && (
+                    <div className="ModalOverlay" onClick={closeModal}>
+                        <div className="ModalContent" onClick={e => e.stopPropagation()}>
+                            <div className="Diary-Contents-Header">
+                                        <span id="Diary-Title">{selected.title}</span>
+                                        <div className="Diary-Contents-DateBox">
+                                            <div className="Diary-Contents-StartEnd">
+                                                <span>여행 기간 : </span>
+                                                <span>{selected.startDate} ~ {selected.endDate}</span>
+                                            </div>
+                                            <div className="Diary-Contents-Created">
+                                                <span id="Diary-Created-label">작성일 : </span>
+                                                <span>{selected.createdAt?.slice(0, 16).replace("T", " ")}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="Diary-Contents-Body">
+                                        {selected.imageUrls && selected.imageUrls.length > 0 && (
+                                            <div style={{ display: "flex", gap: 8 }}>
+                                                {selected.imageUrls.map((url, i) => (
+                                                    <img
+                                                        key={i}
+                                                        src={url.startsWith("/") ? "https://thinktrip.it.com" + url : url}
+                                                        alt={`다이어리 이미지 ${i + 1}`}
+                                                        style={{ maxHeight: 120, borderRadius: 8 }}
+                                                    />
+                                                ))}
+                                            </div>
+                                        )}
+                                        <ToastViewer initialValue={selected.content} />
+                                    </div>
+                            <button className="closeDiaryModal" onClick={closeDiaryModal}>닫기</button>
+                        </div>
+                    </div>
+                )}
                     </div>
                 </div>
             </div>

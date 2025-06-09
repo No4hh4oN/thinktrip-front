@@ -17,7 +17,8 @@ interface ToastEditorProps {
 export default function MarkdownEditor({ travelData }: ToastEditorProps) {
     const router = useRouter();
     const editorRef = useRef<Editor>(null);
-    const [images, setImages] = useState<Blob[]>([]); // 업로드 이미지 임시 저장
+    const [images, setImages] = useState<Blob[]>([]);  // 업로드 이미지 임시 저장
+    const [title, setTitle] = useState("");
 
     const handleGetContent = async () => {
         if (!editorRef.current) return;
@@ -26,25 +27,36 @@ export default function MarkdownEditor({ travelData }: ToastEditorProps) {
         const formData = new FormData();
 
         const diaryInfo = {
-            title: "예시 다이어리",
+            title: title || "제목 없음",
             content: markdown,
             startDate: travelData.departureDate,
             endDate: travelData.returnDate,
         };
 
-        formData.append("request", JSON.stringify(diaryInfo));
+        formData.append(
+            "request",
+            new Blob([JSON.stringify(diaryInfo)], { type: "application/json" })
+        );
         images.forEach((image) => formData.append("images", image));
 
         try {
             await AxiosClient.post("/diaries", formData);
-            router.push("/MyDiary");
+            router.push("/Diary");
         } catch (err) {
-            console.error("❌ 다이어리 저장 실패:", err);
+            console.error("다이어리 저장 실패:", err);
         }
     };
 
     return (
         <div id="Report" className="Editor-Container">
+            <div className="Report-Title-Box">
+                <input
+                    type="text"
+                    placeholder="다이어리 제목을 입력하세요"
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                />
+            </div>
             <Editor
                 toolbarItems={[
                     ['heading', 'bold', 'italic', 'strike'],
@@ -62,7 +74,6 @@ export default function MarkdownEditor({ travelData }: ToastEditorProps) {
                 language="ko-KR"
                 hooks={{
                     addImageBlobHook: (blob: Blob, callback: (url: string, altText: string) => void) => {
-                        // 임시로 보여주고 실제 업로드는 handleGetContent에서 처리
                         const tempUrl = URL.createObjectURL(blob);
                         setImages((prev) => [...prev, blob]);
                         callback(tempUrl, "임시 이미지");

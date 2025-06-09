@@ -35,8 +35,8 @@
     width: 100%;
     justify-content: space-between;
     height: 600px;
-    z-index: 3;
-    
+    z-index: 1;
+
 }
 
 .Mypage-User {
@@ -48,32 +48,33 @@
 
 .Mypage-ProfileImg-Container,
 .Mypage-ProfileImg-Container label {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 116px;
-  height: 116px;
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: #C0C0C0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #C0C0C0;
 }
 
 .Mypage-ProfileImg {
-  position: relative;
-  width: 114px;
-  height: 114px;
-  border-radius: 50%;
-  object-fit: cover;
+    position: relative;
+    width: 114px;
+    height: 114px;
+    border-radius: 50%;
+    object-fit: cover;
 }
-
 
 .MyPage-Plans {
     width: 48%;
     height: 600px;
     background-color: #FFFFFF95;
     border-radius: 20px;
-
+    overflow-y: scroll;
+    padding: 15px;
+    z-index: 1;
 }
 
 .Mypage-Body-bottom {
@@ -81,5 +82,29 @@
     height: 600px;
     background-color: #FFFFFF95;
     border-radius: 20px;
-    z-index: 3;
+    z-index: 1;
+}
+
+@media (max-width: 720px) {
+    .Mypage-BodyContainer {
+        width: 95%;
+    }
+
+    .Mypage-Header {
+        width: 95%;
+        margin-top: 30px;
+    }
+
+    .Mypage-Body-top {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .Mypage-User {
+        width: 100%;
+    }
+
+    .MyPage-Plans {
+        width: 100%;
+    }
 }
