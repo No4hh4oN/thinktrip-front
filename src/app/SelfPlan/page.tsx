@@ -111,14 +111,20 @@ export default function SelfPlan() {
                 </div>
             </div>
             <div className="SelfPlan-Container-Mobile">
+                <img id="subtract" src="/images/Subtract.png" alt="" />
                 <div className="SelfPlan-Header-Mobile">
-                    <span id="SelfPlan-Header-Mobile-title">내가 계획하는 여행</span>
-                    <div id="SelfPlan-Header-Mobile-currentStep">
-                        {currentStep} / 2
-                    </div>
+                    <span id="pageName">
+                        내가 계획하는<br />
+                        나의 여행
+                    </span>
+                    <span>직접 여행 계획을 세워봐요!</span>
                 </div>
                 {currentStep === 1 && (
                     <div className="SelfPlan-Container-Step1">
+                        <div id="travelData2">
+                            <span>여행 기간</span>
+                            <span id="currentsteps">{currentStep} / 2</span>
+                        </div>
                         <Calendar
                             departureDate={travelData.departureDate}
                             returnDate={travelData.returnDate}
@@ -135,27 +141,17 @@ export default function SelfPlan() {
                                 }))
                             }
                         />
-                        <div className="GPT-Prompt-Box">
-                            {prompt ? (
-                                <>
-                                    <p style={{ fontWeight: "bold", color: "red" }}>GPT 답변</p>
-                                    <pre style={{ whiteSpace: "pre-wrap" }}>{prompt}</pre>
-                                </>
-                            ) : (
-                                <div className="GptIcon-box">
-                                    <Link className="GptIcon-button" href="/PlanByAI">
-                                        <img id="GptIcon" src="/images/GptIcon.webp" alt="GptIcon" />
-                                    </Link>
-                                    <div className="Gpt">Gpt가 여행 계획을 세워드립니다.</div>
-                                </div>
-
-                            )}
-                        </div>
                     </div>
                 )}
 
                 {currentStep === 2 && (
-                    <ToastEditorMobile travelData={travelData} />
+                    <>
+                        <div id="travelData">
+                            <span>여행 기간</span>
+                            <span id="currentsteps">{currentStep} / 2</span>
+                        </div>
+                        <ToastEditorMobile travelData={travelData} />
+                    </>
                 )}
 
                 <div className="StepCtrlButtons">

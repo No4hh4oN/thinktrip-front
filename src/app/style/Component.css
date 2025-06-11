@@ -90,6 +90,7 @@
     font-size: 18px;
     display: flex;
     justify-content: space-between;
+    color: #FFFFFF;
 
 }
 
@@ -116,6 +117,7 @@
     font-family: 'YClover-Bold';
     font-size: 15px;
     cursor: pointer;
+    color: #FFFFFF;
 }
 
 .slide-btn:hover {
@@ -427,7 +429,6 @@
 }
 
 @media (max-width: 720px) {
-
     .Header-Logo,
     .Header-List {
         display: none;
@@ -440,6 +441,7 @@
 
 
     .Header-Logo-Mobile {
+        margin-top: 40px;
         width: 100%;
         font-family: 'PyeongChangPeace-Bold';
         color: #FFFFFF;

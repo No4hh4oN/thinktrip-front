@@ -335,6 +335,14 @@ export default function Mypage() {
                             <button onClick={handleDeleteAccount} className="Mypage-DeleteBtn">
                                 회원 탈퇴하기
                             </button>
+                            <button className="Mypage-DeleteBtn" onClick={() => {
+                                sessionStorage.removeItem("token");
+                                localStorage.removeItem("token");
+                                setIsAuthenticated(false);
+                                window.location.href = "/"; 
+                            }}>
+                                로그아웃
+                            </button>
                         </div>
                         <div className="MyPage-Plans">
                             {loading ? (

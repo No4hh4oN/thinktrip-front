@@ -73,6 +73,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #FFFFFF;
   z-index: 10;
 }
 
@@ -249,6 +250,7 @@
   border-radius: 15px;
   font-family: 'Pretendard-SemiBold';
   font-size: 20px;
+  background-color: #0075EA;
 }
 
 .LoginButton:hover {
@@ -563,6 +565,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    padding-bottom: 80px;
   }
 
   .MainScreen-AuthBox-Mobile {
@@ -582,7 +585,7 @@
 
   .Header-Logo-Mobile {
     width: 100%;
-    height: 50px;
+    height: auto;
     margin-top: 5px;
     padding-bottom: 5px;
     font-family: 'PyeongChangPeace-Bold';
@@ -592,61 +595,6 @@
     display: flex;
     justify-content: center;
     outline: none;
-  }
-
-  .MainScreen-Header-List-Mobile-menu-icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding-left: 10px;
-    border-radius: 50%;
-    transition: all 0.3s;
-    z-index: 1000;
-    background-color: transparent;
-  }
-
-  .MainScreen-Header-List-Mobile-menu-icon.active {
-    color: #000000;
-    height: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    border-radius: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 10px;
-    transform: translateX(0px) scale(1.0);
-    background-color: #FFFFFF;
-    box-shadow: inset 10px 10px 20px #a3b1c6, inset -10px 10px 20px #FFFFFF;
-  }
-
-  .MainScreen-Header-List-Mobile-menu-icon.active~.MainScreen-Container-Mobile {
-    opacity: 0.3;
-  }
-
-  .MainScreen-Header-List-Mobile {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    text-align: left;
-    font-family: 'Pretendard-Medium';
-    font-size: 18px;
-    color: #000000;
-    gap: 10px;
-  }
-
-  .dropdown-content-Mobile {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-top: 5px;
-    gap: 5px;
-    margin-left: 10px;
-
   }
 
   .dropdown-content-Mobile a {
@@ -777,41 +725,7 @@
     height: 100%;
   }
 
-  .MainScreen-ProfileImg-Container {
-    position: absolute;
-    right: 0;
-    width: 40px;
-    height: 40px;
-  }
-
-  .MainScreen-ProfileImg-Container-Mobile {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #C0C0C0;
-  }
-
-  .MainScreen-ProfileImg-Container-Mobile a {
-    position: relative;
-    width: 40px;
-    height: 40px;
-  }
-
-  .MainScreen-ProfileImg-Mobile {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
+  
   .MainScreen-Body-Mobile {
     width: 100%;
     background-color: transparent;

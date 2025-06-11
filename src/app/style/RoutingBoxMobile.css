@@ -1,0 +1,68 @@
+.RoutingBox {
+    position: fixed;
+    width: 100%;
+    height: 75px;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FFFFFF;
+    z-index: 999999;
+}
+
+.Mainpage-Button a,
+.PlanByAI-Button a,
+.SelfPlan-Button a,
+.Diary-Button a,
+.Mypage-Button a {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: none;
+}
+
+.ProfileImg-Mobile {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Mainpage-Button,
+.PlanByAI-Button,
+.SelfPlan-Button,
+.Diary-Button,
+.Mypage-Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: none;
+}
+#home,
+#gptPlan,
+#selfPlan,
+#diary  {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.Mainpage-Button.active,
+.PlanByAI-Button.active,
+.SelfPlan-Button.active,
+.Diary-Button.active,
+.Mypage-Button.active {
+    background-color: #A4CEF9 !important;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}

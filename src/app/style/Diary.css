@@ -160,22 +160,65 @@
         min-height: 100vh;
     }
 
-    .Diary-Container {
+    .Diary-Container,
+    .Header,
+    .Footer {
         display: none;
     }
 
     .Diary-Container-Mobile {
+        width: 100vw;
+        height: 100%;
         position: relative;
         background: linear-gradient(to bottom, #060755, #A4CEF9);
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        padding-bottom: 60px;
+        padding-bottom: 90px;
+    }
+    
+    #pageName {
+        font-family: 'Pretendard-Black';
+        color: #FFFFFF;
+        font-size: 32px;
+    }
+    
+    #subtract {
+        position: absolute;
+        top: 0;
+        width: 130%;
+        z-index: 0;   
+    }
+
+    .postFloating {
+        position: fixed;
+        right: 10px;
+        bottom: 100px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #856973;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .postFloating img {
+        width: 50px;
+        height: 50px;
     }
 
     .Diary-Header {
-        width: 95%;
-        margin-top: 30px;
+        margin-top: 50px;
+        margin-bottom: 60px;
+        width: 80%;
+        font-family: 'Pretendard-Bold';
+        color: #FFFFFF;
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
     }
 
     .Diary-List {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./style/globals.css";
+import RoutingBoxMobile from "./Component/RoutingBoxMobile";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         {children}
         <img className="cloud1" src="/images/cloud1.png" alt="cloud1" />
         <img className="cloud2" src="/images/cloud2.png" alt="cloud2" />
+        <RoutingBoxMobile />
       </body>
     </html>
   );

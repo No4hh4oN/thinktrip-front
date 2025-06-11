@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from 'next/link';
 import dynamic from "next/dynamic";
 import AxiosClient from "../AxiosClient";
 import Header from "../Component/Header";
@@ -180,7 +181,13 @@ export default function Diary() {
                 )}
             </div>
             <div className="Diary-Container-Mobile">
-                <div className="Diary-Header">다이어리</div>
+                <img id="subtract" src="/images/Subtract.png" alt="" />
+                <div className="Diary-Header">
+                    <span id="pageName">
+                        다이어리
+                    </span>
+                    <span>여행의 소중한 순간들을 기록해봐요!</span>
+                </div>
                 <div className="Diary-List">
                     <div className="Diary-List-Header">
                         글 목록
@@ -207,6 +214,9 @@ export default function Diary() {
                             </div>
                         </div>
                     ))}
+                    <Link  href="/Report" className="postFloating">
+                        <img src="/images/posting.png" alt="" />
+                    </Link>
                 </div>
                 {showModal && selected && (
                     <div className="ModalOverlay" onClick={closeModal}>

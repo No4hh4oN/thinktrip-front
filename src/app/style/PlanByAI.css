@@ -268,32 +268,60 @@
 @media (max-width: 720px) {
     .PlanByAI {
         width: 100vw !important;
-        height: 100vh !important;
+        height: 100% !important;
     }
 
-    .PlanByAI-Container {
-        display: none;
+    .PlanByAI-Container, 
+    .Header,
+    .Footer {
+        display: none !important;
     }
 
     .PlanByAI-Container-Mobile {
-        width: 100vw;
-        height: 100%;
-        position: relative;
-        background: linear-gradient(to bottom, #060755, #A4CEF9);
+    width: 100vw;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(to bottom, #060755, #A4CEF9);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 90px;
+    }
+
+    #subtract {
+        position: absolute;
+        top: 0;
+        width: 130%;
+        z-index: 0;   
+    }
+
+    #pageName {
+        font-family: 'Pretendard-Black';
+        color: #FFFFFF;
+        font-size: 32px;
+    }
+
+    #travelData {
+        width: 80%;
+        font-family: 'Pretendard-Black';
+        color: #FFFFFF;
+        font-size: 23px;
+        margin-bottom: 20px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
+        justify-content: space-between;
     }
 
     .PlanByAI-Container-Mobile-Intro {
+        margin-top: 50px;
+        margin-bottom: 60px;
         width: 80%;
         font-family: 'Pretendard-Bold';
         color: #FFFFFF;
         font-size: 18px;
         display: flex;
         flex-direction: column;
+        z-index: 1;
     }
 
     #currentsteps {
@@ -304,6 +332,7 @@
     }
 
     .StepCtrlButtons {
+        margin-top: 20px;
         width: 290px;
         display: flex;
         justify-content: center;

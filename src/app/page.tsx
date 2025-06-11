@@ -8,6 +8,7 @@ import About from './Component/About';
 import Footer from './Component/Footer';
 import AdSlide from './Component/AdSlide';
 import AdSlideMobile from "./Component/AdSlideMobile";
+import RoutingBoxMobile from "./Component/RoutingBoxMobile";
 
 
 declare global {
@@ -297,9 +298,6 @@ export default function Home() {
         }
     };
 
-    // 모바일 / 리스트 토글 다운
-    const [showMenu, setShowMenu] = useState(false);
-
     return (
         <div className="MainScreen">
             <div className="MainScreen-Container">
@@ -520,65 +518,8 @@ export default function Home() {
                 {isAuthenticated ? (
                     <div className="MainScreen-Mobile">
                         <div className="Header-Logo-Mobile">
-                            <div className={`MainScreen-Header-List-Mobile-menu-icon ${showMenu ? 'active' : ''}`}
-                                onClick={() => setShowMenu(!showMenu)}>
-                                ☰
-                                {showMenu && (
-                                    <div className="MainScreen-Header-List-Mobile">
-                                        <div className="MainScreen-Header-gpt-Mobile">
-                                            여행추천
-                                            <div className="dropdown-content-Mobile">
-                                                <Link href="/PlanByAI">
-                                                    <span>- GPT에게 추천받는 나의 여행</span>
-                                                </Link>
-                                                <Link href="/SelfPlan">
-                                                    <span>- 직접 계획하는 나의 여행</span>
-                                                </Link>
-
-                                                <Link href="/Tour">
-                                                    <span>- TourAPI가 추천하는 여행</span>
-                                                </Link>
-                                                <Link href="/MyPlan">
-                                                    <span>- 저장한 여행 계획</span>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                        <div className="MainScreen-Header-diary-Mobile">
-                                            다이어리
-                                            <div className="dropdown-content-Mobile">
-                                                <Link href="/Report">
-                                                    <span>- 여행일기 작성하기</span>
-                                                </Link>
-                                                <Link href="/Diary">
-                                                    <span>- 내 여행일기 보기</span>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                        {/* <div className="MainScreen-Header-mypage-Mobile">마이페이지</div> */}
-                                        {isAuthenticated && (
-                                            <div className="MainScreen-Header-logout-Mobile" onClick={() => {
-                                                sessionStorage.removeItem("token");
-                                                localStorage.removeItem("token");
-                                                setIsAuthenticated(false);
-                                                setTriggerAnimation(false);
-                                            }}>
-                                                로그아웃
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
-                            <span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p
-                            <div className="MainScreen-ProfileImg-Container-Mobile">
-                                <Link href="/Mypage">
-                                    <img
-                                        className="MainScreen-ProfileImg-Mobile"
-                                        src={imageUrl || "/images/profile.webp"}
-                                        alt=""
-                                    />
-                                </Link>
-                            </div>
-                        </div>
+                <Link href="/"><span className="Header-Logo-1">T</span>h<span className="Header-Logo-2">!</span>nk<span className="Header-Logo-3">T</span>r<span className="Header-Logo-4">!</span>p</Link>
+            </div>
                         <div className="MainScreen-Body-Mobile">
                             <img className="MainScreen-Image2-Mobile" src="/images/MainPoster.png" alt="메인포스터1" />
                             <div className="MainScreen-userInfo-Mobile">
@@ -600,10 +541,6 @@ export default function Home() {
                                     더불어, 다이어리 기능을 통해 여행의 추억을 남길 수 있도록 돕고 있습니다.
                                 </div>
                             </div>
-                        </div>
-                        <div className="Footer-Mobile">
-                            <div>Ⓒ 삼육대학교 캡스톤 16팀</div>
-                            <div>장준익 김정현 김현우 이소영</div>
                         </div>
                     </div>
                 ) : (

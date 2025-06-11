@@ -461,31 +461,45 @@ export default function PlanByAI() {
 
 
             <div className="PlanByAI-Container-Mobile">
+                <img id="subtract" src="/images/Subtract.png" alt="" />
                 <div className="PlanByAI-Container-Mobile-Intro">
+                    <span id="pageName">
+                        GPT에게 추천받는<br />
+                        나의 여행
+                    </span>
                     <span>여행 계획 생성 전 몇 가지를 알려주세요!</span>
-                    {currentStep < 4 && (<span id="currentsteps">{currentStep} / 3</span> )}
                 </div>
 
                 {currentStep === 1 && (
-                    <Calendar
-                        departureDate={travelData.departureDate}
-                        returnDate={travelData.returnDate}
-                        setDepartureDate={(date) =>
-                            setTravelData((prev: TravelFormData) => ({
-                                ...prev,
-                                departureDate: date,
-                            }))
-                        }
-                        setReturnDate={(date) =>
-                            setTravelData((prev: TravelFormData) => ({
-                                ...prev,
-                                returnDate: date,
-                            }))
-                        }
-                    />
-
+                    <>
+                        <div id="travelData">
+                            <span>여행 기간</span>
+                            {currentStep < 4 && (<span id="currentsteps">{currentStep} / 3</span>)}
+                        </div>
+                        <Calendar
+                            departureDate={travelData.departureDate}
+                            returnDate={travelData.returnDate}
+                            setDepartureDate={(date) =>
+                                setTravelData((prev: TravelFormData) => ({
+                                    ...prev,
+                                    departureDate: date,
+                                }))
+                            }
+                            setReturnDate={(date) =>
+                                setTravelData((prev: TravelFormData) => ({
+                                    ...prev,
+                                    returnDate: date,
+                                }))
+                            }
+                        />
+                    </>
                 )}
                 {currentStep === 2 && (
+                    <>
+                        <div id="travelData">
+                            <span>희망 목적지</span>
+                            {currentStep < 4 && (<span id="currentsteps">{currentStep} / 3</span>)}
+                        </div>
                     <Map
                         key={currentStep}
                         selectedRegion={travelData.region}
@@ -504,8 +518,14 @@ export default function PlanByAI() {
                             }))
                         }
                     />
+                    </>
                 )}
                 {currentStep === 3 && (
+                    <>
+                        <div id="travelData">
+                            <span>여행 정보</span>
+                            {currentStep < 4 && (<span id="currentsteps">{currentStep} / 3</span>)}
+                        </div>
                     <div className="PlanByAI-InputOthers">
                         <div className="PlanByAI-InputOthers-Body">
                             <div className="PlanByAI-InputOthers-box">
@@ -697,6 +717,7 @@ export default function PlanByAI() {
                         </div>
 
                     </div>
+                    </>
 
                 )}
                 {currentStep === 4 && (
