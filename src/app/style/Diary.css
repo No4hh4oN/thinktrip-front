@@ -71,9 +71,9 @@
 
 #listTitle {
     overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: bottom;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
     font-family: 'Pretendard-Medium';
     font-size: 18px;
     color: #000000;
@@ -121,7 +121,7 @@
     color: #000000;
 }
 
-.Diary-Contents-StartEnd {}
+/* .Diary-Contents-StartEnd {} */
 
 .Diary-Contents-Body {
     padding: 30px;
@@ -152,6 +152,44 @@
     color: #FFFFFF;
 }
 
+.Diary-List-Item {
+    opacity: 1;
+    transform: none;
+}
+
+.Diary-List-Item.animate {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.Diary-List-Item.visible.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease;
+}
+
+
+.ShowMoreWrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ShowMoreButton {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.ShowMoreButton:hover {
+    background-color: #0059c1;
+}
+
+
 
 @media (max-width: 720px) {
     .Diary {
@@ -177,18 +215,18 @@
         align-items: center;
         padding-bottom: 90px;
     }
-    
+
     #pageName {
         font-family: 'Pretendard-Black';
         color: #FFFFFF;
         font-size: 32px;
     }
-    
+
     #subtract {
         position: absolute;
         top: 0;
         width: 130%;
-        z-index: 0;   
+        z-index: 0;
     }
 
     .postFloating {
@@ -198,7 +236,7 @@
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background-color: #856973;
+        background-color: #afafaf;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -224,7 +262,6 @@
     .Diary-List {
         margin-top: 10px;
         width: 95%;
-        min-height: 800px;
     }
 
     /* 모달 배경 오버레이 */

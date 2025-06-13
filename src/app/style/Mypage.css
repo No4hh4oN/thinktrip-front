@@ -14,6 +14,10 @@
     align-items: center;
 }
 
+#subtract {
+    display: none;
+}
+
 .Mypage-Header {
     width: 1137px;
     margin-top: 190px;
@@ -23,6 +27,7 @@
 }
 
 .Mypage-BodyContainer {
+    position: relative;
     width: 1137px;
     height: 100%;
     display: flex;
@@ -31,53 +36,198 @@
 }
 
 .Mypage-Body-top {
+    position: relative;
     display: flex;
     width: 100%;
     justify-content: space-between;
-    height: 600px;
-    z-index: 1;
 
 }
 
 .Mypage-User {
     width: 48%;
-    height: 600px;
     background-color: #FFFFFF95;
+    height: auto;
     border-radius: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1;
 }
 
-.Mypage-ProfileImg-Container,
-.Mypage-ProfileImg-Container label {
+.profileInfo {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: 'Pretendard-Medium';
+    color: #525252;
+    font-size: 23px;
+}
+
+#profileInfo-Name {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    font-family: 'Pretendard-SemiBold';
+    color: #000000;
+    font-size: 23px;
+    border-bottom: 1px solid #000000;
+}
+
+#Mypage-BoxTitle {
+    width: 100%;
+    padding: 20px;
+    font-family: 'Pretendard-Black';
+    color: #FFFFFF;
+    font-size: 23px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #00000080;
+}
+
+#Mypage-BoxTitle2 {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding: 20px;
+    font-family: 'Pretendard-Black';
+    color: #FFFFFF;
+    font-size: 23px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #06ac22;
+}
+
+
+.profileCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.Mypage-ProfileImg-Container {
     position: relative;
+    width: 50% !important;
+    aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 116px;
-    height: 116px;
-    border-radius: 50%;
+    align-self: center;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.Mypage-ProfileImg-Container label {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
     object-fit: cover;
     background-color: #C0C0C0;
 }
 
 .Mypage-ProfileImg {
     position: relative;
-    width: 114px;
-    height: 114px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
     object-fit: cover;
 }
 
-.MyPage-Plans {
+.Mypage-AuthSet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.Mypage-DeleteBtn {
+    background-color: #940202;
+    color: #ffffff;
+    font-family: 'Pretendard-SemiBold';
+    font-size: 19px;
+    width: 120px;
+    height: 40px;
+    border-radius: 40px;
+    border: none;
+    box-shadow: 0 4px 0 #5f0101, 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.Mypage-DeleteBtn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #5f0101, 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.Mypage-Logout {
+    background-color: #fff12c;
+    color: #000000;
+    font-family: 'Pretendard-SemiBold';
+    font-size: 19px;
+    width: 120px;
+    height: 40px;
+    border-radius: 40px;
+    border: none;
+    box-shadow: 0 4px 0 #c5b900, 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.Mypage-Logout:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #c5b900, 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.MyPage-PlanBox {
+    position: relative;
     width: 48%;
     height: 600px;
     background-color: #FFFFFF95;
     border-radius: 20px;
-    overflow-y: scroll;
-    padding: 15px;
+    overflow: hidden;
     z-index: 1;
 }
 
+
+.Mypage-PlanList {
+    padding: 20px;
+    height: 78%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    z-index: 1;
+}
+
+.Mypage-DiaryList {
+    padding: 20px;
+    height: 78%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    z-index: 0;
+}
+
+
 .Mypage-Body-bottom {
+    position: relative;
     width: 100%;
     height: 600px;
     background-color: #FFFFFF95;
@@ -85,14 +235,272 @@
     z-index: 1;
 }
 
+/* 스크롤 애니메이션 */
+.DiaryCard.animate,
+.Mypage-Plans.animate {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* 등장 애니메이션 시작 조건 */
+.DiaryCard.visible.animate,
+.Mypage-Plans.visible.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s ease;
+}
+
+.Mypage-Plans {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #ffffff;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.Mypage-Plans-Title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    /* gray-900 */
+    margin-bottom: 4px;
+}
+
+.Mypage-Plans-Dates {
+    font-size: 14px;
+    color: #6b7280;
+    /* gray-500 */
+    margin-bottom: 8px;
+}
+
+.Mypage-Plans-Content {
+    font-size: 14px;
+    color: #374151;
+    /* gray-700 */
+    line-height: 1.5;
+}
+
+/* .Mypage-Plans {
+} */
+
+.Mypage-Plans:hover {
+    background-color: #f9fafb;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.Mypage-Plans.active {
+    border: 2px solid #3b82f6;
+    /* blue-500 */
+}
+
+.DiaryCard {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 20px;
+    margin-right: 20px;
+    z-index: 0;
+}
+
+.DiaryCard:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.DiaryCard.active {
+    border: 2px solid #4f46e5;
+    /* indigo-600 */
+}
+
+.DiaryCard-Left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.DiaryCard-Title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.DiaryCard-Date {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.DiaryCard-Right {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.Mypage-PlanList::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+.Mypage-PlanList::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.Mypage-PlanList::-webkit-scrollbar-thumb {
+    background-color: #424242;
+    border-radius: 50px;
+    border: 16px solid transparent !important;
+}
+
+
+.Mypage-DiaryList::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+.Mypage-DiaryList::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+
+.Mypage-DiaryList::-webkit-scrollbar-thumb {
+    background-color: #424242;
+    border-radius: 50px;
+    border: 16px solid transparent !important;
+}
+
+
 @media (max-width: 720px) {
+
+    .Header,
+    .Footer {
+        display: none !important;
+    }
+
+    .Mypage-Container {
+        width: 100vw;
+        height: 100%;
+        position: relative;
+        background: linear-gradient(to bottom, #060755, #A4CEF9);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-bottom: 90px;
+    }
+
     .Mypage-BodyContainer {
-        width: 95%;
+        width: 90%;
+    }
+
+    #subtract {
+        display: block;
+        position: absolute;
+        top: 0;
+        width: 130%;
+        z-index: 0;
     }
 
     .Mypage-Header {
-        width: 95%;
-        margin-top: 30px;
+        margin-top: 50px;
+        margin-bottom: 60px;
+        width: 80%;
+        font-family: 'Pretendard-Bold';
+        color: #FFFFFF;
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+    }
+
+    #pageName {
+        font-family: 'Pretendard-Black';
+        color: #FFFFFF;
+        font-size: 32px;
+    }
+
+    .profileCard {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #Mypage-BoxTitle {
+        width: 100%;
+        padding: 20px;
+        font-family: 'Pretendard-Black';
+        color: #FFFFFF;
+        font-size: 23px;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        background-color: #00000080;
+    }
+
+    #Mypage-BoxTitle2 {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        padding: 20px;
+        margin-bottom: 20px;
+        font-family: 'Pretendard-Black';
+        color: #FFFFFF;
+        font-size: 23px;
+        display: flex;
+        justify-content: space-between;
+        z-index: 1;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        background-color: #06ac22;
+    }
+
+    .Mypage-PlanList {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 1;
+        padding: 20px;
+        height: auto;
+        overflow: auto;
+    }
+
+    .profileInfo {
+        padding-left: 20px;
+        padding-right: 20px;
+        font-family: 'Pretendard-Medium';
+        color: #525252;
+        font-size: 23px;
+    }
+
+    #profileInfo-Name {
+        display: flex;
+        justify-self: center;
+        align-self: center;
+        font-family: 'Pretendard-SemiBold';
+        color: #000000;
+        font-size: 23px;
+        border-bottom: 1px solid #000000;
+    }
+
+    .Mypage-ProfileImg-Container {
+        display: flex;
+        align-self: center;
+        width: calc(100% - 20px);
     }
 
     .Mypage-Body-top {
@@ -104,7 +512,14 @@
         width: 100%;
     }
 
-    .MyPage-Plans {
+    .MyPage-PlanBox {
         width: 100%;
+        padding-bottom: 20px;
+        z-index: 1;
+    }
+
+    .Mypage-Body-bottom {
+        width: 100% !important;
+        overflow: auto
     }
 }

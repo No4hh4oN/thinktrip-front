@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import "../style/Component.css";
 
@@ -63,7 +64,7 @@ export default function AdSlide() {
                         return {
                             image: secureImage,
                             text: item.title,
-                            target: `https://korean.visitkorea.or.kr/kor/tt/pr_lod_view.jsp?cid=${item.contentid}`,
+                            target: item.contentId,
                         };
                     });
 
@@ -82,14 +83,14 @@ export default function AdSlide() {
         <div className="AdSlide-Mobile">
             <div className="AdSlide_Header-Mobile">
                 <div className="AdSlide_Header-Title-Mobile">
-                    <span>TourAPI4.0</span> 
-                    
-                <div className="Adslide_controls-Mobile">
-                    <button onClick={goPrev} className="slide-btn-Mobile">◀</button>
-                    <span id="Adslide_paging-Mobile">{pageNo} / {maxPage}</span>
-                    <button onClick={goNext} className="slide-btn-Mobile">▶</button>
-                </div>
-                    
+                    <Link href="/Tour">TourAPI4.0</Link>
+
+                    <div className="Adslide_controls-Mobile">
+                        <button onClick={goPrev} className="slide-btn-Mobile">◀</button>
+                        <span id="Adslide_paging-Mobile">{pageNo} / {maxPage}</span>
+                        <button onClick={goNext} className="slide-btn-Mobile">▶</button>
+                    </div>
+
                 </div>
             </div>
 
@@ -99,12 +100,12 @@ export default function AdSlide() {
                         <div key={idx} className={`slide ${type}${animate ? "" : " stop"}`}>
                             {slides.map((s, i) => (
                                 <li key={`${type}-${i}`} className={i % 2 === 0 ? "big" : "small"}>
-                                    <a href={s.target} target="_blank" rel="noopener noreferrer">
+                                    <Link href={`/Tour/${s.target}`} rel="noopener noreferrer">
                                         <div className="item">
                                             <img className="item-img" src={s.image} alt="" />
                                             <div className="slide-text">{s.text}</div>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </div>

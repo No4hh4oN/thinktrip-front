@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from 'next/link';
 import dynamic from "next/dynamic";
 import AxiosClient from "../AxiosClient";
 import '../style/MyPlan.css';
@@ -83,6 +84,26 @@ export default function MyPlan() {
         setSelectedPlan(null);
     };
 
+    useEffect(() => {
+        const items = document.querySelectorAll(".MyPlan-Items");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    } else {
+                        entry.target.classList.remove("visible"); // 재등장 시 다시 애니메이션
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        items.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, [plans.length, visibleCount]);
+
 
     return (
         <div className="MyPlan">
@@ -118,8 +139,15 @@ export default function MyPlan() {
             </div>
 
             <div className="MyPlan-Container-Mobile">
+                <img id="subtract" src="/images/Subtract.png" alt="" />
                 <div className="MyPlan-Header-Mobile">
-                    저장된 여행 계획
+                    <span id="pageName">
+                        저장된 여행 계획
+                    </span>
+                    <span>
+                        직접 계획하기 어려운 여행은<br />
+                        GPT와 함께해요!
+                    </span>
                 </div>
                 <div className="MyPlan-List-Mobile">
                     {loading ? (
@@ -130,7 +158,7 @@ export default function MyPlan() {
                         <>
                             <div className="PlanList">
                                 {plans.slice(0, visibleCount).map(plan => (
-                                    <div key={plan.id} className="MyPlan-Items" onClick={() => handleClick(plan.id)}>
+                                    <div key={plan.id} className="MyPlan-Items animate" onClick={() => handleClick(plan.id)}>
                                         <span className="MyPlan-Items-Title">{plan.title}</span>
                                         <span className="MyPlan-Item-Dates">{plan.startDate} ~ {plan.endDate}</span>
                                         <div className="MyPlan-Items-Content">{plan.content.slice(0, 50)}...</div>
@@ -145,6 +173,9 @@ export default function MyPlan() {
                         </>
                     )}
                 </div>
+                <Link href="/SelfPlan" className="postFloating">
+                    <img src="/images/posting.png" alt="직접계획" />
+                </Link>
             </div>
 
 

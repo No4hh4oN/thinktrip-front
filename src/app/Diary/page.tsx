@@ -36,6 +36,7 @@ export default function Diary() {
     const [loading, setLoading] = useState(true);
     const [detailLoading, setDetailLoading] = useState(false);
     const [loadingData, setLoadingData] = useState<any>(null);
+    const [visibleCount, setVisibleCount] = useState(6);
 
     useEffect(() => {
         fetch("/lottie/Loading.json")
@@ -68,7 +69,7 @@ export default function Diary() {
         setDetailLoading(false);
     };
 
-    
+
 
     const [showModal, setShowModal] = useState(false);
 
@@ -87,6 +88,26 @@ export default function Diary() {
     const closeModal = () => {
         setShowModal(false);
     };
+
+    useEffect(() => {
+  const items = document.querySelectorAll(".Diary-List-Item");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        } else {
+          entry.target.classList.remove("visible");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  items.forEach((el) => observer.observe(el));
+  return () => observer.disconnect();
+}, [list.length, visibleCount]);
 
     return (
         <div className="Diary">
@@ -107,10 +128,10 @@ export default function Diary() {
                                 글 목록
                             </div>
                             {list.length === 0 && <div>작성한 다이어리가 없습니다.</div>}
-                            {list.map((item) => (
+                            {list.slice(0, visibleCount).map((item) => (
                                 <div
                                     key={item.id}
-                                    className={`Diary-List-Item${selected?.id === item.id ? " active" : ""}`}
+                                    className={`Diary-List-Item animate${selected?.id === item.id ? " active" : ""}`}
                                     onClick={() => handleSelect(item)}
                                     style={{
                                         cursor: "pointer",
@@ -128,6 +149,13 @@ export default function Diary() {
                                     </div>
                                 </div>
                             ))}
+                            {visibleCount < list.length && (
+                                <div className="ShowMoreWrapper">
+                                    <button className="ShowMoreButton" onClick={() => setVisibleCount(prev => prev + 6)}>
+                                        더보기
+                                    </button>
+                                </div>
+                            )}
                         </div>
                         <div className="Diary-Content">
                             {detailLoading ? (
@@ -193,10 +221,10 @@ export default function Diary() {
                         글 목록
                     </div>
                     {list.length === 0 && <div>작성한 다이어리가 없습니다.</div>}
-                    {list.map((item) => (
+                    {list.slice(0, visibleCount).map((item) => (
                         <div
                             key={item.id}
-                            className={`Diary-List-Item${selected?.id === item.id ? " active" : ""}`}
+                            className={`Diary-List-Item animate${selected?.id === item.id ? " active" : ""}`}
                             onClick={() => handleSelectMobile(item)}
                             style={{
                                 cursor: "pointer",
@@ -214,7 +242,14 @@ export default function Diary() {
                             </div>
                         </div>
                     ))}
-                    <Link  href="/Report" className="postFloating">
+                    {visibleCount < list.length && (
+                        <div className="ShowMoreWrapper">
+                            <button className="ShowMoreButton" onClick={() => setVisibleCount(prev => prev + 6)}>
+                                더보기
+                            </button>
+                        </div>
+                    )}
+                    <Link href="/Report" className="postFloating">
                         <img src="/images/posting.png" alt="" />
                     </Link>
                 </div>
@@ -222,33 +257,33 @@ export default function Diary() {
                     <div className="ModalOverlay" onClick={closeModal}>
                         <div className="ModalContent" onClick={e => e.stopPropagation()}>
                             <div className="Diary-Contents-Header">
-                                        <span id="Diary-Title">{selected.title}</span>
-                                        <div className="Diary-Contents-DateBox">
-                                            <div className="Diary-Contents-StartEnd">
-                                                <span>여행 기간 : </span>
-                                                <span>{selected.startDate} ~ {selected.endDate}</span>
-                                            </div>
-                                            <div className="Diary-Contents-Created">
-                                                <span id="Diary-Created-label">작성일 : </span>
-                                                <span>{selected.createdAt?.slice(0, 16).replace("T", " ")}</span>
-                                            </div>
-                                        </div>
+                                <span id="Diary-Title">{selected.title}</span>
+                                <div className="Diary-Contents-DateBox">
+                                    <div className="Diary-Contents-StartEnd">
+                                        <span>여행 기간 : </span>
+                                        <span>{selected.startDate} ~ {selected.endDate}</span>
                                     </div>
-                                    <div className="Diary-Contents-Body">
-                                        {selected.imageUrls && selected.imageUrls.length > 0 && (
-                                            <div style={{ display: "flex", gap: 8 }}>
-                                                {selected.imageUrls.map((url, i) => (
-                                                    <img
-                                                        key={i}
-                                                        src={url.startsWith("/") ? "https://thinktrip.it.com" + url : url}
-                                                        alt={`다이어리 이미지 ${i + 1}`}
-                                                        style={{ maxHeight: 120, borderRadius: 8 }}
-                                                    />
-                                                ))}
-                                            </div>
-                                        )}
-                                        <ToastViewer initialValue={selected.content} />
+                                    <div className="Diary-Contents-Created">
+                                        <span id="Diary-Created-label">작성일 : </span>
+                                        <span>{selected.createdAt?.slice(0, 16).replace("T", " ")}</span>
                                     </div>
+                                </div>
+                            </div>
+                            <div className="Diary-Contents-Body">
+                                {selected.imageUrls && selected.imageUrls.length > 0 && (
+                                    <div style={{ display: "flex", gap: 8 }}>
+                                        {selected.imageUrls.map((url, i) => (
+                                            <img
+                                                key={i}
+                                                src={url.startsWith("/") ? "https://thinktrip.it.com" + url : url}
+                                                alt={`다이어리 이미지 ${i + 1}`}
+                                                style={{ maxHeight: 120, borderRadius: 8 }}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
+                                <ToastViewer initialValue={selected.content} />
+                            </div>
                             <button className="closeModal" onClick={closeModal}>닫기</button>
                         </div>
                     </div>

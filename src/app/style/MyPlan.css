@@ -130,9 +130,9 @@
 }
 
 .ViewerWrapper .toastui-editor-contents {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
 }
 
 /* 닫기 버튼 */
@@ -185,9 +185,25 @@
         height: 100% !important;
     }
 
-    .MyPlan-Container {
-        display: none;
+    .MyPlan-Container,
+    .Header,
+    .Footer {
+        display: none !important;
     }
+
+    #subtract {
+        position: absolute;
+        top: 0;
+        width: 130%;
+        z-index: 0;
+    }
+
+    #pageName {
+        font-family: 'Pretendard-Black';
+        color: #FFFFFF;
+        font-size: 32px;
+    }
+
 
     .MyPlan-Container-Mobile {
         width: 100vw;
@@ -198,28 +214,64 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 10px;
     }
 
     .MyPlan-Header-Mobile {
+        margin-top: 50px;
+        margin-bottom: 60px;
+        width: 80%;
         font-family: 'Pretendard-Bold';
         color: #FFFFFF;
         font-size: 18px;
-        width: 90%;
-        text-align: left;
-        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
     }
 
     .MyPlan-List-Mobile {
         width: 90%;
-        padding-bottom: 30px;
+        padding-bottom: 110px;
     }
 
     .PlanList {
-
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));
         gap: 20px;
         margin-top: 20px;
     }
+
+    .postFloating {
+        position: fixed;
+        right: 10px;
+        bottom: 100px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #afafaf;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .postFloating img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .MyPlan-Items {
+        opacity: 1;
+        transform: none;
+    }
+
+    .MyPlan-Items.animate {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .MyPlan-Items.visible.animate {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.6s ease;
+    }
+
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import "../style/Component.css";
 
@@ -63,7 +64,7 @@ export default function AdSlide() {
                         return {
                             image: secureImage,
                             text: item.title,
-                            target: `https://korean.visitkorea.or.kr/kor/tt/pr_lod_view.jsp?cid=${item.contentid}`,
+                            target: item.contentid,
                         };
                     });
 
@@ -81,7 +82,7 @@ export default function AdSlide() {
     return (
         <div className="AdSlide">
             <div className="AdSlide_Header">
-                <div><span>TourAPI4.0</span>에서 제공하는 축제 정보🎉</div>
+                <div><span><Link href="/Tour">TourAPI4.0</Link></span>에서 제공하는 축제 정보🎉</div>
                 <div className="Adslide_controls">
                     <span id="Adslide_paging">{pageNo} / {maxPage}</span>
                     <button onClick={goPrev} className="slide-btn">◀ 이전</button>
@@ -95,12 +96,12 @@ export default function AdSlide() {
                         <div key={idx} className={`slide ${type}${animate ? "" : " stop"}`}>
                             {slides.map((s, i) => (
                                 <li key={`${type}-${i}`} className={i % 2 === 0 ? "big" : "small"}>
-                                    <a href={s.target} target="_blank" rel="noopener noreferrer">
+                                    <Link href={`/Tour/${s.target}`} rel="noopener noreferrer">
                                         <div className="item">
                                             <img className="item-img" src={s.image} alt="" />
                                             <div className="slide-text">{s.text}</div>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </div>

@@ -82,8 +82,9 @@ export default function Home() {
             }
 
             setIsAuthenticated(true); // 로그인 상태로 변경
-            fetchProfileImage();
-            alert("로그인 성공!");
+            handleUserProfile();
+            
+            window.location.reload();
         } catch (error) {
             alert("이메일 또는 비밀번호가 일치하지 않습니다.");
         }
@@ -359,7 +360,7 @@ export default function Home() {
                                     <label htmlFor="profile-upload" style={{ cursor: 'pointer' }}>
                                         <img
                                             className="MainScreen-ProfileImg"
-                                            src={imageUrl || "/images/profile.webp"}
+                                            src={imageUrl || "/images/Profile.webp"}
                                             alt="프로필 이미지"
                                         />
                                     </label>

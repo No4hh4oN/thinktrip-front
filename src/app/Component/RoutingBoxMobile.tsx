@@ -43,14 +43,14 @@ export default function RoutingBoxMobile() {
                     <img id="home" src="/images/home.png" alt="홈 버튼" />
                 </Link>
             </div>
-            <div className={`PlanByAI-Button ${pathname === "/PlanByAI" ? "active" : ""}`}>
-                <Link href="/PlanByAI">
-                    <img id="gptPlan" src="/images/calendar.png" alt="계획하기 버튼" />
+            <div className={`MyPlan-Button ${pathname === "/MyPlan" ? "active" : ""}`}>
+                <Link href="/MyPlan">
+                    <img id="MyPlan" src="/images/calendar2.png" alt="계획하기 버튼" />
                 </Link>
             </div>
-            <div className={`SelfPlan-Button ${pathname === "/SelfPlan" ? "active" : ""}`}>
-                <Link href="/SelfPlan">
-                    <img id="selfPlan" src="/images/calendar2.png" alt="직접계획하기 버튼" />
+            <div className={`PlanByAI-Button ${pathname === "/PlanByAI" ? "active" : ""}`}>
+                <Link href="/PlanByAI">
+                    <img id="PlanByAI" src="/images/calendar.png" alt="직접계획하기 버튼" />
                 </Link>
             </div>
             <div className={`Diary-Button ${pathname === "/Diary" ? "active" : ""}`}>
@@ -62,7 +62,7 @@ export default function RoutingBoxMobile() {
                 <Link href="/Mypage">
                     <img
                         className="ProfileImg-Mobile"
-                        src={imageUrl || "/images/profile.webp"}
+                        src={imageUrl || "/images/Profile.webp"}
                         alt=""
                     />
                 </Link>

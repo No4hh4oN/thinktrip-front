@@ -169,7 +169,7 @@ export default function Mypage() {
         if (!confirmed) return;
 
         try {
-            await AxiosClient.delete("/users/me", { withCredentials: true });
+            await AxiosClient.delete("/users/me");
 
             alert("회원 탈퇴가 완료되었습니다.");
             localStorage.removeItem("token");
@@ -299,64 +299,97 @@ export default function Mypage() {
         setShowDiaryModal(false);
     };
 
+    useEffect(() => {
+        const allItems = document.querySelectorAll(".DiaryCard, .Mypage-Plans");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    } else {
+                        entry.target.classList.remove("visible"); // 🎯 애니메이션 반복 가능
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        allItems.forEach((el) => observer.observe(el));
+
+        return () => observer.disconnect();
+    }, [plans.length, visibleCount, list.length]);
+
+
     return (
         <div className="Mypage">
             <Header />
             <div className="Mypage-Container">
-                <div className="Mypage-Header">마이페이지</div>
+                <img id="subtract" src="/images/Subtract.png" alt="" />
+                <div className="Mypage-Header">
+                    <span id="pageName">
+                        마이페이지
+                    </span>
+                </div>
                 <div className="Mypage-BodyContainer">
                     <div className="Mypage-Body-top">
                         <div className="Mypage-User">
-                            <div className="Mypage-ProfileImg-Container">
-                                <label htmlFor="profile-upload" style={{ cursor: 'pointer' }}>
-                                    <img
-                                        className="Mypage-ProfileImg"
-                                        src={imageUrl || "/images/profile.webp"}
-                                        alt="프로필 이미지"
+                            <div className="profileCard">
+                                <span id="Mypage-BoxTitle">회원 정보</span>
+                                <div className="Mypage-ProfileImg-Container">
+                                    <label htmlFor="profile-upload" style={{ cursor: 'pointer' }}>
+                                        <img
+                                            className="Mypage-ProfileImg"
+                                            src={imageUrl || "/images/profile.webp"}
+                                            alt="프로필 이미지"
+                                        />
+                                    </label>
+                                    <input
+                                        id="profile-upload"
+                                        type="file"
+                                        accept="image/*"
+                                        style={{ display: "none" }}
+                                        onChange={handleProfileImageUpload}
                                     />
-                                </label>
-                                <input
-                                    id="profile-upload"
-                                    type="file"
-                                    accept="image/*"
-                                    style={{ display: "none" }}
-                                    onChange={handleProfileImageUpload}
-                                />
+                                </div>
+                                <div className="profileInfo">
+                                    <div id="profileInfo-Name">{userInfo.nickname}</div>
+                                    <div id="profileInfo-Nickname">Name: {userInfo.name}{userInfo.is_premium ? "✅" : ""}</div>
+                                    <div id="profileInfo-Email">Email: {userInfo.userId}</div>
+                                    <div className="profileInfo-UserDetailInfo-AI">
+                                        <span className="profileInfo-UserDetailInfo-AI-label">금일 AI 사용가능 횟수</span>
+                                        <span className="profileInfo-UserDetailInfo-AI-data"><span>{GptUsage}</span> / 5</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>이름 : {userInfo.name}</div>
-                            <div>닉네임: {userInfo.nickname}</div>
-                            <div>이메일(ID): {userInfo.userId}</div>
-                            <div>프리미엄: {userInfo.is_premium ? "✅ 사용 중" : "❌ 미사용"}</div>
-                            <div className="MainScreen-UserDetailInfo-AI">
-                                <span className="MainScreen-UserDetailInfo-AI-label">AI 사용가능 횟수</span>
-                                <span className="MainScreen-UserDetailInfo-AI-data"><span>{GptUsage}</span> / 5</span>
-                            </div>
-
-                            <button onClick={handleDeleteAccount} className="Mypage-DeleteBtn">
-                                회원 탈퇴하기
-                            </button>
-                            <button className="Mypage-DeleteBtn" onClick={() => {
+                            <div className="Mypage-AuthSet">
+                            <button className="Mypage-Logout" onClick={() => {
                                 sessionStorage.removeItem("token");
                                 localStorage.removeItem("token");
                                 setIsAuthenticated(false);
-                                window.location.href = "/"; 
+                                window.location.href = "/";
                             }}>
                                 로그아웃
                             </button>
+                            <button onClick={handleDeleteAccount} className="Mypage-DeleteBtn">
+                                회원 탈퇴
+                            </button>
+                            </div>
                         </div>
-                        <div className="MyPage-Plans">
+                        <div className="MyPage-PlanBox">
+                            <span id="Mypage-BoxTitle2">저장한 계획</span>
                             {loading ? (
                                 <p>불러오는 중...</p>
                             ) : plans.length === 0 ? (
                                 <p>저장된 계획이 없습니다.</p>
                             ) : (
                                 <>
-                                    <div className="PlanList">
+                                    <div className="Mypage-PlanList">
                                         {plans.slice(0, visibleCount).map(plan => (
-                                            <div key={plan.id} className="MyPlan-Items" onClick={() => handleClick(plan.id)}>
-                                                <span className="MyPlan-Items-Title">{plan.title}</span>
-                                                <span className="MyPlan-Item-Dates">{plan.startDate} ~ {plan.endDate}</span>
-                                                <div className="MyPlan-Items-Content">{plan.content.slice(0, 50)}...</div>
+                                            <div key={plan.id} className="Mypage-Plans animate" onClick={() => handleClick(plan.id)}>
+                                                <span className="Mypage-Plans-Title">{plan.title}</span>
+                                                <span className="Mypage-Plans-Dates">{plan.startDate} ~ {plan.endDate}</span>
+                                                <div className="Mypage-Plans-Content">{plan.content.slice(0, 50)}...</div>
                                             </div>
                                         ))}
                                     </div>
@@ -382,33 +415,35 @@ export default function Mypage() {
                         )}
                     </div>
                     <div className="Mypage-Body-bottom">
+                        <span id="Mypage-BoxTitle2">작성한 다이어리</span>
                         {/* 다이어리 */}
                         {list.length === 0 && <div>작성한 다이어리가 없습니다.</div>}
-                            {list.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className={`Diary-List-Item${selected?.id === item.id ? " active" : ""}`}
-                                    onClick={() => handleSelectMobile(item)}
-                                    style={{
-                                        cursor: "pointer",
-                                        padding: "8px 0",
-                                        borderBottom: "1px solid #eee",
-                                        fontWeight: selected?.id === item.id ? "bold" : undefined,
-                                    }}
-                                >
-                                    <div className="DiaryList-L_Info">
-                                        <span id="listTitle">{item.title}</span>
-                                        <span id="listDate">{item.startDate} ~ {item.endDate}</span>
+                        <div className="Mypage-DiaryList">
+                        {list.map((item) => (
+                            <div
+                                key={item.id}
+                                className={`DiaryCard animate${selected?.id === item.id ? " active" : ""}`}
+                                onClick={() => handleSelectMobile(item)}
+                            >
+                                <div className="DiaryCard-BasicInfo">
+                                    <div className="DiaryCard-Left">
+                                        <span className="DiaryCard-Title">{item.title}</span>
+                                        <span className="DiaryCard-Date">{item.startDate} ~ {item.endDate}</span>
                                     </div>
-                                    <div className="DiaryList-R_Info">
-                                        <span id="listCreated">{item.createdAt?.slice(0, 16).replace("T", " ")}</span>
+                                    <div className="DiaryCard-Right">
+                                        <span className="DiaryCard-Created">{item.createdAt?.slice(0, 16).replace("T", " ")}</span>
                                     </div>
                                 </div>
-                            ))}
-                            {showDiaryModal && selected && (
-                    <div className="ModalOverlay" onClick={closeModal}>
-                        <div className="ModalContent" onClick={e => e.stopPropagation()}>
-                            <div className="Diary-Contents-Header">
+                                <div className="DiaryCard-Summary">
+                                    {item.content.slice(0, 50)}...
+                                </div>
+                            </div>
+                        ))}
+                        </div>
+                        {showDiaryModal && selected && (
+                            <div className="ModalOverlay" onClick={closeModal}>
+                                <div className="ModalContent" onClick={e => e.stopPropagation()}>
+                                    <div className="Diary-Contents-Header">
                                         <span id="Diary-Title">{selected.title}</span>
                                         <div className="Diary-Contents-DateBox">
                                             <div className="Diary-Contents-StartEnd">
@@ -436,10 +471,10 @@ export default function Mypage() {
                                         )}
                                         <ToastViewer initialValue={selected.content} />
                                     </div>
-                            <button className="closeDiaryModal" onClick={closeDiaryModal}>닫기</button>
-                        </div>
-                    </div>
-                )}
+                                    <button className="closeDiaryModal" onClick={closeDiaryModal}>닫기</button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

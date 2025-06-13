@@ -1,18 +1,27 @@
 .RoutingBox {
     position: fixed;
-    width: 100%;
+    width: 90%;
     height: 75px;
-    bottom: 0;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: #FFFFFF;
+    border-radius: 40px;
     z-index: 999999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.PlanByAI-Button {
+    position: relative; /* 꼭 필요합니다 */
+    z-index: 2; /* 버튼 위로 올라오게 */
 }
 
 .Mainpage-Button a,
 .PlanByAI-Button a,
-.SelfPlan-Button a,
+.MyPlan-Button a,
 .Diary-Button a,
 .Mypage-Button a {
     width: 55px;
@@ -34,10 +43,11 @@
 
 .Mainpage-Button,
 .PlanByAI-Button,
-.SelfPlan-Button,
+.MyPlan-Button,
 .Diary-Button,
 .Mypage-Button {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 55px;
@@ -45,10 +55,28 @@
     border-radius: 50%;
     object-fit: cover;
     cursor: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
+.nav-label {
+  position: absolute;
+  bottom: -5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  padding: 2px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
 #home,
-#gptPlan,
-#selfPlan,
+#PlanByAI,
+#MyPlan,
 #diary  {
     width: 45px;
     height: 45px;
@@ -59,10 +87,20 @@
 
 .Mainpage-Button.active,
 .PlanByAI-Button.active,
-.SelfPlan-Button.active,
+.MyPlan-Button.active,
 .Diary-Button.active,
 .Mypage-Button.active {
-    background-color: #A4CEF9 !important;
+     background-color: #3B82F6 !important; /* 하늘색 강조 */
     border-radius: 50%;
-    transition: background-color 0.3s ease;
+    transform: scale(0.95);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.Mainpage-Button.active .nav-label,
+.PlanByAI-Button.active .nav-label,
+.MyPlan-Button.active .nav-label,
+.Diary-Button.active .nav-label,
+.Mypage-Button.active .nav-label {
+  opacity: 1;
+  transform: translateY(0);
 }
