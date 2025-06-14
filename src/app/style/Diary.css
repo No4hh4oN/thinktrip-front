@@ -124,6 +124,7 @@
 /* .Diary-Contents-StartEnd {} */
 
 .Diary-Contents-Body {
+    overflow: auto;
     padding: 30px;
     color: #000000;
 }

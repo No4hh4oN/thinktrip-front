@@ -107,7 +107,7 @@ export default function Diary() {
 
   items.forEach((el) => observer.observe(el));
   return () => observer.disconnect();
-}, [list.length, visibleCount]);
+}, [list.length, visibleCount, selected?.id]);
 
     return (
         <div className="Diary">

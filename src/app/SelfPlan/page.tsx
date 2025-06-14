@@ -90,10 +90,10 @@ export default function SelfPlan() {
                         />
                         <div className="GPT-Prompt-Box">
                             {prompt ? (
-                                <>
-                                    <p style={{ fontWeight: "bold", color: "red" }}>GPT 답변</p>
+                                <div className="GptIcon-box">
+                                    <p className="GptAnswer" >GPT 답변</p>
                                     <pre style={{ whiteSpace: "pre-wrap" }}>{prompt}</pre>
-                                </>
+                                </div>
                             ) : (
                                 <div className="GptIcon-box">
                                     <Link className="GptIcon-button" href="/PlanByAI">
@@ -141,6 +141,22 @@ export default function SelfPlan() {
                                 }))
                             }
                         />
+                        <div className="GPT-Prompt-Box">
+                            {prompt ? (
+                                <>
+                                    <p className="GptAnswer" >GPT 답변</p>
+                                    <pre style={{ whiteSpace: "pre-wrap" }}>{prompt}</pre>
+                                </>
+                            ) : (
+                                <div className="GptIcon-box">
+                                    <Link className="GptIcon-button" href="/PlanByAI">
+                                        <img id="GptIcon" src="/images/GptIcon.webp" alt="GptIcon" />
+                                    </Link>
+                                    <div className="Gpt">Gpt가 여행 계획을 세워드립니다.</div>
+                                </div>
+
+                            )}
+                        </div>
                     </div>
                 )}
 

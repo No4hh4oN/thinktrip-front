@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Editor } from "@toast-ui/react-editor";
 import { useRouter } from "next/navigation";
 import AxiosClient from "../AxiosClient";
@@ -17,6 +17,7 @@ interface ToastEditorProps {
 export default function MarkdownEditor({ travelData }: ToastEditorProps) {
     const router = useRouter();
     const editorRef = useRef<Editor>(null);
+    const [title, setTitle] = useState("");
 
     const handleGetContent = async () => {
         if (editorRef.current) {
@@ -27,7 +28,7 @@ export default function MarkdownEditor({ travelData }: ToastEditorProps) {
                     content: markdown,
                     startDate: travelData.departureDate,
                     endDate: travelData.returnDate,
-                    title: "예시글1",
+                    title: title || "제목 없음",
                     isGenerated: false,
                 });
 
@@ -40,6 +41,14 @@ export default function MarkdownEditor({ travelData }: ToastEditorProps) {
 
     return (
         <div id="Report" className="Editor-Container">
+            <div className="Report-Title-Box">
+                <input
+                    type="text"
+                    placeholder="다이어리 제목을 입력하세요"
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                />
+            </div>
             <Editor
                 // 툴바 옵션 설정
                 toolbarItems={[

@@ -20,7 +20,7 @@ interface FormState {
 }
 
 interface userState {
-    name: String;
+    name: string;
     nickname: string;
     userId: string;
     is_premium: Boolean;
@@ -320,6 +320,48 @@ export default function Mypage() {
         return () => observer.disconnect();
     }, [plans.length, visibleCount, list.length]);
 
+    const [editMode, setEditMode] = useState(false);
+    const [editForm, setEditForm] = useState({
+        name: "",
+        nickname: "",
+        userId: "", // 이메일
+        password: "",
+    });
+
+    useEffect(() => {
+        // 유저 정보 받아오면 form에 반영
+        setEditForm({
+            name: userInfo.name,
+            nickname: userInfo.nickname,
+            userId: userInfo.userId,
+            password: "",
+        });
+    }, [userInfo]);
+
+    const handleEditChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setEditForm((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleEditSubmit = async () => {
+        try {
+            await AxiosClient.patch("/users/me", {
+                name: editForm.name,
+                nickname: editForm.nickname,
+                email: editForm.userId,
+                password: editForm.password || undefined,
+            });
+            alert("회원 정보가 수정되었습니다.");
+            setEditMode(false);
+            handleUserProfile(); // 정보 재조회
+        } catch (err: any) {
+            alert("수정 실패: " + (err.response?.data?.message || err.message));
+        }
+    };
+
 
     return (
         <div className="Mypage">
@@ -353,27 +395,66 @@ export default function Mypage() {
                                     />
                                 </div>
                                 <div className="profileInfo">
-                                    <div id="profileInfo-Name">{userInfo.nickname}</div>
-                                    <div id="profileInfo-Nickname">Name: {userInfo.name}{userInfo.is_premium ? "✅" : ""}</div>
-                                    <div id="profileInfo-Email">Email: {userInfo.userId}</div>
-                                    <div className="profileInfo-UserDetailInfo-AI">
-                                        <span className="profileInfo-UserDetailInfo-AI-label">금일 AI 사용가능 횟수</span>
-                                        <span className="profileInfo-UserDetailInfo-AI-data"><span>{GptUsage}</span> / 5</span>
-                                    </div>
+                                    {editMode ? (
+                                        <>
+                                            <input
+                                                name="nickname"
+                                                value={editForm.nickname}
+                                                onChange={handleEditChange}
+                                                placeholder="닉네임"
+                                            />
+                                            <input
+                                                name="name"
+                                                value={editForm.name}
+                                                onChange={handleEditChange}
+                                                placeholder="이름"
+                                            />
+                                            <input
+                                                name="userId"
+                                                value={editForm.userId}
+                                                onChange={handleEditChange}
+                                                placeholder="이메일"
+                                            />
+                                            <input
+                                                name="password"
+                                                value={editForm.password}
+                                                onChange={handleEditChange}
+                                                placeholder="새 비밀번호"
+                                                type="password"
+                                                autoComplete="new-password"
+                                            />
+                                            <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+                                                <button onClick={handleEditSubmit}>저장</button>
+                                                <button onClick={() => setEditMode(false)}>취소</button>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div id="profileInfo-Name">{userInfo.nickname}
+                                                <button style={{ marginLeft: 8, fontSize: 13 }} onClick={() => setEditMode(true)}>수정</button>
+                                            </div>
+                                            <div id="profileInfo-Nickname">Name: {userInfo.name}{userInfo.is_premium ? "✅" : ""}</div>
+                                            <div id="profileInfo-Email">Email: {userInfo.userId}</div>
+                                            <div className="profileInfo-UserDetailInfo-AI">
+                                                <span className="profileInfo-UserDetailInfo-AI-label">금일 AI 사용가능 횟수</span>
+                                                <span className="profileInfo-UserDetailInfo-AI-data"><span>{GptUsage}</span> / 5</span>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                             <div className="Mypage-AuthSet">
-                            <button className="Mypage-Logout" onClick={() => {
-                                sessionStorage.removeItem("token");
-                                localStorage.removeItem("token");
-                                setIsAuthenticated(false);
-                                window.location.href = "/";
-                            }}>
-                                로그아웃
-                            </button>
-                            <button onClick={handleDeleteAccount} className="Mypage-DeleteBtn">
-                                회원 탈퇴
-                            </button>
+                                <button className="Mypage-Logout" onClick={() => {
+                                    sessionStorage.removeItem("token");
+                                    localStorage.removeItem("token");
+                                    setIsAuthenticated(false);
+                                    window.location.href = "/";
+                                }}>
+                                    로그아웃
+                                </button>
+                                <button onClick={handleDeleteAccount} className="Mypage-DeleteBtn">
+                                    회원 탈퇴
+                                </button>
                             </div>
                         </div>
                         <div className="MyPage-PlanBox">
@@ -419,26 +500,26 @@ export default function Mypage() {
                         {/* 다이어리 */}
                         {list.length === 0 && <div>작성한 다이어리가 없습니다.</div>}
                         <div className="Mypage-DiaryList">
-                        {list.map((item) => (
-                            <div
-                                key={item.id}
-                                className={`DiaryCard animate${selected?.id === item.id ? " active" : ""}`}
-                                onClick={() => handleSelectMobile(item)}
-                            >
-                                <div className="DiaryCard-BasicInfo">
-                                    <div className="DiaryCard-Left">
-                                        <span className="DiaryCard-Title">{item.title}</span>
-                                        <span className="DiaryCard-Date">{item.startDate} ~ {item.endDate}</span>
+                            {list.map((item) => (
+                                <div
+                                    key={item.id}
+                                    className={`DiaryCard animate${selected?.id === item.id ? " active" : ""}`}
+                                    onClick={() => handleSelectMobile(item)}
+                                >
+                                    <div className="DiaryCard-BasicInfo">
+                                        <div className="DiaryCard-Left">
+                                            <span className="DiaryCard-Title">{item.title}</span>
+                                            <span className="DiaryCard-Date">{item.startDate} ~ {item.endDate}</span>
+                                        </div>
+                                        <div className="DiaryCard-Right">
+                                            <span className="DiaryCard-Created">{item.createdAt?.slice(0, 16).replace("T", " ")}</span>
+                                        </div>
                                     </div>
-                                    <div className="DiaryCard-Right">
-                                        <span className="DiaryCard-Created">{item.createdAt?.slice(0, 16).replace("T", " ")}</span>
+                                    <div className="DiaryCard-Summary">
+                                        {item.content.slice(0, 50)}...
                                     </div>
                                 </div>
-                                <div className="DiaryCard-Summary">
-                                    {item.content.slice(0, 50)}...
-                                </div>
-                            </div>
-                        ))}
+                            ))}
                         </div>
                         {showDiaryModal && selected && (
                             <div className="ModalOverlay" onClick={closeModal}>
