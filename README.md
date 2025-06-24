@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Th!nkTr!p
 
-## Getting Started
+> 감성 기반 AI 여행 플래너  
+> **당신의 기분과 취향에 맞는 여행을 ChatGPT가 대신 계획해드립니다.**
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📌 프로젝트 개요
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Th!nkTr!p**은 OpenAI의 GPT API를 활용하여 사용자의 취향, 기분, 여행 성향을 기반으로  
+**맞춤형 여행 일정을 자동으로 생성**해주는 스마트 감성 여행 플래너입니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+여행을 계획하는 데 어려움을 겪는 사람들을 위해  
+챗봇 인터페이스로 쉽고 간단하게 일정을 추천하고,  
+다이어리 기능으로 추억까지 기록할 수 있는 통합 플랫폼을 제공합니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 💡 주요 기능
 
-To learn more about Next.js, take a look at the following resources:
+| 기능 분류 | 주요 기능 |
+|-----------|-----------|
+| 여행 일정 생성 | - ChatGPT 기반 자동 일정 생성<br>- 마크다운 기반 사용자 직접 일정 작성 |
+| 여행 다이어리 | - 마크다운 기반 작성/수정/삭제/조회 기능 |
+| 축제/행사 안내 | - TourAPI 4.0 연동으로 지역 기반 행사 정보 제공 |
+| 마이페이지 | - 회원 정보 조회/수정/삭제<br>- 내 여행 일정/다이어리 관리 |
+| 인증 및 로그인 | - JWT 기반 로그인/회원가입<br>- 카카오 소셜 로그인 지원 |
+| 앱 지원 | - 웹뷰 기반 모바일 앱 (Android) |
+| 배포 | - [웹사이트 바로가기](http://www.thinktrip.site)<br>- Play Store 등록 완료 *(2025.06.06)* |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠 기술 스택
 
-## Deploy on Vercel
+| 영역 | 기술 |
+|------|------|
+| 프론트엔드 | Next.js, TypeScript, Markdown Editor |
+| 백엔드 | Java, Spring Boot, JWT, REST API |
+| 앱(Android) | Kotlin, Android Studio (웹뷰) |
+| 배포 | Vercel (Frontend), AWS EC2 & RDS (Backend) |
+| 기타 도구 | Docker, Git, Postman |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎥 시연 영상
+
+- [YouTube 시연 영상](https://www.youtube.com/watch?v=Hc9UBYOXqIk)  
+- [Google Drive #1](https://drive.google.com/file/d/1dh8CWdK45YdRoZBnxkQv3vNZWSMCnbYg/view)  
+- [Google Drive #2](https://drive.google.com/file/d/1jvsYc7Oab6FgOaX3rFoJqYHxRcL8PrCI/view)
+
+---
+
+## 🌍 기대 효과 및 활용 분야
+
+- 맞춤형 일정 추천으로 여행 계획 시간 절약
+- 챗GPT를 활용한 다양한 분야(금융, 법률 등)로의 확장 가능성
+- 구조화된 일정 요청으로 누구나 쉽게 AI를 활용 가능
+- 지역 행사 정보 연계로 지자체 관광 서비스 활성화
+- 향후 광고, 프리미엄 일정 등 수익 모델로 발전 가능
+
+**활용 분야 예시**
+- 여행 초보자 및 바쁜 직장인
+- 교육: 맞춤형 학습 일정 플래너
+- 의료: 진료 일정 추천 서비스
+- 기업: 출장 자동 일정 생성
+- 고령자/장애인을 위한 챗봇 서비스 고도화
+
+---
+
+## 👨‍💻 팀 구성 및 역할
+
+| 이름 | 역할 | 주요 담당 업무 |
+|------|------|----------------|
+| 장준익 | 팀장 | 기획, 서비스 디자인, 프론트엔드 배포, 플레이스토어 앱 등록, 앱 
+테스터 모집, 프론트 백 도메인 구매, 메인페이지 제작, GPT api 
+활용 여행 계획 페이지 제작, 마크다운 기반 사용자 여행 계획 
+페이지 제작, 마크다운 기반 다이어리 페이지 제작, 마이페이지 
+제작, 중간/활동/최종 보고서 작성, PPT 제작, 서비스 영상 제작 및 
+유튜브 업로드, 프론트-백 연결 테스트 |
+| 김정현 | 팀원 | JWT 기반 로그인/회원가입 기능, 프로필 이미지 업로드 및 
+수정/삭제 기능, 여행 일정(TravelPlan) 관리(CRUD), 다이어리(Diary) 
+관리 기능(CRUD), 예외 처리 및 보안 강화, 백엔드 배포 및 운영 
+(EC2, Docker 기반), 명세서 작성, 프론트-백 연결 테스트, 소셜 
+로그인 구현(카카오) |
+| 이소영 | 팀원 | 행사 안내 기능 구현, 문서 작성 |
+| 김현우 | 팀원 | 다이어리 백엔드 일부 |
+| 김성완 | 교수 | 지도 |
+| 이강헌 | 멘토 | 피드백 제공 |
+
+---
+
+## 📅 개발 일정
+
+- **2025년 3월 ~ 6월**
+- 주요 흐름: 기획 → 분석 → 설계 → 개발 → 테스트 → 결과보고
+
+---
+
+## 📱 앱 다운로드
+
+- [ThinkTr!p 웹사이트](http://www.thinktrip.site)
+- [Play Store 등록 완료](https://play.google.com/store/apps/details?id=thinktrip) *(2025.06.06)*
+
+---
+
+## ⚠️ 이슈 및 개선 방향
+
+- 이메일 인증 미도입 → 추후 인증 시스템 강화 필요
+- 프리미엄 기능은 비즈니스 모델 구축 후 적용 예정
+
+---
+
+## 📖 라이선스
+
+본 프로젝트는 교육 및 학습 목적의 산학연계 과제로 개발되었습니다.  
+상용화 또는 오픈소스화 시 별도 라이선스 적용 예정입니다.
